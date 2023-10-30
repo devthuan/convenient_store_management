@@ -1,7 +1,5 @@
 
 import java.util.Scanner;
-import functional.InvoiceManagement;
-import object.Invoice;
 
 import ui.*;
 import services.*;
@@ -12,8 +10,6 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        InvoiceManagement managerEmployee = new InvoiceManagement();
-        Invoice invoice = new Invoice();
 
         while (true) {
             Menu.menuMain();
