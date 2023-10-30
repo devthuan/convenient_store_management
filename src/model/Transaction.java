@@ -3,11 +3,11 @@ package model;
 import java.beans.Customizer;
 import java.util.List;
 
-public class Transaction extends BaseEntity{
-    
+public class Transaction extends BaseEntity {
+
     private int transaction_id;
     private double total_amount;
-    private date transaction_date;
+    private String transaction_date;
     private String payment_method;
     private Customer customer;
     private Employee employee;
@@ -16,7 +16,8 @@ public class Transaction extends BaseEntity{
 
     }
 
-    public Transaction(int transaction_id, double total_amount, date transaction_date, String payment_method, Customer customer, Employee employee) {
+    public Transaction(int transaction_id, double total_amount, String transaction_date, String payment_method,
+            Customer customer, Employee employee) {
         this.transaction_id = transaction_id;
         this.total_amount = total_amount;
         this.transaction_date = transaction_date;
@@ -33,7 +34,7 @@ public class Transaction extends BaseEntity{
         return total_amount;
     }
 
-    public date getTransactionDate() {
+    public String getTransactionDate() {
         return transaction_date;
     }
 
@@ -85,13 +86,16 @@ public class Transaction extends BaseEntity{
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
-        if (transaction != null) {
+        if (transactions != null) {
             System.out.println("===================================");
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
-            System.out.println("-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
-            System.out.println("|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN        |");
-            System.out.println("-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+            System.out.println(
+                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+            System.out.println(
+                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN        |");
+            System.out.println(
+                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
             for (Transaction transaction : transactions) {
 
                 System.out.println(
@@ -100,10 +104,11 @@ public class Transaction extends BaseEntity{
                                 transaction.getEmployee(),
                                 transaction.getCustomer(),
                                 transaction.getTotalAmount(),
-                                trainsaction.getTransactionDate(),
-                                trainsaction.getPaymentMethod()));
+                                transaction.getTransactionDate(),
+                                transaction.getPaymentMethod()));
             }
-            System.out.println("-------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "-------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println();
 
         } else {
