@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.Customer;
-import model.Employee;
 import model.InterfaceCRUD;
 import model.Order;
 import model.Product;
@@ -13,13 +11,10 @@ import ui.OrderUI;
 
 public class OrderManager implements InterfaceCRUD<Order> {
     static List<Order> orders = new ArrayList<>();
-    static Customer customer = new Customer();
-    static Employee employee = new Employee();
 
     public static void startOrderManager(Scanner scanner) {
         OrderUI.handleOrder(scanner, orders);
     };
-    
 
     public static void exportProduct(Order order) {
         System.out.println("===================================");

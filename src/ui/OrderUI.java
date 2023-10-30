@@ -11,7 +11,6 @@ import model.Order;
 import model.Product;
 import model.Transaction;
 import services.OrderManager;
-import services.ProductManager;
 
 public class OrderUI {
 
