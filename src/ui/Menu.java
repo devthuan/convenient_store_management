@@ -42,4 +42,20 @@ public class Menu {
         System.out.println("+-------------------------------+");
         System.out.println("");
     }
+
+    public static void menuProduct() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với sản phẩm    |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tạo sản phẩm               |");
+        System.out.println("| 2. Xuất tất cả sản phẩm       |");
+        System.out.println("| 3. Tìm kiếm sản phẩm          |");
+        System.out.println("| 4. Xoá sản phẩm               |");
+        System.out.println("| 5. Lưu thông tin vào file     |");
+        System.out.println("| 0. Thoát khỏi menu sản phẩm   |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
 }

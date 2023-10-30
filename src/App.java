@@ -19,6 +19,8 @@ public class App {
                 case 1:
                     break;
                 case 2:
+                // 
+                    ProductManager.startProductManager(scanner);
                     break;
                 case 3:
                     // xử lý logic cho quản lý hoá đơn
