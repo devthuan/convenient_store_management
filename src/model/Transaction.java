@@ -50,19 +50,19 @@ public class Transaction extends BaseEntity {
         return employee;
     }
 
-    public void settransaction_id(int transaction_id) {
+    public void setTransactionId(int transaction_id) {
         this.transaction_id = transaction_id;
     }
 
-    public void settotal_amount(double total_amount) {
+    public void setTotalAmount(double total_amount) {
         this.total_amount = total_amount;
     }
 
-    public void settransaction_date(date transaction_date) {
+    public void setTransactionDate(String transaction_date) {
         this.transaction_date = transaction_date;
     }
 
-    public void setpayment_method(String payment_method) {
+    public void setPaymentMethod(String payment_method) {
         this.payment_method = payment_method;
     }
 
@@ -70,7 +70,7 @@ public class Transaction extends BaseEntity {
         this.customer = customer;
     }
 
-    public void setemployee(Employee employee) {
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
