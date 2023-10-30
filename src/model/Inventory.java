@@ -25,17 +25,21 @@ public class Inventory extends BaseEntity {
         return inventory_id;
     }
 
-    public void setInventory_id(int newInventory_id) {
-        this.inventory_id = newInventory_id;
+
+
+    public void setInventory_id(int new_inventory_id) {
+        this.inventory_id = new_inventory_id;
     }
 
     public Product getProduct() {
         return product;
     }
 
+
     public void setProduct(Product new_product) {
         this.product = new_product;
     }
+
 
     public int getQuantity() {
         return quantity;
@@ -69,6 +73,7 @@ public class Inventory extends BaseEntity {
                                 product.getId(),
                                 product.getName(),
                                 product.getPrice()));
+
             }
             System.out.println("------------------------------------------------------------------------------------");
             System.out.println();
@@ -78,4 +83,5 @@ public class Inventory extends BaseEntity {
         }
 
     }
+
 }
