@@ -8,42 +8,42 @@ public class Inventory extends BaseEntity {
     private int inventory_id;
     private Product product;
     private int quantity;
-    private string last_update; 
+    private String last_update;
 
     public Inventory() {
 
     }
 
-    public Inventory(int inventory_id,Product product ,int quantity ,string last_update) {
+    public Inventory(int inventory_id, Product product, int quantity, String last_update) {
         this.inventory_id = inventory_id;
-        this.product= product;
+        this.product = product;
         this.quantity = quantity;
         this.last_update = last_update;
     }
 
-    public String getInventory_id() {
+    public int getInventory_id() {
         return inventory_id;
     }
 
-    public void setInventory_id(String newInventory_id) {
-        this.inventory_id = newInventory_id;
-      }
+    public void setInventory_id(int new_inventory_id) {
+        this.inventory_id = new_inventory_id;
+    }
 
-    public String getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(String newProduct) {
+    public void setProduct(Product newProduct) {
         this.product = newProduct;
-      }
+    }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String newQuantity) {
-        this.quantity = newQuantity;
-      }
+    public void setQuantity(int new_quantity) {
+        this.quantity = new_quantity;
+    }
 
     public String getLast_update() {
         return last_update;
@@ -51,8 +51,7 @@ public class Inventory extends BaseEntity {
 
     public void setLast_updateame(String newLast_update) {
         this.last_update = newLast_update;
-      }
-
+    }
 
     public static void exportInventory(List<Product> products) {
         if (products != null){
@@ -69,7 +68,7 @@ public class Inventory extends BaseEntity {
                         String.format("| %4s | %19s | %11s |",
                                 product.getId(),
                                 product.getName(),
-                                product.getPrice(),
+                                product.getPrice()))
             }
             System.out.println("------------------------------------------------------------------------------------");
             System.out.println();
@@ -79,7 +78,4 @@ public class Inventory extends BaseEntity {
         }
 
         }
-    }
-
-
 }
