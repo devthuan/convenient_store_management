@@ -66,7 +66,7 @@ public class Transaction extends BaseEntity {
         this.payment_method = payment_method;
     }
 
-    public void setcustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -91,11 +91,11 @@ public class Transaction extends BaseEntity {
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
             System.out.println(
-                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN        |");
+                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN       |");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
             for (Transaction transaction : transactions) {
 
                 System.out.println(
