@@ -16,6 +16,10 @@ public class Transaction extends BaseEntity {
 
     }
 
+    public Transaction(String payment_method) {
+        this.payment_method = payment_method;
+    }
+
     public Transaction(int transaction_id, double total_amount, String transaction_date, String payment_method,
             Customer customer, Employee employee) {
         this.transaction_id = transaction_id;

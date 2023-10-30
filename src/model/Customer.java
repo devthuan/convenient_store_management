@@ -18,6 +18,10 @@ public class Customer extends BaseEntity {
         this.phone = phone;
     }
 
+    public Customer(String name) {
+        this.name = name;
+    }
+
     @Override
     public int getId() {
         return super.getId();

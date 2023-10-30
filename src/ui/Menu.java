@@ -53,8 +53,24 @@ public class Menu {
         System.out.println("| 2. Xuất tất cả sản phẩm       |");
         System.out.println("| 3. Tìm kiếm sản phẩm          |");
         System.out.println("| 4. Xoá sản phẩm               |");
-        System.out.println("| 5. Lưu thông tin vào file     |");
+        System.out.println("| 5. Chỉnh sửa sản phẩm         |");
         System.out.println("| 0. Thoát khỏi menu sản phẩm   |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
+    public static void menuOrder() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với đơn hàng     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tạo đơn hàng               |");
+        System.out.println("| 2. Xuất tất cả đơn hàng       |");
+        System.out.println("| 3. Tìm kiếm đơn hàng          |");
+        System.out.println("| 4. Xoá đơn hàng               |");
+        System.out.println("| 5. Chỉnh sửa đơn hàng         |");
+        System.out.println("| 0. Thoát khỏi menu đơn hàng   |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }

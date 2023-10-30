@@ -21,6 +21,10 @@ public class Employee extends BaseEntity {
         this.phone = phone;
         this.position = position;
     }
+     
+    public Employee(String name){
+        this.name = name;
+    }
 
     public String getName() {
         return name;
