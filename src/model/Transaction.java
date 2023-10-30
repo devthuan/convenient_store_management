@@ -1,6 +1,5 @@
 package model;
 
-import java.beans.Customizer;
 import java.util.List;
 
 public class Transaction extends BaseEntity {
