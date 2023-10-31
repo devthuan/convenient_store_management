@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 public interface InterfaceCRUD<T> {
 
     void create(T entity);
@@ -13,4 +11,5 @@ public interface InterfaceCRUD<T> {
     void delete(int id);
 
     T search(int id);
+
 }

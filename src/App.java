@@ -19,7 +19,7 @@ public class App {
                 case 1:
                     break;
                 case 2:
-                    //
+                    ProductManager.readFile(); // load data từ file txt
                     ProductManager.startProductManager(scanner);
                     break;
                 case 3:
