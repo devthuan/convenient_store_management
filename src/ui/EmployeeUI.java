@@ -41,13 +41,6 @@ public class EmployeeUI {
 
             } else if (option == 2) {
 
-                // if (employees.isEmpty()) {
-                // System.out.println("Không có nhân viên nào.");
-                // } else {
-                // for (Employee employee : employees) {
-                // Employee.exportEmployee(employee);
-                // }
-                // }
                 if (employees.isEmpty()) {
                     System.out.println("Không có nhân viên nào.");
                 } else {
