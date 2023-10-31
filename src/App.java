@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import ui.*;
 import services.*;
@@ -17,12 +16,13 @@ public class App {
 
             switch (main_choice) {
                 case 1:
+                    CustomerManager.startCustomerManager(scanner);
                     break;
                 case 2:
+                    //
                     break;
                 case 3:
                     // xử lý logic cho quản lý hoá đơn
-                    // manager.handleVoices(invoice, scanner);
                     break;
                 case 4:
                     break;
