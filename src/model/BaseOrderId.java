@@ -1,10 +1,10 @@
 package model;
 
-public abstract class BaseEntity {
+public abstract class BaseOrderId {
     private static int next_id = 1;
     private int id;
 
-    public BaseEntity() {
+    public BaseOrderId() {
         this.id = next_id++;
     }
 

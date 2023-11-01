@@ -19,11 +19,12 @@ public class App {
                 case 1:
                     break;
                 case 2:
-                    //
+                    ProductManager.readFile(); // load data từ file txt
                     ProductManager.startProductManager(scanner);
                     break;
                 case 3:
                     // xử lý logic cho quản lý hoá đơn
+                    OrderManager.readFile(); // load data từ file txt
                     OrderManager.startOrderManager(scanner);
                     break;
                 case 4:

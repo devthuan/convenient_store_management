@@ -6,10 +6,13 @@ import java.util.Scanner;
 
 import model.InterfaceCRUD;
 import model.Product;
+import repository.ProductRespository;
+
 import ui.ProductUI;
 
 public class ProductManager implements InterfaceCRUD<Product> {
     static List<Product> products = new ArrayList<>();
+    static String file_path = "convenient_store_management/src/data/product_data.txt";
 
     public static void startProductManager(Scanner scanner) {
         ProductUI.handleProduct(scanner, products);
@@ -56,6 +59,25 @@ public class ProductManager implements InterfaceCRUD<Product> {
         return String.format("%.2f VND", price);
     }
 
+    public static void saveFile() {
+        ProductRespository.writeProductsToFile(products, file_path);
+        products.clear();
+
+    }
+
+    public static void readFile() {
+        List<Product> products_in_file = ProductRespository.readFileProduct(file_path);
+
+        // Xóa danh sách sản phẩm hiện tại trước khi thêm sản phẩm từ tệp
+        products.clear();
+        if (products_in_file != null) {
+            for (Product product : products_in_file) {
+                products.add(product);
+            }
+
+        }
+    }
+
     @Override
     public void create(Product product) {
         products.add(product);
@@ -68,17 +90,17 @@ public class ProductManager implements InterfaceCRUD<Product> {
                 return product;
             }
         }
-        return null; // Trả về null nếu không tìm thấy sản phẩm
+        return null;
     }
 
     @Override
-    public void update(int id, Product updatedProduct) {
+    public void update(int id, Product updated_product) {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             if (product.getId() == id) {
-                product.setName(updatedProduct.getName());
-                product.setPrice(updatedProduct.getPrice());
-                product.setDescription(updatedProduct.getDescription());
+                product.setName(updated_product.getName());
+                product.setPrice(updated_product.getPrice());
+                product.setDescription(updated_product.getDescription());
                 // Cập nhật thông tin sản phẩm dựa trên ID
                 return;
             }
@@ -105,7 +127,6 @@ public class ProductManager implements InterfaceCRUD<Product> {
                 return product;
             }
         }
-        System.out.println("Không tìm sản phẩm có mã " + id);
         return null;
     }
 
