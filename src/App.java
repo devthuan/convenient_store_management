@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import ui.*;
 import services.*;
@@ -17,6 +16,7 @@ public class App {
 
             switch (main_choice) {
                 case 1:
+                    CustomerManager.startCustomerManager(scanner);
                     break;
                 case 2:
                     ProductManager.readFile(); // load data từ file txt

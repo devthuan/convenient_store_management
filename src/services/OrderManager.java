@@ -84,6 +84,7 @@ public class OrderManager implements InterfaceCRUD<Order> {
 
     public static void readFile() {
         List<Order> data_orders_in_file = OrderRespository.readOrdersToFile(file_path);
+
         orders.clear();
         for (Order order : data_orders_in_file) {
             orders.add(order);

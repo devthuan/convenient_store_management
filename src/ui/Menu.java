@@ -59,7 +59,7 @@ public class Menu {
         System.out.println("");
     }
 
-     public static void menuOrder() {
+    public static void menuOrder() {
 
         System.out.println("");
         System.out.println("+-------------------------------+");
@@ -74,5 +74,21 @@ public class Menu {
         System.out.println("+-------------------------------+");
         System.out.println("");
     }
-   
+
+    public static void menuCustomer() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với nhân viên    |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tạo khách hàng             |");
+        System.out.println("| 2. Xuất tất cả khách hàng     |");
+        System.out.println("| 3. Tìm kiếm khách hàng        |");
+        System.out.println("| 4. Xoá khách hàng             |");
+        System.out.println("| 5. Lưu thông tin vào file     |");
+        System.out.println("| 0. Thoát khỏi menu khách hàng |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
 }
