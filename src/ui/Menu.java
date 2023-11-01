@@ -47,14 +47,14 @@ public class Menu {
 
         System.out.println("");
         System.out.println("+-------------------------------+");
-        System.out.println("|     Thao tác với sản phẩm    |");
+        System.out.println("|     Thao tác với sản phẩm     |");
         System.out.println("+-------------------------------+");
         System.out.println("| 1. Tạo sản phẩm               |");
         System.out.println("| 2. Xuất tất cả sản phẩm       |");
         System.out.println("| 3. Tìm kiếm sản phẩm          |");
         System.out.println("| 4. Xoá sản phẩm               |");
         System.out.println("| 5. Chỉnh sửa sản phẩm         |");
-        System.out.println("| 0. Thoát khỏi menu sản phẩm   |");
+        System.out.println("| 0. Lưu thông tin và thoát     |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }
@@ -70,7 +70,7 @@ public class Menu {
         System.out.println("| 3. Tìm kiếm đơn hàng          |");
         System.out.println("| 4. Xoá đơn hàng               |");
         System.out.println("| 5. Chỉnh sửa đơn hàng         |");
-        System.out.println("| 0. Thoát khỏi menu đơn hàng   |");
+        System.out.println("| 0. Lưu thông tin và thoát     |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }

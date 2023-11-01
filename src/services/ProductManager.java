@@ -93,13 +93,13 @@ public class ProductManager implements InterfaceCRUD<Product> {
     }
 
     @Override
-    public void update(int id, Product updatedProduct) {
+    public void update(int id, Product updated_product) {
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             if (product.getId() == id) {
-                product.setName(updatedProduct.getName());
-                product.setPrice(updatedProduct.getPrice());
-                product.setDescription(updatedProduct.getDescription());
+                product.setName(updated_product.getName());
+                product.setPrice(updated_product.getPrice());
+                product.setDescription(updated_product.getDescription());
                 // Cập nhật thông tin sản phẩm dựa trên ID
                 return;
             }
@@ -127,9 +127,6 @@ public class ProductManager implements InterfaceCRUD<Product> {
             }
         }
         return null;
-    }
-
-    public void clear() {
     }
 
 }

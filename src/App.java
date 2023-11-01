@@ -24,6 +24,7 @@ public class App {
                     break;
                 case 3:
                     // xử lý logic cho quản lý hoá đơn
+                    OrderManager.readFile(); // load data từ file txt
                     OrderManager.startOrderManager(scanner);
                     break;
                 case 4:

@@ -1,19 +1,15 @@
 package model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Order extends BaseEntity {
+public class Order extends BaseOrderId {
     private Product product;
     private List<Product> products;
     private Customer customer;
     private Employee employee;
     private Transaction transaction;
     private LocalDate order_date;
-
-    public Order() {
-    }
 
     public Order(List<Product> products, LocalDate order_date, Customer customer, Employee employee,
             Transaction transaction) {
@@ -28,6 +24,26 @@ public class Order extends BaseEntity {
         this.customer = customer;
         this.product = product;
         this.order_date = order_date;
+        this.transaction = transaction;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setTransaction(Transaction transaction) {
         this.transaction = transaction;
     }
 
