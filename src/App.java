@@ -4,8 +4,6 @@ import services.*;
 
 public class App {
 
-    // hàm xử lý logic cho quản lý hoá đơn
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
@@ -22,12 +20,10 @@ public class App {
                     //
                     break;
                 case 3:
-                    // xử lý logic cho quản lý hoá đơn
                     break;
                 case 4:
                     break;
                 case 5:
-                    // xử lý logic cho quản lý nhân viên
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
                 case 0:

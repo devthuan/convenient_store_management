@@ -58,6 +58,6 @@ public class CustomerManager implements InterfaceCRUD {
     @Override
     public Customer search(int id) {
         return (Customer) read(id);
-    }
+    }c
 
 }

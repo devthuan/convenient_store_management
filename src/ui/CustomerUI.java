@@ -33,14 +33,6 @@ public class CustomerUI {
                 System.out.println("Đã tạo khách hàng thành công.");
 
             } else if (option == 2) {
-
-                // if (employees.isEmpty()) {
-                // System.out.println("Không có nhân viên nào.");
-                // } else {
-                // for (Employee employee : employees) {
-                // Employee.exportEmployee(employee);
-                // }
-                // }
                 if (customers.isEmpty()) {
                     System.out.println("Không có khách hàng nào.");
                 } else {
