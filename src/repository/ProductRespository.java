@@ -48,6 +48,7 @@ public class ProductRespository {
                     product.getDescription());
             writer.newLine();
         } catch (Exception e) {
+            e.printStackTrace();
             // TODO: handle exception
         }
     }

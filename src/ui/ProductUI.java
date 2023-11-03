@@ -35,6 +35,8 @@ public class ProductUI {
                 ProductRespository.writeFileProduct(new_product, file_path);
                 System.out.print("Tạo sản phẩm mới thành công.");
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 2) {
 
                 if (products == null) {
@@ -44,6 +46,8 @@ public class ProductUI {
 
                 }
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 3) {
 
                 System.out.print("Nhập mã sản phẩm: ");
@@ -58,6 +62,8 @@ public class ProductUI {
 
                 }
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 4) {
                 System.out.print("Nhập mã sản phẩm: ");
                 int id = scanner.nextInt();
@@ -65,6 +71,8 @@ public class ProductUI {
 
                 manager.delete(id);
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 5) {
                 System.out.print("Nhập mã sản phẩm cần update: ");
                 int id = scanner.nextInt();
@@ -94,6 +102,8 @@ public class ProductUI {
 
                 }
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 0) {
                 BaseEntity.resetId();
                 ProductManager.saveFile();
