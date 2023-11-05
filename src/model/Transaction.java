@@ -1,6 +1,5 @@
 package model;
 
-import java.beans.Customizer;
 import java.util.List;
 
 public class Transaction extends BaseEntity {
@@ -14,6 +13,14 @@ public class Transaction extends BaseEntity {
 
     public Transaction() {
 
+    }
+
+    public Transaction(String payment_method) {
+        this.payment_method = payment_method;
+    }
+    public Transaction(double total_amount, String payment_method){
+        this.total_amount = total_amount;
+        this.payment_method = payment_method;
     }
 
     public Transaction(int transaction_id, double total_amount, String transaction_date, String payment_method,
@@ -66,7 +73,7 @@ public class Transaction extends BaseEntity {
         this.payment_method = payment_method;
     }
 
-    public void setcustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
@@ -91,11 +98,11 @@ public class Transaction extends BaseEntity {
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
             System.out.println(
-                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN        |");
+                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN       |");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+--------------------------------------------------------------");
+                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
             for (Transaction transaction : transactions) {
 
                 System.out.println(

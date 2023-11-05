@@ -22,6 +22,18 @@ public class Employee extends BaseEntity {
         this.position = position;
     }
 
+    public Employee(int id, String name, String gender, int age, String phone, String position) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.phone = phone;
+        this.position = position;
+    }
+
+    public Employee(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -40,6 +52,26 @@ public class Employee extends BaseEntity {
 
     public String getPosition() {
         return position;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setPhone(String Phone) {
+        this.phone = phone;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public static void exportEmployee(Employee employee) {

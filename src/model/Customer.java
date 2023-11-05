@@ -18,6 +18,16 @@ public class Customer extends BaseEntity {
         this.phone = phone;
     }
 
+    public Customer(int id, String name, String address, String phone) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Customer(String name) {
+        this.name = name;
+    }
+
     @Override
     public int getId() {
         return super.getId();
@@ -56,7 +66,7 @@ public class Customer extends BaseEntity {
         System.out.println("------------------------------------------------");
     }
 
-    public static void exportAllEmployee(List<Customer> customers) {
+    public static void exportAllCustomer(List<Customer> customers) {
         if (customers != null) {
             System.out.println("===================================");
             System.out.println("         DANH SÁCH KHÁCH HÀNG       ");

@@ -3,13 +3,17 @@ package ui;
 import java.util.List;
 import java.util.Scanner;
 
+import model.Customer;
 import model.Employee;
+import repository.CustomerRepository;
 import repository.EmployeeRepository;
+import services.CustomerManager;
 import services.EmployeeManager;
 
 public class EmployeeUI {
     public static void handleEmployee(Scanner scanner, List<Employee> employees) {
         EmployeeManager manager = new EmployeeManager();
+        String file_path = "src/data/employee_data.txt";
 
         while (true) {
             Menu.menuEmployee();
@@ -34,21 +38,18 @@ public class EmployeeUI {
                 System.out.print("Nhập chức vụ: ");
                 String position = scanner.nextLine();
 
-                Employee new_employee = new Employee(name, gender, age, phone, position);
-                employees.add(new_employee);
+                Employee createEmployee = new Employee(name, gender, age, phone, position);
+                manager.create(createEmployee);
+                employees.add(createEmployee);
+                EmployeeRepository.writeFileEmployee(createEmployee, file_path);
+
+                System.out.println("Đã tạo nhân viên thành công.");
 
                 System.out.println("Đã tạo nhân viên thành công.");
 
             } else if (option == 2) {
 
-                // if (employees.isEmpty()) {
-                // System.out.println("Không có nhân viên nào.");
-                // } else {
-                // for (Employee employee : employees) {
-                // Employee.exportEmployee(employee);
-                // }
-                // }
-                if (employees.isEmpty()) {
+                if (employees == null) {
                     System.out.println("Không có nhân viên nào.");
                 } else {
                     Employee.exportAllEmployee(employees);
@@ -77,11 +78,8 @@ public class EmployeeUI {
                 manager.delete(id);
 
             } else if (option == 5) {
-                String file_path = "convenient_store_management/src/data/employee_data.txt";
-                for (Employee employee : employees) {
-                    EmployeeRepository.writeFile(employee, file_path);
-                }
-                System.out.println("Đã lưu thông tin vào file thành công.");
+                CustomerManager.saveFile();
+                System.out.println("Thông tin nhân viên đã được lưu vào hệ thống");
 
             } else if (option == 0) {
                 break;
