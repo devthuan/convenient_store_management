@@ -11,20 +11,32 @@ import ui.EmployeeUI;
 
 public class EmployeeManager implements InterfaceCRUD {
     static List<Employee> employees = new ArrayList<>();
+    static String file_path = "src/data/emplyee_data.txt";
 
     public static void startEmployeeManager(Scanner scanner) {
         EmployeeUI.handleEmployee(scanner, employees);
     }
 
+    public static void saveFile() {
+        EmployeeRepository.writeEmployeesToFile(employees, file_path);
+        employees.clear();
+
+    }
+
+    public static void readFile() {
+        List<Employee> employees_in_file = EmployeeRepository.readFileEmployee(file_path);
+        employees.clear();
+        if (employees_in_file != null) {
+            for (Employee employee : employees_in_file) {
+                employees.add(employee);
+            }
+
+        }
+    }
+
     @Override
     public void create(Object entity) {
-        if (entity instanceof Employee) {
-            Employee employee = (Employee) entity;
-            employees.add(employee);
-            String file_path = "convenient_store_management/src/data/employee_data.txt";
 
-            EmployeeRepository.writeFile(employee, file_path);
-        }
     }
 
     @Override
@@ -39,7 +51,6 @@ public class EmployeeManager implements InterfaceCRUD {
 
     @Override
     public void update(Object entity) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 

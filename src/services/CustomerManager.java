@@ -6,26 +6,40 @@ import java.util.Scanner;
 
 import model.Customer;
 import model.InterfaceCRUD;
+import model.Product;
 import repository.CustomerRepository;
 import ui.CustomerUI;
 
 public class CustomerManager implements InterfaceCRUD {
     static List<Customer> customers = new ArrayList<>();
+    static String file_path = "src/data/customer_data.txt";
 
     public static void startCustomerManager(Scanner scanner) {
         CustomerUI.handleCustomer(scanner, customers);
     }
 
+    public static void saveFile() {
+        CustomerRepository.writeCustomerToFile(customers, file_path);
+        customers.clear();
+
+    }
+
+    public static void readFile() {
+        List<Customer> customers_in_file = CustomerRepository.readFileCustomer(file_path);
+
+        // Xóa danh sách sản phẩm hiện tại trước khi thêm sản phẩm từ tệp
+        customers.clear();
+        if (customers_in_file != null) {
+            for (Customer customer : customers_in_file) {
+                customers.add(customer);
+            }
+
+        }
+    }
+
     @Override
     public void create(Object entity) {
-        if (entity instanceof Customer) {
-            Customer customer = (Customer) entity;
-            customers.add(customer);
 
-            String file_path = "convenient_store_management/src/data/customer_data.txt";
-
-            CustomerRepository.writeFile(customer, file_path);
-        }
     }
 
     @Override
@@ -40,8 +54,7 @@ public class CustomerManager implements InterfaceCRUD {
 
     @Override
     public void update(Object entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+
     }
 
     @Override
@@ -58,6 +71,6 @@ public class CustomerManager implements InterfaceCRUD {
     @Override
     public Customer search(int id) {
         return (Customer) read(id);
-    }c
+    }
 
 }

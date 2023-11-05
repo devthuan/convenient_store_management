@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import model.Employee;
 import repository.EmployeeRepository;
+import services.CustomerManager;
 import services.EmployeeManager;
 
 public class EmployeeUI {
@@ -41,13 +42,6 @@ public class EmployeeUI {
 
             } else if (option == 2) {
 
-                // if (employees.isEmpty()) {
-                // System.out.println("Không có nhân viên nào.");
-                // } else {
-                // for (Employee employee : employees) {
-                // Employee.exportEmployee(employee);
-                // }
-                // }
                 if (employees.isEmpty()) {
                     System.out.println("Không có nhân viên nào.");
                 } else {
@@ -77,10 +71,8 @@ public class EmployeeUI {
                 manager.delete(id);
 
             } else if (option == 5) {
-                String file_path = "convenient_store_management/src/data/employee_data.txt";
-                for (Employee employee : employees) {
-                    EmployeeRepository.writeFile(employee, file_path);
-                }
+                EmployeeManager.saveFile();
+                System.out.println("Dữ liệu khách hàng đã được lưu vào tệp tin.");
                 System.out.println("Đã lưu thông tin vào file thành công.");
 
             } else if (option == 0) {

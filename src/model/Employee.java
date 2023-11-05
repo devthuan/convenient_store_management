@@ -22,6 +22,14 @@ public class Employee extends BaseEntity {
         this.position = position;
     }
 
+    public Employee(int id, String name, String gender, int age, String phone, String position) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.phone = phone;
+        this.position = position;
+    }
+
     public String getName() {
         return name;
     }

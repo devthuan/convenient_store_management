@@ -14,6 +14,7 @@ public class App {
 
             switch (main_choice) {
                 case 1:
+                    CustomerManager.readFile();
                     CustomerManager.startCustomerManager(scanner);
                     break;
                 case 2:
@@ -24,6 +25,7 @@ public class App {
                 case 4:
                     break;
                 case 5:
+                    EmployeeManager.readFile();
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
                 case 0:
