@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import model.Employee;
 import repository.EmployeeRepository;
-import services.CustomerManager;
 import services.EmployeeManager;
 
 public class EmployeeUI {
@@ -72,8 +71,7 @@ public class EmployeeUI {
 
             } else if (option == 5) {
                 EmployeeManager.saveFile();
-                System.out.println("Dữ liệu khách hàng đã được lưu vào tệp tin.");
-                System.out.println("Đã lưu thông tin vào file thành công.");
+                System.out.println("Thông tin nhân viên đã được lưu thành công");
 
             } else if (option == 0) {
                 break;

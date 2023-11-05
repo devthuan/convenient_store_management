@@ -51,7 +51,6 @@ public class EmployeeManager implements InterfaceCRUD {
 
     @Override
     public void update(Object entity) {
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override

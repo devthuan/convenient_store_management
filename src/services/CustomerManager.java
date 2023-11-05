@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 import model.Customer;
 import model.InterfaceCRUD;
-import model.Product;
 import repository.CustomerRepository;
 import ui.CustomerUI;
 
@@ -26,8 +25,6 @@ public class CustomerManager implements InterfaceCRUD {
 
     public static void readFile() {
         List<Customer> customers_in_file = CustomerRepository.readFileCustomer(file_path);
-
-        // Xóa danh sách sản phẩm hiện tại trước khi thêm sản phẩm từ tệp
         customers.clear();
         if (customers_in_file != null) {
             for (Customer customer : customers_in_file) {

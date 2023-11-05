@@ -7,11 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Customer;
 
 public class CustomerRepository {
-
     public static List<Customer> readFileCustomer(String file_path) {
         List<Customer> CustomerList = new ArrayList<>();
 
@@ -28,13 +26,11 @@ public class CustomerRepository {
                     Customer customer = new Customer(id, name, address, phone);
                     CustomerList.add(customer);
                 } else {
-                    // Handle data format errors
                     System.err.println("Invalid data format: " + line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle file reading errors
         }
 
         return CustomerList;

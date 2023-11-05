@@ -64,8 +64,7 @@ public class CustomerUI {
 
             } else if (option == 5) {
                 CustomerManager.saveFile();
-                System.out.println("Dữ liệu khách hàng đã được lưu vào tệp tin.");
-                System.out.println("Đã lưu thông tin vào file thành công.");
+                System.out.println("Thông tin khách hàng đã lưu vào thành công");
 
             } else if (option == 0) {
                 break;
