@@ -15,7 +15,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
     static String file_path = "convenient_store_management/src/data/transaction_data.txt";
 
     public static void startTransactionManager(Scanner scanner) {
-        TransactionUI.handle(scanner, transaction);
+        TransactionUI.handle(scanner, transactions);
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
@@ -48,3 +48,6 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
              System.out.println("Không có dữ liệu nào!");
         }
     }
+
+    
+}

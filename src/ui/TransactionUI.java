@@ -47,7 +47,7 @@ public class TransactionUI {
                 Transaction new_transaction = new Transaction(transaction_id, employee, customer, total_amount, transaction_date, payment_method);
                 transaction.add(new_transaction);
 
-                ProductRespository.writeFileTransaction(new_transaction, file_path);
+                TransactionRespository.writeFileTransaction(new_transaction, file_path);
                 System.out.println("Đã tạo giao dịch thành công!");
 
                 System.out.print("Ấn Enter để tiếp tục!");
