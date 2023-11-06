@@ -91,4 +91,20 @@ public class Menu {
         System.out.println("");
     }
 
+    public static void menuTransaction() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với giao dịch    |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tạo giao dịch              |");
+        System.out.println("| 2. Xuất tất cả giao dịch      |");
+        System.out.println("| 3. Tìm kiếm giao dịch         |");
+        System.out.println("| 4. Xoá giao dịch              |");
+        System.out.println("| 5. Lưu thông tin vào file     |");
+        System.out.println("| 0. Thoát khỏi menu giao dịch  |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
 }
