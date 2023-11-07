@@ -14,10 +14,12 @@ public class App {
 
             switch (main_choice) {
                 case 1:
+                    // xử lý logic cho quản lý khách hàng
                     CustomerManager.readFile();
                     CustomerManager.startCustomerManager(scanner);
                     break;
                 case 2:
+                    // xử lý logic cho quản lý sản phẩm
                     ProductManager.readFile(); // load data từ file txt
                     ProductManager.startProductManager(scanner);
                     break;
@@ -28,8 +30,10 @@ public class App {
 
                     break;
                 case 4:
+
                     break;
                 case 5:
+                    // xử lý logic cho quản lý nhân viên
                     EmployeeManager.readFile();
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
