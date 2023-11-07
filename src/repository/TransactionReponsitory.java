@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 
 import model.Employee;
 import model.Customer;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class TransactionReponsitory {
-     public static void writeFileTransaction(Transaction transaction, String file_path) {
+    public static void writeFileTransaction(Transaction transaction, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path, true))) {
             writer.write(transaction.getTransactionId() + "," +
                     transaction.getEmployee() + "," +
@@ -24,25 +25,25 @@ public class TransactionReponsitory {
             writer.newLine();
         } catch (Exception e) {
             e.printStackTrace();
-            // Xử lý ngoại lệ 
+            // Xử lý ngoại lệ
         }
     }
 
-    public static void writeTransactionToFile(List<Transaction> transaction, String file_path) {
+    public static void writeTransactionToFile(List<Transaction> transactions, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
-            for (Transaction transaction : transaction) {
+            for (Transaction transaction : transactions) {
                 writer.write(transaction.getTransactionId() + "," +
-                    transaction.getEmployee() + "," +
-                    transaction.getCustomer() + "," +
-                    transaction.getTotalAmount() + "," +
-                    transaction.getTransactionDate() + "," +
-                    transaction.getPaymentMethod());
-            writer.newLine();
+                        transaction.getEmployee() + "," +
+                        transaction.getCustomer() + "," +
+                        transaction.getTotalAmount() + "," +
+                        transaction.getTransactionDate() + "," +
+                        transaction.getPaymentMethod());
+                writer.newLine();
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            // Xử lý ngoại lệ 
+            // Xử lý ngoại lệ
         }
     }
 
@@ -56,12 +57,14 @@ public class TransactionReponsitory {
                 if (data.length == 6) {
                     int transaction_id = Integer.parseInt(data[0]);
                     double total_amount = Double.parseDouble(data[1]);
-                    String transaction_date = data[2];
+                    LocalDate transaction_date = LocalDate.parse(data[2]);
                     String payment_method = data[3];
-                    Customer customer = Customer.parseCustomer[4];
-                    Employee employee = Employee.parseEmployee[5];
+                    Customer customer = new Customer(data[4]);
+                    Employee employee = new Employee(data[5]);
 
-                    Transaction transaction = new Transaction(transaction_id, total_amount, transaction_date, payment_method, customer, employee);
+                    Transaction transaction = new Transaction(transaction_id, total_amount, transaction_date,
+                            payment_method, customer,
+                            employee);
                     transactionList.add(transaction);
                 } else {
                     // Xử lý lỗi định dạng dữ liệu

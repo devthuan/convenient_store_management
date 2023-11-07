@@ -4,8 +4,6 @@ import services.*;
 
 public class App {
 
-    // hàm xử lý logic cho quản lý hoá đơn
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
 
@@ -16,6 +14,7 @@ public class App {
 
             switch (main_choice) {
                 case 1:
+                    CustomerManager.readFile();
                     CustomerManager.startCustomerManager(scanner);
                     break;
                 case 2:
@@ -26,16 +25,17 @@ public class App {
                     // xử lý logic cho quản lý hoá đơn
                     OrderManager.readFile(); // load data từ file txt
                     OrderManager.startOrderManager(scanner);
+
                     break;
                 case 4:
                     break;
                 case 5:
-                    // xử lý logic cho quản lý nhân viên
+                    EmployeeManager.readFile();
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
                 case 7:
                     // xử lí logic cho lịch sử giao dịch
-                    // TransactionManager.readFile();
+
                     TransactionManager.startTransactionManager(scanner);
                 case 0:
                     System.out.println("Bye.");

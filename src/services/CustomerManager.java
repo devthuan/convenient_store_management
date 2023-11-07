@@ -11,21 +11,33 @@ import ui.CustomerUI;
 
 public class CustomerManager implements InterfaceCRUD<Customer> {
     static List<Customer> customers = new ArrayList<>();
+    static String file_path = "src/data/customer_data.txt";
 
     public static void startCustomerManager(Scanner scanner) {
         CustomerUI.handleCustomer(scanner, customers);
     }
 
-    @Override
-    public void create(Customer entity) {
-        if (entity instanceof Customer) {
-            Customer customer = (Customer) entity;
-            customers.add(customer);
+    public static void saveFile() {
+        CustomerRepository.writeCustomerToFile(customers, file_path);
+        customers.clear();
 
-            String file_path = "convenient_store_management/src/data/customer_data.txt";
+    }
 
-            CustomerRepository.writeFile(customer, file_path);
+    public static void readFile() {
+        List<Customer> customers_in_file = CustomerRepository.readFileCustomer(file_path);
+        customers.clear();
+        if (customers_in_file != null) {
+            for (Customer customer : customers_in_file) {
+                customers.add(customer);
+            }
+
         }
+    }
+
+    @Override
+    public void create(Customer customer) {
+        customers.add(customer);
+
     }
 
     @Override

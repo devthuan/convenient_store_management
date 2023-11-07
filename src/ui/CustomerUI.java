@@ -10,7 +10,7 @@ import services.CustomerManager;
 public class CustomerUI {
     public static void handleCustomer(Scanner scanner, List<Customer> customers) {
         CustomerManager manager = new CustomerManager();
-
+        String file_path = "src/data/customer_data.txt";
         while (true) {
             Menu.menuCustomer();
             System.out.print("Nhập tuỳ chọn: ");
@@ -63,11 +63,8 @@ public class CustomerUI {
                 manager.delete(id);
 
             } else if (option == 5) {
-                String file_path = "convenient_store_management/src/data/customer_data.txt";
-                for (Customer customer : customers) {
-                    CustomerRepository.writeFile(customer, file_path);
-                }
-                System.out.println("Đã lưu thông tin vào file thành công.");
+                CustomerManager.saveFile();
+                System.out.println("Thông tin khách hàng đã lưu vào thành công");
 
             } else if (option == 0) {
                 break;
