@@ -35,7 +35,7 @@ public class App {
                     break;
                 case 7:
                     // xử lí logic cho lịch sử giao dịch
-                    TransactionManager.readFile();
+                    // TransactionManager.readFile();
                     TransactionManager.startTransactionManager(scanner);
                 case 0:
                     System.out.println("Bye.");
