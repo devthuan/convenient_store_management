@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Employee;
-import repository.EmployeeRepository;
-import services.CustomerManager;
+
 import services.EmployeeManager;
 
 public class EmployeeUI {
@@ -81,7 +80,8 @@ public class EmployeeUI {
                 scanner.nextLine();
             } else if (option == 5) {
                 EmployeeManager.saveFile();
-                System.out.println("Chức nănge đang được phát triển");
+
+                System.out.println("Chức năng đang được phát triển");
 
                 System.out.print("Ấn Enter để tiếp tục....");
                 scanner.nextLine();

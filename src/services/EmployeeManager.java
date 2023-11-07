@@ -36,10 +36,8 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
 
     @Override
     public void create(Employee employee) {
-        if (employee instanceof Employee) {
-            Employee _employee = (Employee) employee;
-            employees.add(_employee);
-        }
+        employees.add(employee);
+
     }
 
     @Override
@@ -53,7 +51,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
     }
 
     @Override
-    public void update(int id, Employee employee) {
+    public void update(int id, Employee entity) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
 

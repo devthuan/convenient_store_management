@@ -37,8 +37,8 @@ public class Menu {
         System.out.println("| 2. Xuất tất cả nhân viên      |");
         System.out.println("| 3. Tìm kiếm nhân viên         |");
         System.out.println("| 4. Xoá nhân viên              |");
-        System.out.println("| 5. Lưu thông tin vào file     |");
-        System.out.println("| 0. Thoát khỏi menu nhân viên  |");
+        System.out.println("| 5. Chính sủa nhân viên        |");
+        System.out.println("| 0. Lưu thông tin và thoát     |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }
@@ -79,14 +79,30 @@ public class Menu {
 
         System.out.println("");
         System.out.println("+-------------------------------+");
-        System.out.println("|     Thao tác với nhân viên    |");
+        System.out.println("|     Thao tác với khách hàng   |");
         System.out.println("+-------------------------------+");
         System.out.println("| 1. Tạo khách hàng             |");
         System.out.println("| 2. Xuất tất cả khách hàng     |");
         System.out.println("| 3. Tìm kiếm khách hàng        |");
         System.out.println("| 4. Xoá khách hàng             |");
+        System.out.println("| 5. Chỉnh sửa khách hàng       |");
+        System.out.println("| 0. Lưu thông tin và thoát     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
+    public static void menuTransaction() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với giao dịch    |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tạo giao dịch              |");
+        System.out.println("| 2. Xuất tất cả giao dịch      |");
+        System.out.println("| 3. Tìm kiếm giao dịch         |");
+        System.out.println("| 4. Xoá giao dịch              |");
         System.out.println("| 5. Lưu thông tin vào file     |");
-        System.out.println("| 0. Thoát khỏi menu khách hàng |");
+        System.out.println("| 0. Thoát khỏi menu giao dịch  |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }

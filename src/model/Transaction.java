@@ -1,12 +1,13 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Transaction extends BaseEntity {
 
     private int transaction_id;
     private double total_amount;
-    private String transaction_date;
+    private LocalDate transaction_date;
     private String payment_method;
     private Customer customer;
     private Employee employee;
@@ -18,12 +19,13 @@ public class Transaction extends BaseEntity {
     public Transaction(String payment_method) {
         this.payment_method = payment_method;
     }
-    public Transaction(double total_amount, String payment_method){
+
+    public Transaction(double total_amount, String payment_method) {
         this.total_amount = total_amount;
         this.payment_method = payment_method;
     }
 
-    public Transaction(int transaction_id, double total_amount, String transaction_date, String payment_method,
+    public Transaction(int transaction_id, double total_amount, LocalDate transaction_date, String payment_method,
             Customer customer, Employee employee) {
         this.transaction_id = transaction_id;
         this.total_amount = total_amount;
@@ -41,7 +43,7 @@ public class Transaction extends BaseEntity {
         return total_amount;
     }
 
-    public String getTransactionDate() {
+    public LocalDate getTransactionDate() {
         return transaction_date;
     }
 
@@ -65,7 +67,7 @@ public class Transaction extends BaseEntity {
         this.total_amount = total_amount;
     }
 
-    public void setTransactionDate(String transaction_date) {
+    public void setTransactionDate(LocalDate transaction_date) {
         this.transaction_date = transaction_date;
     }
 

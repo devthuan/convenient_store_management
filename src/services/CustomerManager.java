@@ -11,21 +11,65 @@ import ui.CustomerUI;
 
 public class CustomerManager implements InterfaceCRUD<Customer> {
     static List<Customer> customers = new ArrayList<>();
+    static String file_path = "convenient_store_management/src/data/customer_data.txt";
 
     public static void startCustomerManager(Scanner scanner) {
         CustomerUI.handleCustomer(scanner, customers);
     }
 
-    @Override
-    public void create(Customer entity) {
-        if (entity instanceof Customer) {
-            Customer customer = (Customer) entity;
-            customers.add(customer);
+    public static void exportCustomer(Customer customer) {
+        System.out.println("------------------------------------------------");
+        System.out.println("Mã khách hàng            : " + customer.getId());
+        System.out.println("Họ và tên khách hàng     : " + customer.getName());
+        System.out.println("Địa chỉ khách hàng       : " + customer.getAddress());
+        System.out.println("Số điện thoại khách hàng :" + customer.getPhone());
+        System.out.println("------------------------------------------------");
+    }
 
-            String file_path = "convenient_store_management/src/data/customer_data.txt";
-
-            CustomerRepository.writeFile(customer, file_path);
+    public static void exportAllEmployee(List<Customer> customers) {
+        if (customers != null) {
+            System.out.println("===================================");
+            System.out.println("         DANH SÁCH KHÁCH HÀNG       ");
+            System.out.println("===================================");
+            System.out.println("-------+--------------------- +----------------------------+-------------------");
+            System.out.println("|  ID  |       Họ và tên      |           Địa chỉ          |   Số điện thoại  |");
+            System.out.println("-------+----------------------+----------------------------+-------------------");
+            for (Customer customerInformation : customers) {
+                System.out.println(
+                        String.format("| %4s | %19s | %27s | %16s |",
+                                customerInformation.getId(),
+                                customerInformation.getName(),
+                                customerInformation.getAddress(),
+                                customerInformation.getPhone()));
+            }
+            System.out.println("-------------------------------------------------------------------------------");
+            System.out.println();
+        } else {
+            System.out.println("Không có thông tin nào về khách hàng");
         }
+    }
+
+    public static void saveFile() {
+        CustomerRepository.writeCustomerToFile(customers, file_path);
+        customers.clear();
+
+    }
+
+    public static void readFile() {
+        List<Customer> customers_in_file = CustomerRepository.readFileCustomer(file_path);
+        customers.clear();
+        if (customers_in_file != null) {
+            for (Customer customer : customers_in_file) {
+                customers.add(customer);
+            }
+
+        }
+    }
+
+    @Override
+    public void create(Customer customer) {
+        customers.add(customer);
+
     }
 
     @Override
