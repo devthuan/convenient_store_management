@@ -8,6 +8,15 @@ import repository.EmployeeRepository;
 import services.EmployeeManager;
 
 public class EmployeeUI {
+    public static boolean checkPhone(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void handleEmployee(Scanner scanner, List<Employee> employees) {
         EmployeeManager manager = new EmployeeManager();
 
@@ -19,17 +28,51 @@ public class EmployeeUI {
 
             if (option == 1) {
                 System.out.print("Nhân tên nhân viên: ");
-                String name = scanner.nextLine();
+                String name;
+                while (true) {
+                    name = scanner.nextLine();
+                    if (name.matches(".*\\d+.*")) {
+                        System.out.println("Vui lòng nhập lại: ");
+                    } else {
+                        break;
+                    }
+                }
 
                 System.out.print("Nhập giới tính: ");
-                String gender = scanner.nextLine();
+                String gender;
+                do {
+                    gender = scanner.nextLine();
+
+                    if (!gender.equals("Nam") && !gender.equals("Nu") && !gender.equals("Khac")) {
+                        System.out.println("Vui lòng nhập lại: ");
+                    }
+                } while (!gender.equals("Nam") && !gender.equals("Nu") && !gender.equals("Khac"));
 
                 System.out.print("Nhập tuổi: ");
-                int age = scanner.nextInt();
-                scanner.nextLine();
+                int age;
+                while (true) {
+                    if (scanner.hasNextInt()) {
+                        age = scanner.nextInt();
+                        scanner.nextLine();
+                        break;
+                    } else {
+                        System.out.println("Tuổi không hợp lệ. Vui lòng nhập lại");
+                        scanner.nextLine();
+                    }
+                }
 
                 System.out.print("Nhập số điện thoại: ");
-                String phone = scanner.nextLine();
+                String phone;
+                while (true) {
+                    phone = scanner.nextLine();
+                    if (!checkPhone(phone)) {
+                        System.out.println("Số điện thoại không hợp lệ. Vui lòng chỉ sử dụng các chữ số");
+                    } else if (phone.length() != 10 && checkPhone(phone)) {
+                        System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập chính xác 10 chữ số");
+                    } else {
+                        break;
+                    }
+                }
 
                 System.out.print("Nhập chức vụ: ");
                 String position = scanner.nextLine();

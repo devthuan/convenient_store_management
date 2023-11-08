@@ -8,6 +8,15 @@ import repository.CustomerRepository;
 import services.CustomerManager;
 
 public class CustomerUI {
+    public static boolean checkPhone(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void handleCustomer(Scanner scanner, List<Customer> customers) {
         CustomerManager manager = new CustomerManager();
         String file_path = "src/data/customer_data.txt";
@@ -16,16 +25,33 @@ public class CustomerUI {
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-
+            String name;
+            System.out.println("Nhập họ và tên: ");
             if (option == 1) {
-                System.out.print("Nhân tên khách hàng: ");
-                String name = scanner.nextLine();
+                while (true) {
+                    name = scanner.nextLine();
+                    if (name.matches(".*\\d+.*")) {
+                        System.out.println("Vui lòng nhập lại");
+                    } else {
+                        break;
+                    }
+                }
 
                 System.out.print("Nhập địa chi: ");
                 String address = scanner.nextLine();
 
-                System.out.print("Nhập số điện thoại: ");
-                String phone = scanner.nextLine();
+                String phone;
+                System.out.println("Nhập số điện thoại : ");
+                while (true) {
+                    phone = scanner.nextLine();
+                    if (!checkPhone(phone)) {
+                        System.out.println("Số điện thoại không hợp lệ. Vui lòng chỉ sử dụng các chữ số");
+                    } else if (phone.length() != 10 && checkPhone(phone)) {
+                        System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập chính xác 10 chữ số");
+                    } else {
+                        break;
+                    }
+                }
 
                 Customer new_customer = new Customer(name, address, phone);
                 customers.add(new_customer);
