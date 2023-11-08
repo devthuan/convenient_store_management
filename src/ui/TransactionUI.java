@@ -1,5 +1,6 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -7,7 +8,7 @@ import model.BaseEntity;
 import model.Customer;
 import model.Employee;
 import model.Transaction;
-import repository.TransactionRepository;
+import repository.TransactionReponsitory;
 import services.TransactionManager;
 
 public class TransactionUI {
@@ -20,33 +21,31 @@ public class TransactionUI {
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-        if (option == 1) {
-                System.out.print("Nhập mã giao dịch: ");
-                int transaction_id = scanner.nextInt();
-                scanner.nextLine();
+            if (option == 1) {
 
                 System.out.print("Nhập tên thu ngân: ");
                 String name_employee = scanner.nextLine();
-                Employee employee = new Employee(name_employee);
 
                 System.out.print("Nhập tên khách hàng: ");
                 String name_customer = scanner.nextLine();
-                Customer customer = new Customer(name_customer);
 
                 System.out.print("Nhập tổng số tiền: ");
                 double total_amount = scanner.nextDouble();
                 scanner.nextLine();
 
-                System.out.print("Nhập ngày giao dịch: ");
-                String transaction_date = scanner.nextLine();
+                LocalDate transaction_date = LocalDate.now();
 
                 System.out.print("Nhập phương thức thanh toán: ");
                 String payment_method = scanner.nextLine();
 
-                Transaction new_transaction = new Transaction(transaction_id, employee, customer, total_amount, transaction_date, payment_method);
+                Employee employee = new Employee(name_employee);
+                Customer customer = new Customer(name_customer);
+
+                Transaction new_transaction = new Transaction(total_amount, transaction_date, payment_method, customer,
+                        employee);
                 transaction.add(new_transaction);
 
-                TransactionRespository.writeFileTransaction(new_transaction, file_path);
+                TransactionReponsitory.writeFileTransaction(new_transaction, file_path);
                 System.out.println("Đã tạo giao dịch thành công!");
 
                 System.out.print("Ấn Enter để tiếp tục!");
@@ -56,7 +55,7 @@ public class TransactionUI {
 
                 if (transaction.isEmpty()) {
                     System.out.println("Không có giao dịch nào!");
-                    } else {
+                } else {
                     Transaction.exportAllTransaction(transaction);
 
                 }
@@ -92,9 +91,6 @@ public class TransactionUI {
                 Transaction transaction_finded = manager.search(transaction_id);
 
                 if (transaction_finded != null) {
-                    System.out.print("Nhập mã giao dịch: ");
-                    int transaction_id = scanner.nextInt();
-                    scanner.nextLine();
 
                     System.out.print("Nhập tên thu ngân: ");
                     String name_employee = scanner.nextLine();
@@ -108,19 +104,18 @@ public class TransactionUI {
                     double total_amount = scanner.nextDouble();
                     scanner.nextLine();
 
-                    System.out.print("Nhập ngày giao dịch: ");
-                    String transaction_date = scanner.nextLine();
+                    LocalDate update_date = LocalDate.now();
 
                     System.out.print("Nhập phương thức thanh toán: ");
                     String payment_method = scanner.nextLine();
 
-
-                    Transaction update_transaction = new Transaction(transaction_id, employee, customer, total_amount, transaction_date, payment_method);
+                    Transaction update_transaction = new Transaction(total_amount, update_date, payment_method, customer,
+                        employee);
 
                     manager.update(transaction_id, update_transaction);
 
                     System.out.print("Cập nhật giao dịch thành công!");
-                     } else {
+                } else {
                     System.out.print("Không tìm thấy mã giao dịch cần sửa!");
 
                 }
