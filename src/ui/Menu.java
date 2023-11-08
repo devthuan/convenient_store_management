@@ -11,6 +11,7 @@ public class Menu {
         System.out.println("║ 3. Quản lý hoá đơn       ║");
         System.out.println("║ 4. Quản lý kho           ║");
         System.out.println("║ 5. Quản lý nhân viên     ║");
+        System.out.println("║ 6. Quản lý giao dịch     ║");
         System.out.println("║ 0. Thoát                 ║");
         System.out.println("╚══════════════════════════╝");
     }
@@ -100,9 +101,7 @@ public class Menu {
         System.out.println("| 1. Tạo giao dịch              |");
         System.out.println("| 2. Xuất tất cả giao dịch      |");
         System.out.println("| 3. Tìm kiếm giao dịch         |");
-        System.out.println("| 4. Xoá giao dịch              |");
-        System.out.println("| 5. Lưu thông tin vào file     |");
-        System.out.println("| 0. Thoát khỏi menu giao dịch  |");
+        System.out.println("| 0. Thoát và lưu thông tin     |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }

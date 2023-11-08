@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Transaction extends BaseEntity {
+public class Transaction extends TransactionID {
 
     private int transaction_id;
     private double total_amount;

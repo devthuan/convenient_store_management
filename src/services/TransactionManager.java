@@ -35,14 +35,13 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
     }
 
     public static void exportTransaction(Transaction transaction) {
-        System.out.println("--------------------------------------------------------------");
-        System.out.println("Mã giao dịch                 : " + transaction.getTransactionId());
-        System.out.println("Tên thu ngân                      : " + transaction.getEmployee());
-        System.out.println("Tên khách hàng                    : " + transaction.getCustomer());
-        System.out.println("Tổng số tiền                   : " + transaction.getTotalAmount());
-        System.out.println("Ngày giao dịch              :" + transaction.getTransactionDate());
-        System.out.println("Phương thức thanh toán       : " + transaction.getPaymentMethod());
-        System.out.println("--------------------------------------------------------------");
+        System.out.println("-------------------------");
+        System.out.println("Mã giao dịch            : " + transaction.getId());
+        System.out.println("Tên thu ngân            : " + transaction.getEmployee().getName());
+        System.out.println("Tên khách hàng          : " + transaction.getCustomer().getName());
+        System.out.println("Tổng số tiền            : " + transaction.getTotalAmount());
+        System.out.println("Ngày giao dịch          : " + transaction.getTransactionDate());
+        System.out.println("Phương thức thanh toán  : " + transaction.getPaymentMethod());
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
@@ -51,24 +50,25 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
+                    "-------+-------------------+-------------------+-----------------+-----------------+-----------------------------");
             System.out.println(
-                    "|  ID  |     THU NGÂN     |     KHÁCH HÀNG     |     TỔNG TIỀN     |      NGÀY GIAO DỊCH      |       PHƯƠNG THỨC THANH TOÁN       |");
+                    "|  Id  |     Thu ngân      |     Khách hàng    |    Tổng tiền    | Ngày giao dịch  |   Phương thức thanh toán   |");
             System.out.println(
-                    "-------+------------------+--------------------+-------------------+--------------------------+-------------------------------------");
+                    "-------+-------------------+-------------------+-----------------+-----------------+-----------------------------");
             for (Transaction transaction : transactions) {
 
                 System.out.println(
-                        String.format("| %4s | %19s | %11s | %6s | %15s | %10s |",
-                                transaction.getTransactionId(),
-                                transaction.getEmployee(),
-                                transaction.getCustomer(),
+                        String.format("| %4s | %17s | %17s | %15s | %15s | %26s |",
+                                transaction.getId(),
+                                transaction.getEmployee().getName(),
+                                transaction.getCustomer().getName(),
                                 transaction.getTotalAmount(),
                                 transaction.getTransactionDate(),
                                 transaction.getPaymentMethod()));
             }
             System.out.println(
-                    "-------------------------------------------------------------------------------------------------------------------------------------");
+                    "-----------------------------------------------------------------------------------------------------------------");
+
             System.out.println();
 
         } else {
@@ -78,7 +78,6 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
 
     @Override
     public void create(Transaction transaction) {
-
         transactions.add(transaction);
     }
 

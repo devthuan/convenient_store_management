@@ -37,9 +37,9 @@ public class App {
                     EmployeeManager.readFile();
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
-                case 7:
+                case 6:
                     // xử lí logic cho lịch sử giao dịch
-
+                    TransactionManager.readFile();
                     TransactionManager.startTransactionManager(scanner);
                 case 0:
                     System.out.println("Bye.");

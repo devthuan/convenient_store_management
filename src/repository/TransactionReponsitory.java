@@ -32,9 +32,9 @@ public class TransactionReponsitory {
     public static void writeTransactionToFile(List<Transaction> transactions, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             for (Transaction transaction : transactions) {
-                writer.write(transaction.getTransactionId() + "," +
-                        transaction.getEmployee() + "," +
-                        transaction.getCustomer() + "," +
+                writer.write(transaction.getId() + "," +
+                        transaction.getEmployee().getName() + "," +
+                        transaction.getCustomer().getName() + "," +
                         transaction.getTotalAmount() + "," +
                         transaction.getTransactionDate() + "," +
                         transaction.getPaymentMethod());
@@ -56,11 +56,11 @@ public class TransactionReponsitory {
                 String[] data = line.split(",");
                 if (data.length == 6) {
                     int transaction_id = Integer.parseInt(data[0]);
-                    double total_amount = Double.parseDouble(data[1]);
-                    LocalDate transaction_date = LocalDate.parse(data[2]);
-                    String payment_method = data[3];
-                    Customer customer = new Customer(data[4]);
-                    Employee employee = new Employee(data[5]);
+                    Customer customer = new Customer(data[1]);
+                    Employee employee = new Employee(data[2]);
+                    double total_amount = Double.parseDouble(data[3]);
+                    LocalDate transaction_date = LocalDate.parse(data[4]);
+                    String payment_method = data[5];
 
                     Transaction transaction = new Transaction(transaction_id, total_amount, transaction_date,
                             payment_method, customer,
