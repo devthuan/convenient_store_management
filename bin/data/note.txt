@@ -1,1 +1,0 @@
-thư mục chứa các dữ liệu được lưu vào file từ dự án
