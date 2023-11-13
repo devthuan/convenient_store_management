@@ -1,87 +1,60 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import model.Product;
 
 public class Inventory extends BaseEntity {
-    private int inventory_id;
-    private Product product;
-    private int quantity;
-    private String last_update;
+    private static int product_id;
+    private static String product_name;
+    private static int quantity;
+    private static String last_update;
 
-    public Inventory() {
-
-    }
-
-    public Inventory(int inventory_id, Product product, int quantity, String last_update) {
-        this.inventory_id = inventory_id;
-        this.product = product;
+    
+    public Inventory(int product_id, String product_name , int quantity, LocalDate last_update2) {
+        this.product_id = product_id;
+        this.product_name = product_name;
         this.quantity = quantity;
         this.last_update = last_update;
     }
 
-    public int getInventory_id() {
-        return inventory_id;
+    
+
+    public static int getProduct_id() {
+        return product_id;
     }
 
 
-
-    public void setInventory_id(int new_inventory_id) {
-        this.inventory_id = new_inventory_id;
+    public void setProduct_id(int new_product_id) {
+        this.product_id = new_product_id;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-
-    public void setProduct(Product new_product) {
-        this.product = new_product;
+public static String getProduct_name() {
+        return product_name;
     }
 
 
-    public int getQuantity() {
+    public void setProduct_name(String new_product_name) {
+        this.product_name = new_product_name;
+    }
+
+
+    public static int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int new_quantity) {
-        this.quantity = new_quantity;
+        Inventory.quantity = new_quantity;
     }
 
-    public String getLast_update() {
+    public static String getLast_update() {
         return last_update;
     }
 
     public void set_last_update(String newLast_update) {
-        this.last_update = newLast_update;
+        Inventory.last_update = newLast_update;
     }
 
-    public static void exportInventory(List<Product> products) {
-        if (products != null) {
-
-            System.out.println("===================================");
-            System.out.println("         DANH SACH SAN PHAM      ");
-            System.out.println("===================================");
-            System.out.println("-------+---------------------+-----");
-            System.out.println("|  ID  |     TEN       |  GIA  |");
-            System.out.println("-------+---------------------+-----");
-            for (Product product : products) {
-
-                System.out.println(
-                        String.format("| %4s | %19s | %11s |",
-                                product.getId(),
-                                product.getName(),
-                                product.getPrice()));
-
-            }
-            System.out.println("------------------------------------------------------------------------------------");
-            System.out.println();
-
-        } else {
-            System.out.println("Không có dữ liệu nào!");
-        }
-
-    }
+    
 
 }

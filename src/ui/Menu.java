@@ -106,4 +106,37 @@ public class Menu {
         System.out.println("");
     }
 
+    public static void menuInventory() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     THAO TAC VOI KHO HANG     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Them san pham vao kho      |");
+        System.out.println("| 2. Xoa san pham khoi kho      |");
+        System.out.println("| 3. Tim san pham               |");
+        System.out.println("| 4. Sua thong tin san pham     |");
+        System.out.println("| 5. Kiem kho                   |");
+        System.out.println("| 0. Thoat va luu thong tin     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
+
+    public static void menuStore() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     THAO TAC VOI CUA HANG     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Tao cua hang moi           |");
+        System.out.println("| 2. Xuat ta ca cua hang        |");
+        System.out.println("| 3. Tim cua hang               |");
+        System.out.println("| 4. Sua thong tin cua hang     |");
+        System.out.println("| 5. Xoa cua hang               |");
+        System.out.println("| 0. Thoat va luu thong tin     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
 }
