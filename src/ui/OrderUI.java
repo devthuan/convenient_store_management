@@ -20,6 +20,10 @@ public class OrderUI {
         while (true) {
             Menu.menuOrder();
             System.out.print("Nhập tuỳ chọn: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên!");
+                scanner.next();
+            }
             int option = scanner.nextInt();
             scanner.nextLine();
 

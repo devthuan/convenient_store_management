@@ -10,8 +10,11 @@ public class App {
         while (true) {
             Menu.menuMain();
             System.out.println("Nhập tuỳ chọn: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên!");
+                scanner.next();
+            }
             int main_choice = scanner.nextInt();
-
             switch (main_choice) {
                 case 1:
                     // xử lý logic cho quản lý cửa hàng

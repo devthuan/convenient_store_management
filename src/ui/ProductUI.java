@@ -16,6 +16,10 @@ public class ProductUI {
         while (true) {
             Menu.menuProduct();
             System.out.print("Nhập tuỳ chọn: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên!");
+                scanner.next();
+            }
             int option = scanner.nextInt();
             scanner.nextLine();
             if (option == 1) {
