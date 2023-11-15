@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+import model.Strategy.InvoiceCalculationStrategy;
+
 public class Order extends BaseOrderId {
     private Product product;
     private List<Product> products;
@@ -10,6 +12,17 @@ public class Order extends BaseOrderId {
     private Employee employee;
     private Transaction transaction;
     private LocalDate order_date;
+    private InvoiceCalculationStrategy calculateStrategy;
+
+    public Order(List<Product> products, LocalDate order_date, Customer customer, Employee employee,
+            Transaction transaction, InvoiceCalculationStrategy calculationStrategy) {
+        this.customer = customer;
+        this.employee = employee;
+        this.products = products;
+        this.transaction = transaction;
+        this.order_date = order_date;
+        this.calculateStrategy = calculationStrategy;
+    }
 
     public Order(List<Product> products, LocalDate order_date, Customer customer, Employee employee,
             Transaction transaction) {
@@ -79,5 +92,17 @@ public class Order extends BaseOrderId {
             sum += price * quantity;
         }
         return sum;
+
     }
+
+    public double calculateTotal() {
+        double sum = 0;
+        for (Product product : products) {
+            double price = product.getPrice();
+            int quantity = product.getQuantity();
+            sum += price * quantity;
+        }
+        return calculateStrategy.calculateTotal(sum);
+    }
+
 }

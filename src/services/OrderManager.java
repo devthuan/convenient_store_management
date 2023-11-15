@@ -41,7 +41,8 @@ public class OrderManager implements InterfaceCRUD<Order> {
 
             }
             System.out.println("--------------------------------------------");
-            System.out.println("Tổng số tiền          : " + formatPrice(order.calTotalAmount()));
+            System.out.println("Thuế VAT              : 8%");
+            System.out.println("Tổng số tiền          : " + formatPrice(order.calculateTotal()));
             System.out.println("Phương thức thanh toán: " + order.getTransaction().getPaymentMethod());
             System.out.println("Thu ngân              : " + order.getEmployee().getName());
 
@@ -71,7 +72,8 @@ public class OrderManager implements InterfaceCRUD<Order> {
 
         }
         System.out.println("--------------------------------------------");
-        System.out.println("Tổng số tiền          : " + formatPrice(order.calTotalAmount()));
+        System.out.println("Thuế VAT              : 8%");
+        System.out.println("Tổng số tiền          : " + formatPrice(order.calculateTotal()));
         System.out.println("Phương thức thanh toán: " + order.getTransaction().getPaymentMethod());
         System.out.println("Thu ngân              : " + order.getEmployee().getName());
 
@@ -123,7 +125,7 @@ public class OrderManager implements InterfaceCRUD<Order> {
     public void delete(int id) {
         for (Order order : orders) {
             if (order.getId() == id) {
-                orders.remove(id);
+                orders.remove(order);
                 System.out.println("Đã xoá hoá đơn " + id + " thành công.");
                 return;
             }
