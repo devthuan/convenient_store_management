@@ -10,6 +10,9 @@ import java.time.LocalDate;
 import model.Employee;
 import model.Customer;
 import model.Transaction;
+import model.Strategy.payment.MomoPayment;
+import model.Strategy.payment.PaymentStrategy;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -60,7 +63,8 @@ public class TransactionReponsitory {
                     Employee employee = new Employee(data[2]);
                     double total_amount = Double.parseDouble(data[3]);
                     LocalDate transaction_date = LocalDate.parse(data[4]);
-                    String payment_method = data[5];
+                    // String payment_method = data[5];
+                    PaymentStrategy payment_method = new MomoPayment(); // thêm if else
 
                     Transaction transaction = new Transaction(transaction_id, total_amount, transaction_date,
                             payment_method, customer,

@@ -15,6 +15,8 @@ import model.Product;
 import model.Transaction;
 
 import model.Strategy.VATCalculationStrategy;
+import model.Strategy.payment.MomoPayment;
+import model.Strategy.payment.PaymentStrategy;
 
 public class OrderRespository {
 
@@ -31,7 +33,9 @@ public class OrderRespository {
                 String name_customer = infor_orders[2];
 
                 double total_payment = Double.parseDouble(infor_orders[3]);
-                String payment_method = infor_orders[4];
+                // String payment_method = infor_orders[4];
+                PaymentStrategy payment_method = new MomoPayment(); // thêm if else
+
                 String name_employee = infor_orders[5];
 
                 Employee employee = new Employee(name_employee);

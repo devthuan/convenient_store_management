@@ -21,6 +21,7 @@ public class ProductUI {
             int option = scanner.nextInt();
             scanner.nextLine();
             if (option == 1) {
+
                 System.out.print("Nhân tên sản phẩm: ");
                 String name = scanner.nextLine();
 
