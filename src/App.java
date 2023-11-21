@@ -14,9 +14,8 @@ public class App {
 
             switch (main_choice) {
                 case 1:
-                    // xử lý logic cho quản lý khách hàng
-                    CustomerManager.readFile();
-                    CustomerManager.startCustomerManager(scanner);
+                    // xử lý logic cho quản lý cửa hàng
+
                     break;
                 case 2:
                     // xử lý logic cho quản lý sản phẩm
@@ -24,13 +23,14 @@ public class App {
                     ProductManager.startProductManager(scanner);
                     break;
                 case 3:
+                    // xử lý logic cho quản lý khách hàng
+                    CustomerManager.readFile();
+                    CustomerManager.startCustomerManager(scanner);
+                    break;
+                case 4:
                     // xử lý logic cho quản lý hoá đơn
                     OrderManager.readFile(); // load data từ file txt
                     OrderManager.startOrderManager(scanner);
-
-                    break;
-                case 4:
-
                     break;
                 case 5:
                     // xử lý logic cho quản lý nhân viên
@@ -38,6 +38,9 @@ public class App {
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
                 case 6:
+                    // xử lý logic cho quản lý kho
+                    break;
+                case 7:
                     // xử lí logic cho lịch sử giao dịch
                     TransactionManager.readFile();
                     TransactionManager.startTransactionManager(scanner);
