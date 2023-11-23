@@ -1,60 +1,61 @@
 package model;
 
-import java.time.LocalDate;
-import java.util.List;
 
-
-public class Inventory extends BaseEntity {
-    private static int product_id;
-    private static String product_name;
-    private static int quantity;
+public class Inventory  {
+    private static String    id;
+    private static String name;
+    private static String    quant;
     private static String last_update;
 
     
-    public Inventory(int product_id, String product_name , int quantity, LocalDate last_update2) {
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.quantity = quantity;
-        this.last_update = last_update;
+    public Inventory(){
+
     }
 
-    
-
-    public static int getProduct_id() {
-        return product_id;
+    public String getId() {
+        return id;
     }
 
-
-    public void setProduct_id(int new_product_id) {
-        this.product_id = new_product_id;
+    public void setId(String newId) {
+        Inventory.id = newId;
     }
 
-public static String getProduct_name() {
-        return product_name;
+    public String getName() {
+        return name;
     }
 
-
-    public void setProduct_name(String new_product_name) {
-        this.product_name = new_product_name;
+    public void setName(String newName) {
+        Inventory.name = newName;
     }
 
-
-    public static int getQuantity() {
-        return quantity;
+    public String getQuant() {
+        return quant;
     }
 
-    public void setQuantity(int new_quantity) {
-        Inventory.quantity = new_quantity;
+    public void setQuant(String newQuant) {
+        Inventory.quant = newQuant;
     }
 
-    public static String getLast_update() {
+    public String getLast_update() {
         return last_update;
     }
 
-    public void set_last_update(String newLast_update) {
+    public void setLast_update(String newLast_update) {
         Inventory.last_update = newLast_update;
     }
 
     
+    public Inventory(String id, String name , String quant, String last_update) {
+        Inventory.id = id;
+        Inventory.name = name;
+        Inventory.quant = quant;
+        Inventory.last_update = last_update;
+    }
+
+    public Inventory(String quant, String last_update) {
+        Inventory.quant= quant;
+        Inventory.last_update = last_update;
+    }
+      
 
 }

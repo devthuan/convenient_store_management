@@ -1,56 +1,59 @@
 package model;
 
-import java.util.List;
-
 public class Store extends BaseEntity {
 
-    private int        store_id;
-    private String     store_name;
-    private String     store_address;
-    private String     store_phone;
-    private String   store_manager;
-
+    private String    name;
+    private String    address;
+    private String    phone;
+    private String    store_manager;
+    
+    
     public Store() {
 
     }
 
-    public Store(int store_id,String store_name, String store_address, String store_phone, String store_manager) {
-        this.store_name = store_name;
-        this.store_address = store_address;
-        this.store_phone = store_phone;
+    public Store(int id, String name, String address, String phone, String store_manager) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
         this.store_manager = store_manager;
     }
 
-    public int getStore_id() {
-        return store_id;
+
+    public Store(String phone, String store_manager) {
+         this.phone = phone;
+        this.store_manager = store_manager;
     }
 
-    public void setStore_id(int store_id) {
-        this.store_id = store_id;
+    public Store(String name, String address, String phone, String store_manager) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.store_manager = store_manager;
     }
 
-    public String getStore_name() {
-        return store_name;
+    public String getName() {
+        return name;
     }
 
-    public void setStore_name(String name) {
-        this.store_name = store_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getStore_address() {
-        return store_address;
+    public String getAddress() {
+        return address;
     }
 
-    public void setStore_address(String store_address) {
-        this.store_address = store_address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getStore_phone() {
-        return store_phone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setStore_phone(String store_phone) {
-        this.store_phone = store_phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getStore_manager() {

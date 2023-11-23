@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.BaseEntity;
-import model.Employee;
+import repository.StoreRepository;
 import model.Store;
 import services.StoreManager;
 
@@ -12,63 +12,112 @@ public class StoreUI {
     
 public static void handleStore(Scanner scanner, List<Store> stores) {
         StoreManager manager = new StoreManager();
-
+        String file_path = "convenient_store_management/src/data/store_data.txt";
         while (true) {
-            menuStore();
-            System.out.println("Chọn một tùy chọn:");
+            Menu.menuStore();
+            System.out.print("Chon mot tuy chon:");
             int option = scanner.nextInt();
             scanner.nextLine();
-            switch (option) {
-                case 1:
-                    System.out.println("Nhập ID, Tên, Địa chỉ, SDT, QLCH:");
-                    int store_id = Integer.parseInt(scanner.nextLine());
-                    String store_name = scanner.nextLine();
-                    String store_address = scanner.nextLine();
-                    String store_phone = scanner.nextLine();
+            if(option==1){
+                System.out.println("Nhap thong tin cho cua hang.");
+                System.out.print("Nhap ten: ");
+                    String name = scanner.nextLine();
+                System.out.print("Nhap dia chi: ");
+                    String address = scanner.nextLine();
+                System.out.print("Nhap so dien thoai: ");
+                    String phone = scanner.nextLine();
+                System.out.print("Nhap ten Quan ly: ");
                     String store_manager = scanner.nextLine();
-                    Store store = new Store(store_id, store_name, store_address, store_phone, store_manager);
-                    create(store);
-                    break;
-                case 2:
-                    printAllStores();
-                    break;
-                case 3:
-                    System.out.println("Nhập id cửa hàng cần tìm:");
-                    int searchId = scanner.nextInt();
-                    scanner.nextLine(); 
-                    search(searchId);
-                    break;
-                case 4:
-                    editStore();
-                    break;
-                case 5:
-                    System.out.println("Nhập id cửa hàng cần xóa:");
-                    int deleteId = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline left-over
-                    delete(deleteId);
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println("Tùy chọn không hợp lệ. Vui lòng thử lại.");
+                    Store new_store = new Store( name, address, phone, store_manager);
+                    manager.create(new_store);
+                   
+                StoreRepository.writeFileStore(new_store,file_path);
+                System.out.println("Tao cua hang moi thanh cong.");
+
+                System.out.print("An ENTER de tiep tuc....");
+                scanner.nextLine();
+                } else {
+                    if(option==2){
+                            StoreManager.exportAllStores(stores);
+                             System.out.println("An ENTER de tiep tuc....");
+                            scanner.nextLine();
+                    } 
+                    else { 
+                        if(option==3){
+                           System.out.print("Nhap ma cua hang: ");
+                            int id = scanner.nextInt();
+                           scanner.nextLine();
+
+                           Store store_finded = manager.search(id);
+                              if (store_finded != null) {
+                           StoreManager.exportStore(store_finded);
+                             } else {
+                               System.out.println("Khong tim thay cua hang co ma " + id);
+
+                }
+
+                            System.out.print("An ENTER de tiep tuc....");
+                             scanner.nextLine();
+                        } else {
+                            if(option==4) {
+                                System.out.print("Nhap ma cua hang cua chinh sua thong tin: ");
+                                 int id = scanner.nextInt();
+                                   scanner.nextLine();
+
+                                 Store store_finded = manager.search(id);
+
+                                 if (store_finded != null) {
+                                System.out.println("Nhap thong tin moi cho cua hang. ");
+                                System.out.print("Nhap so dien thoai: ");
+                                String phone = scanner.nextLine();
+                                scanner.nextLine();
+                                System.out.print("Nhap ten Quan ly: ");
+                                 String store_manager = scanner.nextLine();
+                                 scanner.nextLine();
+
+                                  Store update_store = new Store(phone, store_manager);
+
+                                  manager.update(id, update_store);
+
+                                   System.out.print("Cap nhat cua hang thanh cong.");
+
+                                 } else {
+                                      System.out.print("Khong tim thay cua hang can sua!!!");
+
+                                        }
+
+                                 System.out.print("An ENTER de tiep tuc....");
+                                   scanner.nextLine();
+                            } else {
+                                 if(option==5) {
+                                   System.out.print("Nhap ma cua hang can xoa: ");
+                                      int id = scanner.nextInt();
+                                      scanner.nextLine();
+
+                                      manager.delete(id);
+
+                                     System.out.print("An ENTER de tiep tuc....");
+                                     scanner.nextLine();
+                                    }
+                                    else {
+                                     if(option==0) {
+                                        BaseEntity.resetId();
+                                        StoreManager.saveFile();
+                                         break;
+                    }
+                 else {
+                    System.out.println("Tuy chon khong hop le vui long nhap lai!!!");
+                    continue;
+                }
+                        }
+                    }
+                } 
             }
-        }
-    }
-
-    public static void menuStore() {
-        System.out.println("");
-        System.out.println("+-------------------------------+");
-        System.out.println("|     THAO TAC VOI CUA HANG     |");
-        System.out.println("+-------------------------------+");
-        System.out.println("| 1. Tao cua hang moi           |");
-        System.out.println("| 2. Xuat ta ca cua hang        |");
-        System.out.println("| 3. Tim cua hang               |");
-        System.out.println("| 4. Sua thong tin cua hang     |");
-        System.out.println("| 5. Xoa cua hang               |");
-        System.out.println("| 0. Thoat va luu thong tin     |");
-        System.out.println("+-------------------------------+");
-        System.out.println("");
+          }
+         }
     }
 
 
-}
+    }
+
+

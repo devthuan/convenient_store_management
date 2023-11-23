@@ -15,7 +15,8 @@ public class App {
             switch (main_choice) {
                 case 1:
                     // xử lý logic cho quản lý cửa hàng
-
+                    StoreManager.readFile();
+                    StoreManager.startStoreManager(scanner);
                     break;
                 case 2:
                     // xử lý logic cho quản lý sản phẩm
@@ -39,6 +40,8 @@ public class App {
                     break;
                 case 6:
                     // xử lý logic cho quản lý kho
+                    InventoryManager.readFile();
+                    InventoryManager.startInventoryManager();
                     break;
                 case 7:
                     // xử lí logic cho lịch sử giao dịch

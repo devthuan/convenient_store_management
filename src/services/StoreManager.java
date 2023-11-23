@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import model.Store;
 import model.InterfaceCRUD;
-import repository.StoreReposiotitory;
+import repository.StoreRepository;
 import ui.StoreUI;
 
 public class StoreManager implements InterfaceCRUD<Store> {
@@ -19,7 +19,7 @@ public class StoreManager implements InterfaceCRUD<Store> {
     }
 
     public static void saveFile() {
-        StoreRepository.writeStoresToFile(stores, file_path);
+        StoreRepository.writeStoresToFile(stores,file_path);
         stores.clear();
 
     }
@@ -40,49 +40,46 @@ public class StoreManager implements InterfaceCRUD<Store> {
         stores.add(store);
 
     }
-@Override
-    public static void printAllStores() {
-        if (stores.isEmpty()) {
-            System.out.println("Khong co cua hang nao.");
-        } else {
-            for (Store store : stores) {
-                System.out.println(store);
-            }
-        }
+
+    public static void exportStore(Store store) {
+        System.out.println("------------------------------------------------");
+        System.out.println("Ma cua hang    : " + store.getId());
+        System.out.println("Ten cua hang   : " + store.getName());
+        System.out.println("Dia chi        : " + store.getAddress());
+        System.out.println("So dien thoai  : " + store.getPhone());
+        System.out.println("Quan li        : " + store.getStore_manager());
+        System.out.println("------------------------------------------------");
     }
 
-    public static void editStore() {
-        System.out.println("Nhap id cua ahng can chinh sua:");
-        String id = scanner.nextLine();
-        Store store = search(id);
-        if (store != null) {
-            System.out.println(store);
-            System.out.println("Nhap ID, Ten, dia chi, SDT, QLCH moi:");
-            String newId = scanner.nextLine();
-            String newName = scanner.nextLine();
-            String newAddress = scanner.nextLine();
-            String newPhone = scanner.nextLine();
-            String newManager = scanner.nextLine();
-            // Cập nhật các thuộc tính cho store
-            store.setStore_idd(newId);
-            store.setStore_name(newName);
-            store.setStore_address(newAddress);
-            store.setStore_phone(id);
-            store.setStore_phone(newPhone);
-            store.setStore_manager(newManager);
-            System.out.println("Đa cap nhap thong tin cua hang");
-        } else {
-            System.out.println("Khong co cua hang can tim");
-        }
+    public static void exportAllStores(List<Store> stores) {
+            System.out.println("======================================================");
+            System.out.println("                DANH SACH CUA HANG                 ");
+            System.out.println("======================================================");
+            System.out.println("-------+---------------------+------------------------");
+            System.out.println("| ID |     TEN     |    DIA CHI    |    SDT     |  QUAN LI  |");
+            System.out.println("-------+---------------------+------------------------");
+            for (Store store : stores) {
+                System.out.println(
+                        String.format("| %2s | %11s | %13s | %11s | %9s |",
+                                store.getId(),
+                                store.getName(),
+                                store.getAddress(),
+                                store.getPhone(),
+                                store.getStore_manager()));
+            
+            System.out.println("-----------------------------------------------------");
+            System.out.println();
+            }
     }
-    
+
+
 
     @Override
     public void delete(int id) {
         Store storeToRemove = search(id);
         if (storeToRemove != null) {
             stores.remove(storeToRemove);
-            System.out.println("Đa xoa cua hang thanh cong.");
+            System.out.println("Da xoa cua hang thanh cong.");
         } else {
             System.out.println("Khong tim thay cua hang.");
         }
@@ -90,7 +87,36 @@ public class StoreManager implements InterfaceCRUD<Store> {
 
     @Override
     public Store search(int id) {
-        return (Store) read(id);
+        for (Store store : stores) {
+            if (store.getId() == id) {
+                return store;
+            }
+        }
+        return null;
     }
+
+    @Override
+    public void update(int id, Store updated_store) {
+        
+        for (Store store : stores) {
+            if (store.getId() == id) {
+                store.setPhone(updated_store.getPhone());
+                store.setStore_manager(updated_store.getStore_manager());
+                return;
+            }
+            
+        }
+    }
+
+    @Override
+    public Store read(int id) {
+        for (Store store : stores) {
+            if (store.getId() == id) {
+                return store;
+            }
+        }
+        return null;
+    }
+
 
 }

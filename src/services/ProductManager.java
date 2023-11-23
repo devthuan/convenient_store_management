@@ -7,7 +7,6 @@ import java.util.Scanner;
 import model.InterfaceCRUD;
 import model.Product;
 import repository.ProductRespository;
-
 import ui.ProductUI;
 
 public class ProductManager implements InterfaceCRUD<Product> {
