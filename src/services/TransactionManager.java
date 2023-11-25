@@ -101,7 +101,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
                 transaction.setTransactionId(updated_transaction.getTransactionId());
                 transaction.setTransactionDate(updated_transaction.getTransactionDate());
                 transaction.setTotalAmount(updated_transaction.getTotalAmount());
-                transaction.setPaymentMethod(updated_transaction.getPaymentMethod());
+                // transaction.setPaymentMethod(updated_transaction.getPaymentMethod());
                 transaction.setCustomer(updated_transaction.getCustomer());
                 transaction.setEmployee(updated_transaction.getEmployee());
                 // Cập nhật thông tin sản phẩm dựa trên ID

@@ -10,8 +10,11 @@ public class App {
         while (true) {
             Menu.menuMain();
             System.out.println("Nhập tuỳ chọn: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên!");
+                scanner.next();
+            }
             int main_choice = scanner.nextInt();
-
             switch (main_choice) {
                 case 1:
                     // xử lý logic cho quản lý cửa hàng
@@ -30,7 +33,8 @@ public class App {
                     break;
                 case 4:
                     // xử lý logic cho quản lý hoá đơn
-                    OrderManager.readFile(); // load data từ file txt
+                    ProductManager.readFile(); // load data product từ file txt
+                    OrderManager.readFile(); // load data order từ file txt
                     OrderManager.startOrderManager(scanner);
                     break;
                 case 5:

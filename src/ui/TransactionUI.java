@@ -8,13 +8,12 @@ import model.BaseEntity;
 import model.Customer;
 import model.Employee;
 import model.Transaction;
-import repository.TransactionReponsitory;
+import model.Strategy.payment.PaymentStrategy;
 import services.TransactionManager;
 
-public class TransactionUI {
+public class TransactionUI extends OrderUI {
     public static void handleTransaction(Scanner scanner, List<Transaction> transactions) {
         TransactionManager manager = new TransactionManager();
-        String file_path = "convenient_store_management/src/data/transaction_data.txt";
 
         while (true) {
             Menu.menuTransaction();
@@ -35,8 +34,7 @@ public class TransactionUI {
 
                 LocalDate transaction_date = LocalDate.now();
 
-                System.out.print("Nhập phương thức thanh toán: ");
-                String payment_method = scanner.nextLine();
+                PaymentStrategy payment_method = choosePaymentMethod(scanner);
 
                 Employee employee = new Employee(name_employee);
                 Customer customer = new Customer(name_customer);
@@ -45,7 +43,6 @@ public class TransactionUI {
                         employee);
                 manager.create(new_transaction);
 
-                TransactionReponsitory.writeFileTransaction(new_transaction, file_path);
                 System.out.println("Đã tạo giao dịch thành công!");
 
                 System.out.print("Ấn Enter để tiếp tục!");

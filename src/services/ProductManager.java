@@ -17,7 +17,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
         ProductUI.handleProduct(scanner, products);
     }
 
-    public static void exportAllEmployee(List<Product> products) {
+    public static void exportAllProducts(List<Product> products) {
         if (products != null) {
             System.out.println("===================================");
             System.out.println("         DANH SÁCH SẢN PHẨM        ");

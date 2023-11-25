@@ -5,20 +5,23 @@ import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Product;
-import repository.ProductRespository;
 import services.ProductManager;
 
 public class ProductUI {
     public static void handleProduct(Scanner scanner, List<Product> products) {
         ProductManager manager = new ProductManager();
-        String file_path = "convenient_store_management/src/data/product_data.txt";
 
         while (true) {
             Menu.menuProduct();
             System.out.print("Nhập tuỳ chọn: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui lòng nhập số nguyên!");
+                scanner.next();
+            }
             int option = scanner.nextInt();
             scanner.nextLine();
             if (option == 1) {
+
                 System.out.print("Nhân tên sản phẩm: ");
                 String name = scanner.nextLine();
 
@@ -32,8 +35,7 @@ public class ProductUI {
                 Product new_product = new Product(name, price, description);
                 manager.create(new_product);
 
-                ProductRespository.writeFileProduct(new_product, file_path);
-                System.out.print("Tạo sản phẩm mới thành công.");
+                System.out.println("Tạo sản phẩm mới thành công.");
 
                 System.out.print("Ấn Enter để tiếp tục....");
                 scanner.nextLine();
@@ -42,7 +44,7 @@ public class ProductUI {
                 if (products == null) {
                     System.out.println("Không có nhân viên nào.");
                 } else {
-                    ProductManager.exportAllEmployee(products);
+                    ProductManager.exportAllProducts(products);
 
                 }
 
@@ -106,6 +108,7 @@ public class ProductUI {
                 scanner.nextLine();
             } else if (option == 0) {
                 BaseEntity.resetId();
+
                 ProductManager.saveFile();
                 break;
             } else {

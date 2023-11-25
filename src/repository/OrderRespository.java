@@ -8,12 +8,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.BaseEntity;
 import model.Customer;
 import model.Employee;
 import model.Order;
 import model.Product;
 import model.Transaction;
+
+import model.Strategy.VATCalculationStrategy;
+import model.Strategy.payment.MomoPayment;
+import model.Strategy.payment.PaymentStrategy;
 
 public class OrderRespository {
 
@@ -30,7 +33,9 @@ public class OrderRespository {
                 String name_customer = infor_orders[2];
 
                 double total_payment = Double.parseDouble(infor_orders[3]);
-                String payment_method = infor_orders[4];
+                // String payment_method = infor_orders[4];
+                PaymentStrategy payment_method = new MomoPayment(); // thêm if else
+
                 String name_employee = infor_orders[5];
 
                 Employee employee = new Employee(name_employee);
@@ -46,7 +51,8 @@ public class OrderRespository {
                     int quantity = Integer.parseInt(infor_product[2]);
                     products.add(new Product(name, price, quantity));
                 }
-                orders.add(new Order(products, order_date, customer, employee, transaction));
+                orders.add(new Order(products, order_date, customer, employee, transaction,
+                        new VATCalculationStrategy(8)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -62,7 +68,7 @@ public class OrderRespository {
                         order.getId() + "," +
                                 order.getOrderDate() + "," +
                                 order.getCustomer().getName() + "," +
-                                order.calTotalAmount() + "," +
+                                order.calculateTotal() + "," +
                                 order.getTransaction().getPaymentMethod() + "," +
                                 order.getEmployee().getName() + "|");
 
@@ -87,7 +93,7 @@ public class OrderRespository {
                     order.getId() + "," +
                             order.getOrderDate() + "," +
                             order.getCustomer().getName() + "," +
-                            order.calTotalAmount() + ":");
+                            order.calculateTotal() + ":");
             for (Product product : order.getProducts()) {
                 writer.write(
                         product.getName() + "," +
