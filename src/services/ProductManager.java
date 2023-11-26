@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import model.InterfaceCRUD;
 import model.Product;
+import model.Categories.Drinks;
 import repository.ProductRespository;
 
 import ui.ProductUI;
@@ -23,21 +24,29 @@ public class ProductManager implements InterfaceCRUD<Product> {
             System.out.println("===================================");
             System.out.println("         DANH SÁCH SẢN PHẨM        ");
             System.out.println("===================================");
-            System.out.println("-------+---------------------+-------------+-------------------");
-            System.out.println("|  ID  |     Tên sản phẩm    |  Giá        |  Mô tả sản phẩm  |");
-            System.out.println("-------+---------------------+-------------+------------------+");
+            System.out.println("-------+---------------------+-------------+----------------------+");
+            System.out.println("|  ID  |     Tên sản phẩm    |  Giá        |    Loại sản phẩm     |");
+            System.out.println("-------+---------------------+-------------+----------------------+");
+
             for (Product product : products) {
+                String description = "";
+
+                if (product instanceof Drinks) {
+                    Drinks drinks = (Drinks) product;
+                    description = drinks.getContainsAlcohol() ? "có cồn" : "không có cồn";
+                }
 
                 System.out.println(
-                        String.format("| %4s | %19s | %11s | %16s |",
+                        String.format("| %4s | %19s | %11s | %19s |",
                                 product.getId(),
                                 product.getName(),
                                 product.getPrice(),
-                                product.getDescription()));
+                                product.getCategory() + " " +
+                                        description));
             }
-            System.out.println("---------------------------------------------------------------");
-            System.out.println();
 
+            System.out.println("-------------------------------------------------------------------");
+            System.out.println();
         } else {
             System.out.println("Không có dữ liệu nào!");
         }
@@ -50,7 +59,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
         System.out.println("Mã sản phẩm    : " + product.getId());
         System.out.println("Tên sản phẩm   : " + product.getName());
         System.out.println("Giá            : " + formatPrice(product.getPrice())); // Sử dụng hàm formatPrice
-        System.out.println("Mô tả sản phẩm : " + product.getDescription());
+        System.out.println("Mô tả sản phẩm : " + product.getContainsAlcohol());
         System.out.println("-----------------------------------");
     }
 
@@ -100,7 +109,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
             if (product.getId() == id) {
                 product.setName(updated_product.getName());
                 product.setPrice(updated_product.getPrice());
-                product.setDescription(updated_product.getDescription());
+                product.setDescription(updated_product.getCategory());
                 // Cập nhật thông tin sản phẩm dựa trên ID
                 return;
             }

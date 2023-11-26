@@ -5,9 +5,51 @@ import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Product;
+import model.Categories.Drinks;
+import model.Categories.Food;
 import services.ProductManager;
 
 public class ProductUI {
+
+    public static Product chooseCategory(Scanner scanner) {
+        System.out.println("1. Đồ uống");
+        System.out.println("2. Thức ăn");
+
+        System.out.print("Chọn Loại sản phẩm: ");
+        int choice_product = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nhân tên sản phẩm: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập giá: ");
+        double price = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nhập số lượng sản phẩm: ");
+        int quantity = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nhập hạn sử dụng sản phẩm: ");
+        String expire = scanner.nextLine();
+
+        switch (choice_product) {
+            case 1:
+                System.out.print("đồ uống có cồn hay không: y/n ");
+                String choice_type_drink = scanner.nextLine();
+                Boolean contains_alcohol = false;
+                if (choice_type_drink.equalsIgnoreCase("y")) {
+                    contains_alcohol = true;
+                }
+                return new Drinks(name, price, quantity, expire, contains_alcohol, "Đồ uống");
+            case 2:
+
+                return new Food(name, price, quantity, expire, "Thức ăn");
+
+        }
+        return null;
+    }
+
     public static void handleProduct(Scanner scanner, List<Product> products) {
         ProductManager manager = new ProductManager();
 
@@ -22,17 +64,7 @@ public class ProductUI {
             scanner.nextLine();
             if (option == 1) {
 
-                System.out.print("Nhân tên sản phẩm: ");
-                String name = scanner.nextLine();
-
-                System.out.print("Nhập giá: ");
-                double price = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.print("Nhập mô tả sản phẩm: ");
-                String description = scanner.nextLine();
-
-                Product new_product = new Product(name, price, description);
+                Product new_product = chooseCategory(scanner);
                 manager.create(new_product);
 
                 System.out.println("Tạo sản phẩm mới thành công.");

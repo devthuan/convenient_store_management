@@ -43,6 +43,8 @@ public class App {
                     break;
                 case 6:
                     // xử lý logic cho quản lý kho
+                    InventoryManager.readFile();
+                    InventoryManager.startInventoryManager(scanner);
                     break;
                 case 7:
                     // xử lí logic cho lịch sử giao dịch

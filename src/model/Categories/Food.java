@@ -4,9 +4,15 @@ import model.Product;
 
 public class Food extends Product {
     String type_food;
+    String expire;
 
-    public Food(String name, double price, int quantity) {
-        super(name, price, quantity);
-        this.type_food = type_food;
+    public Food(String name, double price, int quantity, String expire, String category) {
+        super(name, price, quantity, expire, category);
+        
+    }
+
+    @Override
+    public String getExpire() {
+        return expire;
     }
 }

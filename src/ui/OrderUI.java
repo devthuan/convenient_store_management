@@ -20,7 +20,7 @@ import repository.ProductRespository;
 import services.OrderManager;
 import services.ProductManager;
 
-public class OrderUI {
+public class OrderUI extends ProductUI {
     static String file_path = "convenient_store_management/src/data/product_data.txt";
 
     public static PaymentStrategy choosePaymentMethod(Scanner scanner) {
@@ -74,7 +74,9 @@ public class OrderUI {
                             int quantity = scanner.nextInt();
                             scanner.nextLine();
 
-                            products.add(new Product(product.getName(), product.getPrice(), quantity));
+                            products.add(
+                                    new Product(product.getName(), product.getPrice(), quantity, product.getExpire(),
+                                            product.getCategory()));
                         }
                     }
                     System.out.print("Có tiếp tục mua hàng không (y/n): ");
@@ -160,15 +162,23 @@ public class OrderUI {
                         System.out.print("Nhân tên sản phẩm: ");
                         String name = scanner.nextLine();
 
-                        System.out.print("Nhập giá: ");
-                        double price = scanner.nextInt();
-                        scanner.nextLine();
+                        // System.out.print("Nhập giá: ");
+                        // double price = scanner.nextInt();
+                        // scanner.nextLine();
 
-                        System.out.print("Nhập số lượng: ");
-                        int quantity = scanner.nextInt();
-                        scanner.nextLine();
+                        // System.out.print("Nhập số lượng: ");
+                        // int quantity = scanner.nextInt();
+                        // scanner.nextLine();
 
-                        updated_products.add(new Product(name, price, quantity));
+                        // System.out.print("Nhập hạn sản sử dụng: ");
+                        // String expire = scanner.nextLine();
+                        // scanner.nextLine();
+
+                        // System.out.print("Nhập loại sản phẩm: Thức ăn / đồ uống ");
+                        // String category = scanner.nextLine();
+                        // scanner.nextLine();
+                        Product new_product = chooseCategory(scanner);
+                        updated_products.add(new_product);
                     }
                     Order updated_order = new Order(updated_products, updated_date, customer_updated, employee_updated,
                             transaction_updated);
