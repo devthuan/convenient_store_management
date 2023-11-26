@@ -3,8 +3,9 @@ package ui;
 import java.util.List;
 import java.util.Scanner;
 
+import model.BaseEntity;
 import model.Employee;
-import repository.EmployeeRepository;
+
 import services.EmployeeManager;
 
 public class EmployeeUI {
@@ -77,14 +78,21 @@ public class EmployeeUI {
                 System.out.print("Nhập chức vụ: ");
                 String position = scanner.nextLine();
 
+<<<<<<< HEAD
                 System.out.println("Nhap so gio lam: ");
                 int soGioLam;
                 soGioLam = scanner.nextInt();
                 Employee new_employee = new Employee(name, gender, age, phone, position, soGioLam);
                 employees.add(new_employee);
+=======
+                Employee new_employee = new Employee(name, gender, age, phone, position);
+                manager.create(new_employee);
+>>>>>>> 46b719c51e4fa56e2c2dce3a815d5ddcfcaa7539
 
                 System.out.println("Đã tạo nhân viên thành công.");
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 2) {
 
                 if (employees.isEmpty()) {
@@ -94,6 +102,8 @@ public class EmployeeUI {
 
                 }
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 3) {
 
                 System.out.print("Nhập mã nhân viên: ");
@@ -108,18 +118,27 @@ public class EmployeeUI {
                 } else {
                     System.out.print("Không tìm thấy nhân viên.");
                 }
-                continue;
+
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 4) {
                 System.out.print("Nhập mã nhân viên: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
                 manager.delete(id);
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 5) {
                 EmployeeManager.saveFile();
-                System.out.println("Thông tin nhân viên đã được lưu thành công");
 
+                System.out.println("Chức năng đang được phát triển");
+
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 0) {
+                BaseEntity.resetId();
+                EmployeeManager.saveFile();
                 break;
             } else {
                 System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");

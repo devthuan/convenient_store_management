@@ -9,9 +9,9 @@ import model.InterfaceCRUD;
 import repository.EmployeeRepository;
 import ui.EmployeeUI;
 
-public class EmployeeManager implements InterfaceCRUD {
+public class EmployeeManager implements InterfaceCRUD<Employee> {
     static List<Employee> employees = new ArrayList<>();
-    static String file_path = "src/data/emplyee_data.txt";
+    static String file_path = "convenient_store_management/src/data/employee_data.txt";
 
     public static void startEmployeeManager(Scanner scanner) {
         EmployeeUI.handleEmployee(scanner, employees);
@@ -35,12 +35,13 @@ public class EmployeeManager implements InterfaceCRUD {
     }
 
     @Override
-    public void create(Object entity) {
+    public void create(Employee employee) {
+        employees.add(employee);
 
     }
 
     @Override
-    public Object read(int id) {
+    public Employee read(int id) {
         for (Employee employee : employees) {
             if (employee.getId() == id) {
                 return employee;
@@ -50,7 +51,10 @@ public class EmployeeManager implements InterfaceCRUD {
     }
 
     @Override
-    public void update(Object entity) {
+    public void update(int id, Employee entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+
     }
 
     @Override

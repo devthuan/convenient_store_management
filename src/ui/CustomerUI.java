@@ -3,8 +3,8 @@ package ui;
 import java.util.List;
 import java.util.Scanner;
 
+import model.BaseEntity;
 import model.Customer;
-import repository.CustomerRepository;
 import services.CustomerManager;
 
 public class CustomerUI {
@@ -19,7 +19,6 @@ public class CustomerUI {
 
     public static void handleCustomer(Scanner scanner, List<Customer> customers) {
         CustomerManager manager = new CustomerManager();
-        String file_path = "src/data/customer_data.txt";
         while (true) {
             Menu.menuCustomer();
             System.out.print("Nhập tuỳ chọn: ");
@@ -54,19 +53,23 @@ public class CustomerUI {
                 }
 
                 Customer new_customer = new Customer(name, address, phone);
-                customers.add(new_customer);
+                manager.create(new_customer);
 
                 System.out.println("Đã tạo khách hàng thành công.");
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 2) {
 
                 if (customers.isEmpty()) {
                     System.out.println("Không có khách hàng nào.");
                 } else {
-                    Customer.exportAllEmployee(customers);
+                    CustomerManager.exportAllEmployee(customers);
 
                 }
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 3) {
 
                 System.out.print("Nhập mã khách hàng: ");
@@ -76,23 +79,31 @@ public class CustomerUI {
                 Customer result_search = manager.search(id);
 
                 if (result_search != null) {
-                    Customer.exportCustomer(result_search);
+                    CustomerManager.exportCustomer(result_search);
 
                 } else {
                     System.out.print("Không tìm thấy khách hàng.");
                 }
-                continue;
+
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 4) {
                 System.out.print("Nhập mã khách hàng: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
                 manager.delete(id);
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 5) {
-                CustomerManager.saveFile();
-                System.out.println("Thông tin khách hàng đã lưu vào thành công");
+                System.out.println("Chức năng đang được phát triển !!!");
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 0) {
+                BaseEntity.resetId();
+                CustomerManager.saveFile();
+
                 break;
             } else {
                 System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");

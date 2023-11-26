@@ -8,7 +8,15 @@ public abstract class BaseEntity {
         this.id = next_id++;
     }
 
-    public int getId(){
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static void resetId() {
+        next_id = 1;
     }
 }

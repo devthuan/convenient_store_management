@@ -24,7 +24,15 @@ public class Employee extends BaseEntity implements Salary {
         this.soGioLam = soGioLam;
     }
 
+<<<<<<< HEAD
     public Employee(int id, String name, String gender, int age, String phone, String position, int soGioLam) {
+=======
+    public Employee(String name) {
+        this.name = name;
+    }
+
+    public Employee(int id, String name, String gender, int age, String phone, String position) {
+>>>>>>> 46b719c51e4fa56e2c2dce3a815d5ddcfcaa7539
         this.name = name;
         this.gender = gender;
         this.age = age;
