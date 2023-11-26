@@ -77,7 +77,10 @@ public class EmployeeUI {
                 System.out.print("Nhập chức vụ: ");
                 String position = scanner.nextLine();
 
-                Employee new_employee = new Employee(name, gender, age, phone, position);
+                System.out.println("Nhap so gio lam: ");
+                int soGioLam;
+                soGioLam = scanner.nextInt();
+                Employee new_employee = new Employee(name, gender, age, phone, position, soGioLam);
                 employees.add(new_employee);
 
                 System.out.println("Đã tạo nhân viên thành công.");

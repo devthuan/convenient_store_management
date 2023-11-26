@@ -19,14 +19,15 @@ public class EmployeeRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 6) {
+                if (data.length == 7) {
                     int id = Integer.parseInt(data[0]);
                     String name = data[1];
                     String gender = data[2];
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
                     String position = data[5];
-                    Employee employee = new Employee(id, name, gender, age, phone, position);
+                    int soGioLam = Integer.parseInt(data[6]);
+                    Employee employee = new Employee(id, name, gender, age, phone, position, soGioLam);
                     EmployeeList.add(employee);
                 } else {
                     System.err.println("Invalid data format: " + line);
