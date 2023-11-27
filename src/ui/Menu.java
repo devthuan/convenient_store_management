@@ -39,8 +39,8 @@ public class Menu {
         System.out.println("| 2. Xuất tất cả nhân viên      |");
         System.out.println("| 3. Tìm kiếm nhân viên         |");
         System.out.println("| 4. Xoá nhân viên              |");
-        System.out.println("| 5. Chính sủa nhân viên        |");
-        System.out.println("| 0. Lưu thông tin và thoát     |");
+        System.out.println("| 5. Lưu thông tin nhân viên    |");
+        System.out.println("| 0. Thoát                      |");
         System.out.println("+-------------------------------+");
         System.out.println("");
     }

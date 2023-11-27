@@ -30,12 +30,14 @@ public class App {
                     CustomerManager.readFile();
                     CustomerManager.startCustomerManager(scanner);
                     break;
+
                 case 4:
                     // xử lý logic cho quản lý hoá đơn
                     ProductManager.readFile(); // load data product từ file txt
                     OrderManager.readFile(); // load data order từ file txt
                     OrderManager.startOrderManager(scanner);
                     break;
+
                 case 5:
                     // xử lý logic cho quản lý nhân viên
                     EmployeeManager.readFile();

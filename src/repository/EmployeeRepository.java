@@ -26,11 +26,9 @@ public class EmployeeRepository {
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
                     String position = data[5];
-                    int soGioLam = Integer.parseInt(data[6]);
-                    Employee employee = new Employee(id, name, gender, age, phone, position, soGioLam);
+                    Employee employee = new Employee(id, name, gender, age, phone, position);
                     EmployeeList.add(employee);
-                } else {
-                    System.err.println("Invalid data format: " + line);
+
                 }
             }
         } catch (IOException e) {
@@ -56,14 +54,15 @@ public class EmployeeRepository {
     }
 
     public static void writeEmployeesToFile(List<Employee> employees, String file_path) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path, true))) {
             for (Employee employee : employees) {
                 writer.write(employee.getId() + "," +
                         employee.getName() + "," +
                         employee.getGender() + "," +
                         employee.getAge() + "," +
                         employee.getPhone() + "," +
-                        employee.getPosition());
+                        employee.getPosition() + "," +
+                        employee.tinhLuong());
                 writer.newLine();
             }
         } catch (Exception e) {

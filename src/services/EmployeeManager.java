@@ -11,7 +11,7 @@ import ui.EmployeeUI;
 
 public class EmployeeManager implements InterfaceCRUD<Employee> {
     static List<Employee> employees = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/employee_data.txt";
+    static String file_path = "src/data/employee_data.txt";
 
     public static void startEmployeeManager(Scanner scanner) {
         EmployeeUI.handleEmployee(scanner, employees);
@@ -37,7 +37,6 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
     @Override
     public void create(Employee employee) {
         employees.add(employee);
-
     }
 
     @Override

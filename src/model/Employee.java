@@ -1,44 +1,35 @@
 package model;
 
 import java.util.List;
+import java.util.Scanner;
 
-public class Employee extends BaseEntity implements Salary {
+public class Employee extends BaseEntity {
 
     private String name;
     private String gender;
     private int age;
     private String phone;
     private String position;
-    private int soGioLam;
+    private double salary;
 
     public Employee() {
 
     }
 
-    public Employee(String name, String gender, int age, String phone, String position, int soGioLam) {
+    public Employee(String name, String gender, int age, String phone, String position) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.phone = phone;
         this.position = position;
-        this.soGioLam = soGioLam;
-    }
-
-<<<<<<< HEAD
-    public Employee(int id, String name, String gender, int age, String phone, String position, int soGioLam) {
-=======
-    public Employee(String name) {
-        this.name = name;
     }
 
     public Employee(int id, String name, String gender, int age, String phone, String position) {
->>>>>>> 46b719c51e4fa56e2c2dce3a815d5ddcfcaa7539
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.phone = phone;
         this.position = position;
-        this.soGioLam = soGioLam;
     }
 
     public String getName() {
@@ -62,8 +53,22 @@ public class Employee extends BaseEntity implements Salary {
     }
 
     public double tinhLuong() {
-        double luongCoBan = 1000;
-        return this.soGioLam * luongCoBan;
+        return salary;
+    }
+
+    public void nhap() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap ten: ");
+        this.name = sc.nextLine();
+        System.out.println("Nhap gioi tinh: ");
+        this.gender = sc.nextLine();
+        System.out.println("Nhap tuoi: ");
+        this.age = sc.nextInt();
+        System.out.println("Nhap so dien thoai: ");
+        this.phone = sc.nextLine();
+        System.out.println("Nhap chuc vu: ");
+        this.position = sc.nextLine();
+
     }
 
     public static void exportEmployee(Employee employee) {
@@ -74,7 +79,7 @@ public class Employee extends BaseEntity implements Salary {
         System.out.println("Tuổi         : " + employee.getAge());
         System.out.println("Số điện thoại: " + employee.getPhone());
         System.out.println("Chức vụ      : " + employee.getPosition());
-        System.out.println("Tien Luong: " + employee.tinhLuong());
+        System.out.println("Lương        : " + employee.tinhLuong());
         System.out.println("------------------------------------------------");
     }
 
@@ -84,24 +89,33 @@ public class Employee extends BaseEntity implements Salary {
             System.out.println("         DANH SÁCH NHÂN VIÊN       ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+-------------+--------------");
+                    "-------+---------------------+-------------+--------+------------------+-------------+-----------------");
             System.out.println(
-                    "|  ID  |     Họ và tên       |  Giới tính  |  Tuổi  |  Số điện thoại  |  Chức vụ    |  tienLuong   ");
+                    "|  ID  |     Họ và tên       |  Giới tính  |  Tuổi  |  Số điện thoại   |  Chức vụ    +  Tiền lương     ");
             System.out.println(
-                    "-------+---------------------+-------------+--------+-----------------+-------------|--------------");
+                    "-------+---------------------+-------------+--------+------------------+-------------+-----------------");
             for (Employee employee : employees) {
 
-                System.out.println(
-                        String.format("| %4s | %19s | %11s | %6s | %15s | %10s | %10s |",
+                System.out.printf(
+                        String.format("| %4s | %19s | %11s | %6s | %15s  | %10s  |",
                                 employee.getId(),
                                 employee.getName(),
                                 employee.getGender(),
                                 employee.getAge(),
                                 employee.getPhone(),
-                                employee.getPosition(),
-                                employee.tinhLuong()));
+                                employee.getPosition()));
+                if (employee instanceof NVBH) {
+                    NVBH nvbh = (NVBH) employee;
+                    System.out.println(String.format(" %10s ", nvbh.tinhLuong()));
+                } else if (employee instanceof NVQL) {
+                    NVQL nvql = (NVQL) employee;
+                    System.out.println(String.format(" %10s ", nvql.tinhLuong()));
+                } else {
+                    System.out.println("                |");
+                }
             }
-            System.out.println("------------------------------------------------------------------------------------");
+            System.out.println(
+                    "------------------------------------------------------------------------------------------------------");
             System.out.println();
 
         } else {
