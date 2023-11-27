@@ -24,9 +24,12 @@ public class ProductManager implements InterfaceCRUD<Product> {
             System.out.println("===================================");
             System.out.println("         DANH SÁCH SẢN PHẨM        ");
             System.out.println("===================================");
-            System.out.println("-------+---------------------+-------------+----------------------+");
-            System.out.println("|  ID  |     Tên sản phẩm    |  Giá        |    Loại sản phẩm     |");
-            System.out.println("-------+---------------------+-------------+----------------------+");
+            System.out.println(
+                    "-------+---------------------+-------------+----------------------+----------------------+");
+            System.out.println(
+                    "|  ID  |     Tên sản phẩm    |     Giá     |    Loại sản phẩm     |     Hạn sử dụng      |");
+            System.out.println(
+                    "-------+---------------------+-------------+----------------------+----------------------+");
 
             for (Product product : products) {
                 String description = "";
@@ -37,15 +40,17 @@ public class ProductManager implements InterfaceCRUD<Product> {
                 }
 
                 System.out.println(
-                        String.format("| %4s | %19s | %11s | %19s |",
+                        String.format("| %4s | %19s | %11s | %19s |  %19s |",
                                 product.getId(),
                                 product.getName(),
                                 product.getPrice(),
                                 product.getCategory() + " " +
-                                        description));
+                                        description,
+                                product.getExpire()));
             }
 
-            System.out.println("-------------------------------------------------------------------");
+            System.out.println(
+                    "------------------------------------------------------------------------------------------");
             System.out.println();
         } else {
             System.out.println("Không có dữ liệu nào!");
@@ -53,13 +58,20 @@ public class ProductManager implements InterfaceCRUD<Product> {
     }
 
     public static void exportProduct(Product product) {
+        String description = "";
+
+        if (product instanceof Drinks) {
+            Drinks drinks = (Drinks) product;
+            description = drinks.getContainsAlcohol() ? "có cồn" : "không có cồn";
+        }
         System.out.println("===================================");
         System.out.println("Thông tin sản phẩm");
         System.out.println("===================================");
         System.out.println("Mã sản phẩm    : " + product.getId());
         System.out.println("Tên sản phẩm   : " + product.getName());
         System.out.println("Giá            : " + formatPrice(product.getPrice())); // Sử dụng hàm formatPrice
-        System.out.println("Mô tả sản phẩm : " + product.getContainsAlcohol());
+        System.out.println("Mô tả sản phẩm : " + product.getCategory() + " " + description);
+        System.out.println("Hạn sử dụng    : " + product.getExpire());
         System.out.println("-----------------------------------");
     }
 
@@ -110,6 +122,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
                 product.setName(updated_product.getName());
                 product.setPrice(updated_product.getPrice());
                 product.setDescription(updated_product.getCategory());
+                product.setExpire(updated_product.getExpire());
                 // Cập nhật thông tin sản phẩm dựa trên ID
                 return;
             }
@@ -122,11 +135,12 @@ public class ProductManager implements InterfaceCRUD<Product> {
             if (products.get(i).getId() == id) {
                 products.remove(i);
                 System.out.println("Đã xóa sản phẩm thành công.");
-
+                return;
             }
         }
-        System.out.println("Không tìm thấy sản phẩm có mã " + id);
 
+        System.out.println("Không tìm thấy sản phẩm có mã " + id);
+        return;
     }
 
     @Override

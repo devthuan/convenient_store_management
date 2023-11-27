@@ -12,9 +12,10 @@ public class Inventory extends BaseEntity {
 
     }
 
-    public Inventory(Product product, LocalDate input_date) {
+    public Inventory(Product product, LocalDate input_date, LocalDate last_update) {
         this.product = product;
         this.input_date = input_date;
+        this.last_update = last_update;
 
     }
 

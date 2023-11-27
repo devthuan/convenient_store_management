@@ -26,10 +26,6 @@ public class ProductUI {
         double price = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Nhập số lượng sản phẩm: ");
-        int quantity = scanner.nextInt();
-        scanner.nextLine();
-
         System.out.print("Nhập hạn sử dụng sản phẩm: ");
         String expire = scanner.nextLine();
 
@@ -41,12 +37,40 @@ public class ProductUI {
                 if (choice_type_drink.equalsIgnoreCase("y")) {
                     contains_alcohol = true;
                 }
-                return new Drinks(name, price, quantity, expire, contains_alcohol, "Đồ uống");
+                return new Drinks(name, price, 1, expire, contains_alcohol, "Đồ uống");
             case 2:
 
-                return new Food(name, price, quantity, expire, "Thức ăn");
+                return new Food(name, price, 1, expire, "Thức ăn");
 
         }
+        return null;
+    }
+
+    public static Product updateProduct(Scanner scanner, Product product) {
+
+        System.out.print("Nhập giá: ");
+        double price = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nhập hạn sử dụng sản phẩm (dd-mm-yyyy): ");
+        String expire = scanner.nextLine();
+
+        if (product != null && product != null) {
+
+            if (product instanceof Drinks) {
+                Drinks drink = (Drinks) product;
+                return new Drinks(drink.getName(), price, 1, expire, drink.getContainsAlcohol(),
+                        drink.getCategory());
+            } else if (product instanceof Food) {
+                Food food = (Food) product;
+                return new Food(food.getName(), price, 1, expire, food.getCategory());
+            } else {
+                System.out.println("Loại sản phẩm không được hỗ trợ.");
+            }
+        } else {
+            System.out.println("Đơn hàng không hợp lệ hoặc không có sản phẩm.");
+        }
+
         return null;
     }
 
@@ -73,8 +97,8 @@ public class ProductUI {
                 scanner.nextLine();
             } else if (option == 2) {
 
-                if (products == null) {
-                    System.out.println("Không có nhân viên nào.");
+                if (products.isEmpty()) {
+                    System.out.println("Không có sản phẩm nào.");
                 } else {
                     ProductManager.exportAllProducts(products);
 
@@ -115,17 +139,8 @@ public class ProductUI {
                 Product product_finded = manager.search(id);
 
                 if (product_finded != null) {
-                    System.out.print("Nhân tên sản phẩm: ");
-                    String name = scanner.nextLine();
 
-                    System.out.print("Nhập giá: ");
-                    double price = scanner.nextInt();
-                    scanner.nextLine();
-
-                    System.out.print("Nhập mô tả sản phẩm: ");
-                    String description = scanner.nextLine();
-
-                    Product update_product = new Product(name, price, description);
+                    Product update_product = updateProduct(scanner, product_finded);
 
                     manager.update(id, update_product);
 

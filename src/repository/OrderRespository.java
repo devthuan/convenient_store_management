@@ -76,6 +76,7 @@ public class OrderRespository extends ProductRespository {
     public static void writeOrdersToFile(List<Order> orders, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             for (Order order : orders) {
+
                 writer.write(
                         order.getId() + "," +
                                 order.getOrderDate() + "," +
@@ -85,12 +86,15 @@ public class OrderRespository extends ProductRespository {
                                 order.getEmployee().getName() + "|");
 
                 for (Product product : order.getProducts()) {
+                    String description = (product.getContainsAlcohol() == null) ? null
+                            : product.getContainsAlcohol().toString();
                     writer.write(
                             product.getName() + "," +
                                     product.getPrice() + "," +
                                     product.getQuantity() + "," +
                                     product.getExpire() + "," +
-                                    product.getCategory() + ":");
+                                    product.getCategory() + "," +
+                                    description + ":");
                 }
                 writer.newLine();
             }

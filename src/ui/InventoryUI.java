@@ -7,7 +7,6 @@ import java.util.Scanner;
 import model.BaseOrderId;
 import model.Inventory;
 import model.Product;
-import model.Categories.Drinks;
 import model.Categories.Food;
 
 import services.InventoryManager;
@@ -27,7 +26,7 @@ public class InventoryUI extends ProductUI {
 
                 Product product = chooseCategory(scanner);
                 LocalDate now_date = LocalDate.now();
-                Inventory new_item = new Inventory(product, now_date);
+                Inventory new_item = new Inventory(product, now_date, null);
                 manager.create(new_item);
 
                 System.out.println("Đã nhập sản phẩm vào kho thành công.");
@@ -75,7 +74,7 @@ public class InventoryUI extends ProductUI {
 
                     Product product_updated = new Food(inventory_finded.getProduct().getName(),
                             inventory_finded.getProduct().getPrice(), new_quantity,
-                            inventory_finded.getProduct().getExpire(),  inventory_finded.getProduct().getCategory());
+                            inventory_finded.getProduct().getExpire(), inventory_finded.getProduct().getCategory());
                     inventory_finded.setProduct(product_updated);
 
                     manager.update(id, inventory_finded);

@@ -12,7 +12,7 @@ import model.Inventory;
 import model.Product;
 import model.Categories.Food;
 
-public class InventoryRespository {
+public class InventoryRespository extends ProductRespository {
 
     public static List<Inventory> readFileInventory(String file_path) {
         List<Inventory> inventories = new ArrayList<>();
@@ -27,11 +27,13 @@ public class InventoryRespository {
                 int quantity = Integer.parseInt(data[3]);
                 String expire = data[4];
                 String category = data[5];
-                LocalDate input_date = LocalDate.parse(data[6]);
+                String description = data[6];
+                LocalDate input_date = LocalDate.parse(data[7]);
+                LocalDate updated_date = LocalDate.parse(data[8]);
 
-                Product product = new Food(name, price, quantity, expire, category);
+                Product product = initProduct(name, price, quantity, expire, category, description);
 
-                inventories.add(new Inventory(product, input_date));
+                inventories.add(new Inventory(product, input_date, updated_date));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,6 +45,8 @@ public class InventoryRespository {
     public static void writeInventoriesToFile(List<Inventory> inventories, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             for (Inventory inventory : inventories) {
+                String description = (inventory.getProduct().getContainsAlcohol() == null) ? null
+                        : inventory.getProduct().getContainsAlcohol().toString();
                 writer.write(
                         inventory.getId() + "," +
                                 inventory.getProduct().getName() + "," +
@@ -50,6 +54,7 @@ public class InventoryRespository {
                                 inventory.getProduct().getQuantity() + "," +
                                 inventory.getProduct().getExpire() + "," +
                                 inventory.getProduct().getCategory() + "," +
+                                description + "," +
                                 inventory.getInputDate() + "," +
                                 inventory.getLastUpdate());
                 writer.newLine();
