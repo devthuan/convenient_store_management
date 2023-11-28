@@ -144,6 +144,8 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
                 return;
             }
         }
+        System.out.println("Không tìm thấy vật phẩm trong kho !");
+        return;
     }
 
     @Override

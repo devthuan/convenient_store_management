@@ -12,14 +12,17 @@ import model.Strategy.payment.PaymentStrategy;
 import services.TransactionManager;
 
 public class TransactionUI extends OrderUI {
+
     public static void handleTransaction(Scanner scanner, List<Transaction> transactions) {
         TransactionManager manager = new TransactionManager();
 
         while (true) {
             Menu.menuTransaction();
+
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();
+
             if (option == 1) {
 
                 System.out.print("Nhập tên thu ngân: ");
@@ -54,7 +57,6 @@ public class TransactionUI extends OrderUI {
                     System.out.println("Không có giao dịch nào!");
                 } else {
                     TransactionManager.exportAllTransaction(transactions);
-
                 }
                 System.out.print("Ấn Enter để tiếp tục!");
                 scanner.nextLine();
@@ -73,12 +75,13 @@ public class TransactionUI extends OrderUI {
                 } else {
                     System.out.print("Không tìm thấy giao dịch có mã " + transaction_id);
                 }
+
                 System.out.print("Ấn Enter để tiếp tục!");
                 scanner.nextLine();
-
             } else if (option == 0) {
                 BaseEntity.resetId();
                 TransactionManager.saveFile();
+                // continue;
                 break;
             } else {
                 System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại!");

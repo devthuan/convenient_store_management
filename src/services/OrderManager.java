@@ -131,7 +131,7 @@ public class OrderManager implements InterfaceCRUD<Order> {
             }
         }
         System.out.println("Không tìm thấy mã đơn hàng cần xoá !!!");
-
+        return;
     }
 
     @Override

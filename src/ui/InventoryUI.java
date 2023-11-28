@@ -72,9 +72,12 @@ public class InventoryUI extends ProductUI {
                     int new_quantity = scanner.nextInt();
                     scanner.nextLine();
 
+                    System.out.print("Nhập hạn sử dụng (yyyy-mm-dd): ");
+                    String new_expire = scanner.nextLine();
+
                     Product product_updated = new Food(inventory_finded.getProduct().getName(),
                             inventory_finded.getProduct().getPrice(), new_quantity,
-                            inventory_finded.getProduct().getExpire(), inventory_finded.getProduct().getCategory());
+                            new_expire, inventory_finded.getProduct().getCategory());
                     inventory_finded.setProduct(product_updated);
 
                     manager.update(id, inventory_finded);
@@ -87,7 +90,13 @@ public class InventoryUI extends ProductUI {
                 System.out.print("Ấn Enter để tiếp tục....");
                 scanner.nextLine();
             } else if (option == 5) {
+                System.out.print("Nhập mã sản phẩm trong kho: ");
+                int id = scanner.nextInt();
+                scanner.nextLine();
+                manager.delete(id);
 
+                System.out.print("Ấn Enter để tiếp tục....");
+                scanner.nextLine();
             } else if (option == 0) {
                 BaseOrderId.resetId();
                 InventoryManager.saveFile();

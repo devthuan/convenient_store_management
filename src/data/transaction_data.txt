@@ -1,6 +1,1 @@
-1,Hoang Thanh Duc,Tran Phuoc Thuan,2000000.0,2023-11-08,Chuyển khoản Momo
-2,Hoang Thanh Duc,Tran Phuoc Thuan,2000000.0,2023-11-08,Chuyển khoản Momo
-3,Hoang Thanh Duc,Tran Phuoc Thuan,2000000.0,2023-11-08,Chuyển khoản Momo
-4,Hoang Thanh Duc,Tran Phuoc Thuan,2000000.0,2023-11-08,Chuyển khoản Momo
-5,Hoang Thanh Duc,Tran Phuoc Thuan,2000000.0,2023-11-08,Chuyển khoản Momo
-6,thuan,thuan,123123.0,2023-11-21,Thẻ tín dụng
+1,duc,thuan,500000.0,2023-11-28,Chuyển khoản Momo

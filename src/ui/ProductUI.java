@@ -52,7 +52,7 @@ public class ProductUI {
         double price = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Nhập hạn sử dụng sản phẩm (dd-mm-yyyy): ");
+        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
         String expire = scanner.nextLine();
 
         if (product != null && product != null) {

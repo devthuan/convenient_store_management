@@ -115,7 +115,7 @@ public class Menu {
         System.out.println("| 1. Thêm sản phẩm vào kho      |");
         System.out.println("| 2. Kiểm kho                   |");
         System.out.println("| 3. Tìm sản phẩm trong kho     |");
-        System.out.println("| 4. Cập số lượng sản phẩm kho  |");
+        System.out.println("| 4. Cập số lượng và HSD kho    |");
         System.out.println("| 5. Xoá sản phẩm trong kho     |");
         System.out.println("| 0. Thoát và lưu thông tin     |");
         System.out.println("+-------------------------------+");

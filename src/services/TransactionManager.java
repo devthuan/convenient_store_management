@@ -45,7 +45,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
-        if (transactions != null) {
+        if (!transactions.isEmpty()) {
             System.out.println("===================================");
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
@@ -117,7 +117,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
             if (transactions.get(i).getId() == id) {
                 transactions.remove(i);
                 System.out.println("Đã xóa giao dịch thành công!");
-
+                return;
             }
         }
         System.out.println("Không tìm thấy giao dịch có mã: " + id);

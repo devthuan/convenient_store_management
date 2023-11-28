@@ -47,9 +47,11 @@ public class App {
                     // xử lí logic cho lịch sử giao dịch
                     TransactionManager.readFile();
                     TransactionManager.startTransactionManager(scanner);
+                    break;
                 case 0:
                     System.out.println("Bye.");
                     System.exit(0);
+                    break;
                 default:
                     System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
                     break;
