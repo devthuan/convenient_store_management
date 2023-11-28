@@ -19,7 +19,7 @@ public class EmployeeRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 6) {
+                if (data.length == 7) {
                     int id = Integer.parseInt(data[0]);
                     String name = data[1];
                     String gender = data[2];
@@ -28,8 +28,7 @@ public class EmployeeRepository {
                     String position = data[5];
                     Employee employee = new Employee(id, name, gender, age, phone, position);
                     EmployeeList.add(employee);
-                } else {
-                    System.err.println("Invalid data format: " + line);
+
                 }
             }
         } catch (IOException e) {
@@ -55,14 +54,15 @@ public class EmployeeRepository {
     }
 
     public static void writeEmployeesToFile(List<Employee> employees, String file_path) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path, true))) {
             for (Employee employee : employees) {
                 writer.write(employee.getId() + "," +
                         employee.getName() + "," +
                         employee.getGender() + "," +
                         employee.getAge() + "," +
                         employee.getPhone() + "," +
-                        employee.getPosition());
+                        employee.getPosition() + "," +
+                        employee.tinhLuong());
                 writer.newLine();
             }
         } catch (Exception e) {

@@ -34,6 +34,7 @@ public class App {
                     OrderManager.startOrderManager(scanner);
                     break;
                 case 4:
+
                     // xử lý logic cho quản lý nhân viên
                     EmployeeManager.readFile();
                     EmployeeManager.startEmployeeManager(scanner);
