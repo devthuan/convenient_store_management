@@ -11,7 +11,7 @@ import ui.CustomerUI;
 
 public class CustomerManager implements InterfaceCRUD<Customer> {
     static List<Customer> customers = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/customer_data.txt";
+    static String file_path = "src/data/customer_data.txt";
 
     public static void startCustomerManager(Scanner scanner) {
         CustomerUI.handleCustomer(scanner, customers);

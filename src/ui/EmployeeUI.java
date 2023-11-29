@@ -147,7 +147,7 @@ public class EmployeeUI {
                 System.out.println("Thông tin nhân viên đã được lưu thành công");
 
             } else if (option == 0) {
-                
+
                 break;
             } else {
                 System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");

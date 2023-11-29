@@ -7,11 +7,15 @@ import java.util.Scanner;
 import model.BaseEntity;
 import model.Customer;
 import model.Employee;
+import model.Order;
 import model.Transaction;
 import model.Strategy.payment.PaymentStrategy;
+import repository.OrderRespository;
 import services.TransactionManager;
+import validation.InpuValidator;
 
 public class TransactionUI extends OrderUI {
+    public static String file_path = "convenient_store_management/src/data/order_data.txt";
 
     public static void handleTransaction(Scanner scanner, List<Transaction> transactions) {
         TransactionManager manager = new TransactionManager();
@@ -20,7 +24,7 @@ public class TransactionUI extends OrderUI {
             Menu.menuTransaction();
 
             System.out.print("Nhập tuỳ chọn: ");
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
@@ -32,7 +36,7 @@ public class TransactionUI extends OrderUI {
                 String name_customer = scanner.nextLine();
 
                 System.out.print("Nhập tổng số tiền: ");
-                double total_amount = scanner.nextDouble();
+                double total_amount = InpuValidator.validateDoubleInput(scanner);
                 scanner.nextLine();
 
                 LocalDate transaction_date = LocalDate.now();
@@ -64,7 +68,7 @@ public class TransactionUI extends OrderUI {
             } else if (option == 3) {
 
                 System.out.print("Nhập mã giao dịch: ");
-                int transaction_id = scanner.nextInt();
+                int transaction_id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Transaction result_search = manager.search(transaction_id);

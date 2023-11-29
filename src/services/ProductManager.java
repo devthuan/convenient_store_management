@@ -10,6 +10,7 @@ import model.Categories.Drinks;
 import repository.ProductRespository;
 
 import ui.ProductUI;
+import validation.InpuValidator;
 
 public class ProductManager implements InterfaceCRUD<Product> {
     static List<Product> products = new ArrayList<>();
@@ -46,7 +47,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
                                 product.getPrice(),
                                 product.getCategory() + " " +
                                         description,
-                                product.getExpire()));
+                                InpuValidator.formatLocalDate(product.getExpire())));
             }
 
             System.out.println(
@@ -71,7 +72,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
         System.out.println("Tên sản phẩm   : " + product.getName());
         System.out.println("Giá            : " + formatPrice(product.getPrice())); // Sử dụng hàm formatPrice
         System.out.println("Mô tả sản phẩm : " + product.getCategory() + " " + description);
-        System.out.println("Hạn sử dụng    : " + product.getExpire());
+        System.out.println("Hạn sử dụng    : " + InpuValidator.formatLocalDate(product.getExpire()));
         System.out.println("-----------------------------------");
     }
 

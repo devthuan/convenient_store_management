@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ProductRespository {
     public static Product initProduct(String name,
             double price,
             int quantity,
-            String expire,
+            LocalDate expire,
             String category,
             String description) {
 
@@ -44,7 +45,7 @@ public class ProductRespository {
                     String name = data[1];
                     double price = Double.parseDouble(data[2]);
                     int quantity = Integer.parseInt(data[3]);
-                    String expire = data[4];
+                    LocalDate expire = LocalDate.parse(data[4]);
                     String category = data[5];
                     String description = data[6];
 

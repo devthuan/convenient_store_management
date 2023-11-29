@@ -21,6 +21,7 @@ import model.Strategy.payment.PaymentStrategy;
 import repository.ProductRespository;
 import services.OrderManager;
 import services.ProductManager;
+import validation.InpuValidator;
 
 public class OrderUI extends ProductUI {
     static String file_path = "convenient_store_management/src/data/product_data.txt";
@@ -31,16 +32,24 @@ public class OrderUI extends ProductUI {
         System.out.println("3. Tiền mặt");
 
         System.out.print("Chọn phương thức thanh toán: ");
-        int choice_payment = scanner.nextInt();
-        scanner.nextLine();
 
-        switch (choice_payment) {
-            case 1:
+        while (true) {
+            int choice_payment = InpuValidator.validateIntInput(scanner);
+            scanner.nextLine();
+            if (choice_payment == 1) {
                 return new CardPayment();
-            case 2:
+
+            } else if (choice_payment == 2) {
+
                 return new MomoPayment();
-            default:
+            } else if (choice_payment == 3) {
+
                 return new CashPayment();
+            } else {
+                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                continue;
+            }
+
         }
     }
 
@@ -49,11 +58,11 @@ public class OrderUI extends ProductUI {
         String name = scanner.nextLine();
 
         System.out.print("Nhập giá sản phẩm: ");
-        int price = scanner.nextInt();
+        int price = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
         System.out.print("Nhập số lượng: ");
-        int quantity = scanner.nextInt();
+        int quantity = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
         if (product != null && product != null) {
@@ -86,7 +95,7 @@ public class OrderUI extends ProductUI {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
@@ -100,13 +109,13 @@ public class OrderUI extends ProductUI {
 
                 while (true) {
                     System.out.print("Chọn mã sản phẩm: ");
-                    int id_product = scanner.nextInt();
+                    int id_product = InpuValidator.validateIntInput(scanner);
                     scanner.nextLine();
 
                     for (Product product : products_in_file) {
                         if (product.getId() == id_product) {
                             System.out.print("Nhập số lượng: ");
-                            int quantity = scanner.nextInt();
+                            int quantity = InpuValidator.validateIntInput(scanner);
                             scanner.nextLine();
 
                             Product add_product;
@@ -159,7 +168,7 @@ public class OrderUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 3) {
                 System.out.print("Nhập mã sản phẩm: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Order order_finded = manager.search(id);
@@ -174,7 +183,7 @@ public class OrderUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 4) {
                 System.out.print("Nhập mã sản phẩm: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
                 manager.delete(id);
 
@@ -182,7 +191,7 @@ public class OrderUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 5) {
                 System.out.print("Nhập mã sản phẩm cần chỉnh sửa: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Order order_finded = manager.search(id);
@@ -193,8 +202,6 @@ public class OrderUI extends ProductUI {
                     String name_customer = scanner.nextLine();
                     System.out.print("Nhập tên thu ngân: ");
                     String name_employee = scanner.nextLine();
-                    // System.out.print("Nhập phương thức thanh toán: ");
-                    // String payment_method = scanner.nextLine();
 
                     PaymentStrategy payment_method = choosePaymentMethod(scanner);
 

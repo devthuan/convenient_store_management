@@ -57,7 +57,7 @@ public class OrderRespository extends ProductRespository {
                     Product item_product = initProduct(name,
                             price,
                             quantity,
-                            expire,
+                            LocalDate.parse(expire),
                             category,
                             description);
 

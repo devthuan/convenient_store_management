@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-import model.BaseOrderId;
 import model.Inventory;
 import model.Product;
 import model.Categories.Food;
 
 import services.InventoryManager;
+import validation.InpuValidator;
 
 public class InventoryUI extends ProductUI {
 
@@ -19,7 +19,7 @@ public class InventoryUI extends ProductUI {
         while (true) {
             Menu.menuInventory();
             System.out.print("Nhập tuỳ chọn: ");
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
@@ -46,7 +46,7 @@ public class InventoryUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 3) {
                 System.out.print("Nhập mã sản phẩm: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Inventory inventory_finded = manager.search(id);
@@ -62,18 +62,18 @@ public class InventoryUI extends ProductUI {
 
             } else if (option == 4) {
                 System.out.print("Nhập mã sản phẩm cần chỉnh sửa: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Inventory inventory_finded = manager.search(id);
 
                 if (inventory_finded != null) {
                     System.out.print("Nhập số lượng sản phẩm: ");
-                    int new_quantity = scanner.nextInt();
+                    int new_quantity = InpuValidator.validateIntInput(scanner);
                     scanner.nextLine();
 
                     System.out.print("Nhập hạn sử dụng (yyyy-mm-dd): ");
-                    String new_expire = scanner.nextLine();
+                    LocalDate new_expire = InpuValidator.validateLocalDateInput(scanner);
 
                     Product product_updated = new Food(inventory_finded.getProduct().getName(),
                             inventory_finded.getProduct().getPrice(), new_quantity,
@@ -91,14 +91,14 @@ public class InventoryUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 5) {
                 System.out.print("Nhập mã sản phẩm trong kho: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
                 manager.delete(id);
 
                 System.out.print("Ấn Enter để tiếp tục....");
                 scanner.nextLine();
             } else if (option == 0) {
-                BaseOrderId.resetId();
+                Inventory.resetId();
                 InventoryManager.saveFile();
                 break;
             } else {
