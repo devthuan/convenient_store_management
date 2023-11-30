@@ -6,13 +6,12 @@ public class Menu {
         System.out.println("╔══════════════════════════╗");
         System.out.println("║       MEMU QUẢN LÝ       ║");
         System.out.println("║══════════════════════════║");
-        System.out.println("║ 1. Quản lý cửa hàng      ║");
-        System.out.println("║ 2. Quản lý sản phẩm      ║");
-        System.out.println("║ 3. Quản lý khách hàng    ║");
-        System.out.println("║ 4. Quản lý đơn hàng      ║");
-        System.out.println("║ 5. Quản lý nhân viên     ║");
-        System.out.println("║ 6. Quản lý kho           ║");
-        System.out.println("║ 7. Quản lý giao dịch     ║");
+        System.out.println("║ 1. Quản lý sản phẩm      ║");
+        System.out.println("║ 2. Quản lý khách hàng    ║");
+        System.out.println("║ 3. Quản lý đơn hàng      ║");
+        System.out.println("║ 4. Quản lý nhân viên     ║");
+        System.out.println("║ 5. Quản lý kho           ║");
+        System.out.println("║ 6. Quản lý giao dịch     ║");
         System.out.println("║ 0. Thoát                 ║");
         System.out.println("╚══════════════════════════╝");
     }
@@ -102,6 +101,22 @@ public class Menu {
         System.out.println("| 1. Tạo giao dịch              |");
         System.out.println("| 2. Xuất tất cả giao dịch      |");
         System.out.println("| 3. Tìm kiếm giao dịch         |");
+        System.out.println("| 0. Thoát và lưu thông tin     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("");
+    }
+
+    public static void menuInventory() {
+
+        System.out.println("");
+        System.out.println("+-------------------------------+");
+        System.out.println("|     Thao tác với kho hàng     |");
+        System.out.println("+-------------------------------+");
+        System.out.println("| 1. Thêm sản phẩm vào kho      |");
+        System.out.println("| 2. Kiểm kho                   |");
+        System.out.println("| 3. Tìm sản phẩm trong kho     |");
+        System.out.println("| 4. Cập số lượng và HSD kho    |");
+        System.out.println("| 5. Xoá sản phẩm trong kho     |");
         System.out.println("| 0. Thoát và lưu thông tin     |");
         System.out.println("+-------------------------------+");
         System.out.println("");

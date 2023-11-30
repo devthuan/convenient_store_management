@@ -8,6 +8,7 @@ import model.InterfaceCRUD;
 import model.Transaction;
 import repository.TransactionReponsitory;
 import ui.TransactionUI;
+import validation.InpuValidator;
 
 public class TransactionManager implements InterfaceCRUD<Transaction> {
     static List<Transaction> transactions = new ArrayList<>();
@@ -40,12 +41,13 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
         System.out.println("Tên thu ngân            : " + transaction.getEmployee().getName());
         System.out.println("Tên khách hàng          : " + transaction.getCustomer().getName());
         System.out.println("Tổng số tiền            : " + transaction.getTotalAmount());
-        System.out.println("Ngày giao dịch          : " + transaction.getTransactionDate());
+        System.out.println(
+                "Ngày giao dịch          : " + InpuValidator.formatLocalDate(transaction.getTransactionDate()));
         System.out.println("Phương thức thanh toán  : " + transaction.getPaymentMethod());
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
-        if (transactions != null) {
+        if (!transactions.isEmpty()) {
             System.out.println("===================================");
             System.out.println("         LỊCH SỬ GIAO DỊCH         ");
             System.out.println("===================================");
@@ -63,7 +65,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
                                 transaction.getEmployee().getName(),
                                 transaction.getCustomer().getName(),
                                 transaction.getTotalAmount(),
-                                transaction.getTransactionDate(),
+                                InpuValidator.formatLocalDate(transaction.getTransactionDate()),
                                 transaction.getPaymentMethod()));
             }
             System.out.println(
@@ -117,7 +119,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
             if (transactions.get(i).getId() == id) {
                 transactions.remove(i);
                 System.out.println("Đã xóa giao dịch thành công!");
-
+                return;
             }
         }
         System.out.println("Không tìm thấy giao dịch có mã: " + id);

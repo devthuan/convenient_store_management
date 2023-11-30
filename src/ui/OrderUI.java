@@ -11,6 +11,8 @@ import model.Employee;
 import model.Order;
 import model.Product;
 import model.Transaction;
+import model.Categories.Drinks;
+import model.Categories.Food;
 import model.Strategy.VATCalculationStrategy;
 import model.Strategy.payment.CardPayment;
 import model.Strategy.payment.CashPayment;
@@ -19,8 +21,9 @@ import model.Strategy.payment.PaymentStrategy;
 import repository.ProductRespository;
 import services.OrderManager;
 import services.ProductManager;
+import validation.InpuValidator;
 
-public class OrderUI {
+public class OrderUI extends ProductUI {
     static String file_path = "convenient_store_management/src/data/product_data.txt";
 
     public static PaymentStrategy choosePaymentMethod(Scanner scanner) {
@@ -29,17 +32,58 @@ public class OrderUI {
         System.out.println("3. Tiền mặt");
 
         System.out.print("Chọn phương thức thanh toán: ");
-        int choice_payment = scanner.nextInt();
+
+        while (true) {
+            int choice_payment = InpuValidator.validateIntInput(scanner);
+            scanner.nextLine();
+            if (choice_payment == 1) {
+                return new CardPayment();
+
+            } else if (choice_payment == 2) {
+
+                return new MomoPayment();
+            } else if (choice_payment == 3) {
+
+                return new CashPayment();
+            } else {
+                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                continue;
+            }
+
+        }
+    }
+
+    private static Product updateProductDetails(Scanner scanner, Product product) {
+        System.out.print("Nhập tên sản phẩm: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập giá sản phẩm: ");
+        int price = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
-        switch (choice_payment) {
-            case 1:
-                return new CardPayment();
-            case 2:
-                return new MomoPayment();
-            default:
-                return new CashPayment();
+        System.out.print("Nhập số lượng: ");
+        int quantity = InpuValidator.validateIntInput(scanner);
+        scanner.nextLine();
+
+        if (product != null && product != null) {
+            // Product selectedProduct = order.getProducts().get(0); // Chọn sản phẩm đầu
+            // tiên trong đơn hàng
+
+            if (product instanceof Drinks) {
+                Drinks drink = (Drinks) product;
+                return new Drinks(name, price, quantity, drink.getExpire(), drink.getContainsAlcohol(),
+                        drink.getCategory());
+            } else if (product instanceof Food) {
+                Food food = (Food) product;
+                return new Food(name, price, quantity, food.getExpire(), food.getCategory());
+            } else {
+                System.out.println("Loại sản phẩm không được hỗ trợ.");
+            }
+        } else {
+            System.out.println("Đơn hàng không hợp lệ hoặc không có sản phẩm.");
         }
+
+        return null; // Trả về null nếu có lỗi hoặc không thể xác định được loại sản phẩm
     }
 
     public static void handleOrder(Scanner scanner, List<Order> orders) {
@@ -51,7 +95,7 @@ public class OrderUI {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
@@ -65,16 +109,29 @@ public class OrderUI {
 
                 while (true) {
                     System.out.print("Chọn mã sản phẩm: ");
-                    int id_product = scanner.nextInt();
+                    int id_product = InpuValidator.validateIntInput(scanner);
                     scanner.nextLine();
 
                     for (Product product : products_in_file) {
                         if (product.getId() == id_product) {
                             System.out.print("Nhập số lượng: ");
-                            int quantity = scanner.nextInt();
+                            int quantity = InpuValidator.validateIntInput(scanner);
                             scanner.nextLine();
 
-                            products.add(new Product(product.getName(), product.getPrice(), quantity));
+                            Product add_product;
+
+                            if (product instanceof Drinks) {
+                                Drinks drinks = (Drinks) product;
+                                add_product = new Drinks(drinks.getName(), drinks.getPrice(), quantity,
+                                        drinks.getExpire(), drinks.getContainsAlcohol(), drinks.getCategory());
+                            } else {
+                                Food food = (Food) product;
+                                add_product = new Food(food.getName(), food.getPrice(), quantity,
+                                        food.getExpire(), food.getCategory());
+
+                            }
+
+                            products.add(add_product);
                         }
                     }
                     System.out.print("Có tiếp tục mua hàng không (y/n): ");
@@ -111,7 +168,7 @@ public class OrderUI {
                 scanner.nextLine();
             } else if (option == 3) {
                 System.out.print("Nhập mã sản phẩm: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Order order_finded = manager.search(id);
@@ -126,7 +183,7 @@ public class OrderUI {
                 scanner.nextLine();
             } else if (option == 4) {
                 System.out.print("Nhập mã sản phẩm: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
                 manager.delete(id);
 
@@ -134,7 +191,7 @@ public class OrderUI {
                 scanner.nextLine();
             } else if (option == 5) {
                 System.out.print("Nhập mã sản phẩm cần chỉnh sửa: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Order order_finded = manager.search(id);
@@ -145,30 +202,22 @@ public class OrderUI {
                     String name_customer = scanner.nextLine();
                     System.out.print("Nhập tên thu ngân: ");
                     String name_employee = scanner.nextLine();
-                    System.out.print("Nhập phương thức thanh toán: ");
-                    String payment_method = scanner.nextLine();
+
+                    PaymentStrategy payment_method = choosePaymentMethod(scanner);
 
                     LocalDate updated_date = LocalDate.now();
                     Customer customer_updated = new Customer(name_customer);
                     Employee employee_updated = new Employee(name_employee);
-                    Transaction transaction_updated = new Transaction(new MomoPayment());
+                    Transaction transaction_updated = new Transaction(payment_method);
                     List<Product> updated_products = new ArrayList<>();
 
-                    for (int i = 1; i <= order_finded.getProducts().size(); i++) {
+                    for (int i = 0; i < order_finded.getProducts().size(); i++) {
 
-                        System.out.println("Sửa sản phẩm thứ " + i + " trong đơn hàng");
-                        System.out.print("Nhân tên sản phẩm: ");
-                        String name = scanner.nextLine();
+                        System.out.println("Sửa sản phẩm thứ " + (i + 1) + " trong đơn hàng");
 
-                        System.out.print("Nhập giá: ");
-                        double price = scanner.nextInt();
-                        scanner.nextLine();
-
-                        System.out.print("Nhập số lượng: ");
-                        int quantity = scanner.nextInt();
-                        scanner.nextLine();
-
-                        updated_products.add(new Product(name, price, quantity));
+                        Product new_product = updateProductDetails(scanner,
+                                order_finded.getProducts().get(i));
+                        updated_products.add(new_product);
                     }
                     Order updated_order = new Order(updated_products, updated_date, customer_updated, employee_updated,
                             transaction_updated);
@@ -192,4 +241,5 @@ public class OrderUI {
             }
         }
     }
+
 }

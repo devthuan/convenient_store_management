@@ -1,13 +1,85 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Product;
+import model.Categories.Drinks;
+import model.Categories.Food;
 import services.ProductManager;
+import validation.InpuValidator;
 
 public class ProductUI {
+
+    public static Product chooseCategory(Scanner scanner) {
+        System.out.println("1. Đồ uống");
+        System.out.println("2. Thức ăn");
+
+        System.out.print("Chọn Loại sản phẩm: ");
+        int choice_product = InpuValidator.validateIntInput(scanner);
+        scanner.nextLine();
+
+        System.out.print("Nhân tên sản phẩm: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Nhập giá: ");
+        double price = InpuValidator.validateDoubleInput(scanner);
+        scanner.nextLine();
+
+        System.out.print("Nhập số lượng: ");
+        int quantity = InpuValidator.validateIntInput(scanner);
+        scanner.nextLine();
+
+        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
+        LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
+
+        switch (choice_product) {
+            case 1:
+                System.out.print("đồ uống có cồn hay không: y/n ");
+                String choice_type_drink = scanner.nextLine();
+                Boolean contains_alcohol = false;
+                if (choice_type_drink.equalsIgnoreCase("y")) {
+                    contains_alcohol = true;
+                }
+                return new Drinks(name, price, quantity, expire, contains_alcohol, "Đồ uống");
+            case 2:
+
+                return new Food(name, price, quantity, expire, "Thức ăn");
+
+        }
+        return null;
+    }
+
+    public static Product updateProduct(Scanner scanner, Product product) {
+
+        System.out.print("Nhập giá: ");
+        double price = InpuValidator.validateDoubleInput(scanner);
+        scanner.nextLine();
+
+        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
+        LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
+
+        if (product != null && product != null) {
+
+            if (product instanceof Drinks) {
+                Drinks drink = (Drinks) product;
+                return new Drinks(drink.getName(), price, 1, expire, drink.getContainsAlcohol(),
+                        drink.getCategory());
+            } else if (product instanceof Food) {
+                Food food = (Food) product;
+                return new Food(food.getName(), price, 1, expire, food.getCategory());
+            } else {
+                System.out.println("Loại sản phẩm không được hỗ trợ.");
+            }
+        } else {
+            System.out.println("Đơn hàng không hợp lệ hoặc không có sản phẩm.");
+        }
+
+        return null;
+    }
+
     public static void handleProduct(Scanner scanner, List<Product> products) {
         ProductManager manager = new ProductManager();
 
@@ -18,21 +90,11 @@ public class ProductUI {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
             if (option == 1) {
 
-                System.out.print("Nhân tên sản phẩm: ");
-                String name = scanner.nextLine();
-
-                System.out.print("Nhập giá: ");
-                double price = scanner.nextInt();
-                scanner.nextLine();
-
-                System.out.print("Nhập mô tả sản phẩm: ");
-                String description = scanner.nextLine();
-
-                Product new_product = new Product(name, price, description);
+                Product new_product = chooseCategory(scanner);
                 manager.create(new_product);
 
                 System.out.println("Tạo sản phẩm mới thành công.");
@@ -41,8 +103,8 @@ public class ProductUI {
                 scanner.nextLine();
             } else if (option == 2) {
 
-                if (products == null) {
-                    System.out.println("Không có nhân viên nào.");
+                if (products.isEmpty()) {
+                    System.out.println("Không có sản phẩm nào.");
                 } else {
                     ProductManager.exportAllProducts(products);
 
@@ -83,17 +145,8 @@ public class ProductUI {
                 Product product_finded = manager.search(id);
 
                 if (product_finded != null) {
-                    System.out.print("Nhân tên sản phẩm: ");
-                    String name = scanner.nextLine();
 
-                    System.out.print("Nhập giá: ");
-                    double price = scanner.nextInt();
-                    scanner.nextLine();
-
-                    System.out.print("Nhập mô tả sản phẩm: ");
-                    String description = scanner.nextLine();
-
-                    Product update_product = new Product(name, price, description);
+                    Product update_product = updateProduct(scanner, product_finded);
 
                     manager.update(id, update_product);
 

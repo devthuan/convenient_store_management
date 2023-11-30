@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import ui.*;
+import validation.InpuValidator;
 import services.*;
 
 public class App {
@@ -14,45 +15,45 @@ public class App {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int main_choice = scanner.nextInt();
+            int main_choice = InpuValidator.validateIntInput(scanner);
             switch (main_choice) {
-                case 1:
-                    // xử lý logic cho quản lý cửa hàng
 
-                    break;
-                case 2:
+                case 1:
                     // xử lý logic cho quản lý sản phẩm
                     ProductManager.readFile(); // load data từ file txt
                     ProductManager.startProductManager(scanner);
                     break;
-                case 3:
+                case 2:
                     // xử lý logic cho quản lý khách hàng
                     CustomerManager.readFile();
                     CustomerManager.startCustomerManager(scanner);
                     break;
-
-                case 4:
+                case 3:
                     // xử lý logic cho quản lý hoá đơn
                     ProductManager.readFile(); // load data product từ file txt
                     OrderManager.readFile(); // load data order từ file txt
                     OrderManager.startOrderManager(scanner);
                     break;
+                case 4:
 
-                case 5:
                     // xử lý logic cho quản lý nhân viên
                     EmployeeManager.readFile(); // load data từ file txt
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
-                case 6:
+                case 5:
                     // xử lý logic cho quản lý kho
+                    InventoryManager.readFile();
+                    InventoryManager.startInventoryManager(scanner);
                     break;
-                case 7:
+                case 6:
                     // xử lí logic cho lịch sử giao dịch
                     TransactionManager.readFile();
                     TransactionManager.startTransactionManager(scanner);
+                    break;
                 case 0:
                     System.out.println("Bye.");
                     System.exit(0);
+                    break;
                 default:
                     System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
                     break;

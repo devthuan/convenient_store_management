@@ -26,6 +26,7 @@ public class EmployeeRepository {
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
                     String position = data[5];
+                    String salary = data[6];
                     Employee employee = new Employee(id, name, gender, age, phone, position);
                     EmployeeList.add(employee);
 
