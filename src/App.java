@@ -40,7 +40,7 @@ public class App {
 
                 case 5:
                     // xử lý logic cho quản lý nhân viên
-                    EmployeeManager.readFile();
+                    EmployeeManager.readFile(); // load data từ file txt
                     EmployeeManager.startEmployeeManager(scanner);
                     break;
                 case 6:

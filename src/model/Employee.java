@@ -113,6 +113,7 @@ public class Employee extends BaseEntity {
                 } else {
                     System.out.println("                |");
                 }
+
             }
             System.out.println(
                     "------------------------------------------------------------------------------------------------------");
