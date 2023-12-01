@@ -19,7 +19,7 @@ public class EmployeeRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 7) {
+                if (data.length == 6) {
                     int id = Integer.parseInt(data[0]);
                     String name = data[1];
                     String gender = data[2];
