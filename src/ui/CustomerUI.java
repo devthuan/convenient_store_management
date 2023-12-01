@@ -20,6 +20,7 @@ public class CustomerUI {
     public static void handleCustomer(Scanner scanner, List<Customer> customers) {
         CustomerManager manager = new CustomerManager();
         while (true) {
+            Menu.menuCustomer();
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();

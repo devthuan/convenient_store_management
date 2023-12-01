@@ -23,6 +23,7 @@ public class EmployeeUI {
         EmployeeManager manager = new EmployeeManager();
 
         while (true) {
+            Menu.menuEmployee();
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();

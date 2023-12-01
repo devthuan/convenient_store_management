@@ -21,6 +21,7 @@ public class Customer extends BaseEntity {
     public Customer(String name) {
         this.name = name;
     }
+
     public Customer(int id, String name, String address, String phone) {
         this.name = name;
         this.address = address;
@@ -56,5 +57,4 @@ public class Customer extends BaseEntity {
         this.phone = phone;
     }
 
-   
 }
