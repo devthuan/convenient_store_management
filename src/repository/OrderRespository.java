@@ -8,14 +8,18 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.BaseEntity;
 import model.Customer;
 import model.Employee;
 import model.Order;
 import model.Product;
 import model.Transaction;
+import model.Categories.Drinks;
+import model.Categories.Food;
+import model.Strategy.VATCalculationStrategy;
+import model.Strategy.payment.MomoPayment;
+import model.Strategy.payment.PaymentStrategy;
 
-public class OrderRespository {
+public class OrderRespository extends ProductRespository {
 
     public static List<Order> readOrdersToFile(String file_path) {
         List<Order> orders = new ArrayList<>();
@@ -30,7 +34,9 @@ public class OrderRespository {
                 String name_customer = infor_orders[2];
 
                 double total_payment = Double.parseDouble(infor_orders[3]);
-                String payment_method = infor_orders[4];
+                // String payment_method = infor_orders[4];
+                PaymentStrategy payment_method = new MomoPayment(); // thêm if else
+
                 String name_employee = infor_orders[5];
 
                 Employee employee = new Employee(name_employee);
@@ -40,13 +46,25 @@ public class OrderRespository {
                 List<Product> products = new ArrayList<>();
                 String[] infor_products = data[1].split(":");
                 for (String product : infor_products) {
-                    String[] infor_product = product.split(",");
-                    String name = infor_product[0];
-                    double price = Double.parseDouble(infor_product[1]);
-                    int quantity = Integer.parseInt(infor_product[2]);
-                    products.add(new Product(name, price, quantity));
+                    String[] info_product = product.split(",");
+                    String name = info_product[0];
+                    double price = Double.parseDouble(info_product[1]);
+                    int quantity = Integer.parseInt(info_product[2]);
+                    String expire = info_product[3];
+                    String category = info_product[4];
+                    String description = info_product[5];
+
+                    Product item_product = initProduct(name,
+                            price,
+                            quantity,
+                            LocalDate.parse(expire),
+                            category,
+                            description);
+
+                    products.add(item_product);
                 }
-                orders.add(new Order(products, order_date, customer, employee, transaction));
+                orders.add(new Order(products, order_date, customer, employee, transaction,
+                        new VATCalculationStrategy(8)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,19 +76,25 @@ public class OrderRespository {
     public static void writeOrdersToFile(List<Order> orders, String file_path) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             for (Order order : orders) {
+
                 writer.write(
                         order.getId() + "," +
                                 order.getOrderDate() + "," +
                                 order.getCustomer().getName() + "," +
-                                order.calTotalAmount() + "," +
+                                order.calculateTotal() + "," +
                                 order.getTransaction().getPaymentMethod() + "," +
                                 order.getEmployee().getName() + "|");
 
                 for (Product product : order.getProducts()) {
+                    String description = (product.getContainsAlcohol() == null) ? null
+                            : product.getContainsAlcohol().toString();
                     writer.write(
                             product.getName() + "," +
                                     product.getPrice() + "," +
-                                    product.getQuantity() + ":");
+                                    product.getQuantity() + "," +
+                                    product.getExpire() + "," +
+                                    product.getCategory() + "," +
+                                    description + ":");
                 }
                 writer.newLine();
             }
@@ -87,7 +111,7 @@ public class OrderRespository {
                     order.getId() + "," +
                             order.getOrderDate() + "," +
                             order.getCustomer().getName() + "," +
-                            order.calTotalAmount() + ":");
+                            order.calculateTotal() + ":");
             for (Product product : order.getProducts()) {
                 writer.write(
                         product.getName() + "," +
