@@ -8,6 +8,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            Menu.menuMain();
             System.out.println("Nhập tuỳ chọn: ");
             while (!scanner.hasNextInt()) {
                 System.out.println("Vui lòng nhập số nguyên!");
