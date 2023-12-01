@@ -16,10 +16,6 @@ public class Employee extends BaseEntity {
 
     }
 
-    public Employee(String name) {
-        this.name = name;
-    }
-
     public Employee(String name, String gender, int age, String phone, String position) {
         this.name = name;
         this.gender = gender;

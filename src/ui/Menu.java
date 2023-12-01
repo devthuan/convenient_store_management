@@ -7,7 +7,7 @@ public class Menu {
         System.out.println("║       MEMU QUẢN LÝ       ║");
         System.out.println("║══════════════════════════║");
         System.out.println("║ 1. Quản lý sản phẩm      ║");
-        System.out.println("║ 2. Quản lý khách hàng    ║");
+        System.out.println("║ 2. Quản lý khách hàng12    ║");
         System.out.println("║ 3. Quản lý đơn hàng      ║");
         System.out.println("║ 4. Quản lý kho           ║");
         System.out.println("║ 5. Quản lý nhân viên     ║");

@@ -5,7 +5,6 @@ import services.*;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             Menu.menuMain();
@@ -22,20 +21,26 @@ public class App {
                     break;
                 case 2:
                     // xử lý logic cho quản lý sản phẩm
-                    ProductManager.readFile(); // load data từ file txt
-                    ProductManager.startProductManager(scanner);
+                    /*
+                     * ProductManager.readFile(); // load data từ file txt
+                     * ProductManager.startProductManager(scanner);
+                     */
                     break;
                 case 3:
                     // xử lý logic cho quản lý khách hàng
-                    CustomerManager.readFile();
-                    CustomerManager.startCustomerManager(scanner);
+                    /*
+                     * CustomerManager.readFile();
+                     * CustomerManager.startCustomerManager(scanner);
+                     */
                     break;
 
                 case 4:
                     // xử lý logic cho quản lý hoá đơn
-                    ProductManager.readFile(); // load data product từ file txt
-                    OrderManager.readFile(); // load data order từ file txt
-                    OrderManager.startOrderManager(scanner);
+                    /*
+                     * ProductManager.readFile(); // load data product từ file txt
+                     * OrderManager.readFile(); // load data order từ file txt
+                     * OrderManager.startOrderManager(scanner);
+                     */
                     break;
 
                 case 5:
@@ -48,8 +53,11 @@ public class App {
                     break;
                 case 7:
                     // xử lí logic cho lịch sử giao dịch
-                    TransactionManager.readFile();
-                    TransactionManager.startTransactionManager(scanner);
+                    /*
+                     * TransactionManager.readFile();
+                     * TransactionManager.startTransactionManager(scanner);
+                     */
+                    break;
                 case 0:
                     System.out.println("Bye.");
                     System.exit(0);
