@@ -1,7 +1,0 @@
-1,Number One,10000.0,1,2026-06-30,Đồ uống,false
-2,Com nam,140000.0,1,2028-06-30,Thức ăn,null
-3,ádf,123.0,123,2023-11-11,Đồ uống,false
-1,Oshi,7000.0,Oshi cua
-2,String,10000.0,Nước tăng lực
-3,NumberOne,10000.0,Nước tăng lực
-4,Coffee,3000.0,coffee legen
