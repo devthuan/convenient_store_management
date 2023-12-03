@@ -27,11 +27,11 @@ public class OrderUI extends ProductUI {
     static String file_path = "convenient_store_management/src/data/product_data.txt";
 
     public static PaymentStrategy choosePaymentMethod(Scanner scanner) {
-        System.out.println("1. Thẻ tính dụng");
+        System.out.println("1. The tinh dung");
         System.out.println("2. Momo");
-        System.out.println("3. Tiền mặt");
+        System.out.println("3. Tien mat");
 
-        System.out.print("Chọn phương thức thanh toán: ");
+        System.out.print("Chon phuong thuc thanh toan: ");
 
         while (true) {
             int choice_payment = InpuValidator.validateIntInput(scanner);
@@ -46,7 +46,7 @@ public class OrderUI extends ProductUI {
 
                 return new CashPayment();
             } else {
-                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                 continue;
             }
 
@@ -54,14 +54,14 @@ public class OrderUI extends ProductUI {
     }
 
     private static Product updateProductDetails(Scanner scanner, Product product) {
-        System.out.print("Nhập tên sản phẩm: ");
+        System.out.print("Nhap ten san pham: ");
         String name = scanner.nextLine();
 
-        System.out.print("Nhập giá sản phẩm: ");
+        System.out.print("Nhap gia san pham: ");
         int price = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhập số lượng: ");
+        System.out.print("Nhap so luong: ");
         int quantity = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
@@ -77,10 +77,10 @@ public class OrderUI extends ProductUI {
                 Food food = (Food) product;
                 return new Food(name, price, quantity, food.getExpire(), food.getCategory());
             } else {
-                System.out.println("Loại sản phẩm không được hỗ trợ.");
+                System.out.println("Loai san pham khong duoc ho tro.");
             }
         } else {
-            System.out.println("Đơn hàng không hợp lệ hoặc không có sản phẩm.");
+            System.out.println("Don hang khong hop le hoac khong co san pham.");
         }
 
         return null; // Trả về null nếu có lỗi hoặc không thể xác định được loại sản phẩm
@@ -90,16 +90,16 @@ public class OrderUI extends ProductUI {
         OrderManager manager = new OrderManager();
         while (true) {
             Menu.menuOrder();
-            System.out.print("Nhập tuỳ chọn: ");
+            System.out.print("Nhap tuy chon: ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Vui lòng nhập số nguyên!");
+                System.out.println("Vui long nhap so nguyen!");
                 scanner.next();
             }
             int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
-                System.out.print("Nhập tên khách hàng: ");
+                System.out.print("Nhap ten khach hang: ");
                 String name_customer = scanner.nextLine();
                 Customer customer = new Customer(name_customer);
 
@@ -108,13 +108,13 @@ public class OrderUI extends ProductUI {
                 ProductManager.exportAllProducts(products_in_file);
 
                 while (true) {
-                    System.out.print("Chọn mã sản phẩm: ");
+                    System.out.print("Chon ma san pham: ");
                     int id_product = InpuValidator.validateIntInput(scanner);
                     scanner.nextLine();
 
                     for (Product product : products_in_file) {
                         if (product.getId() == id_product) {
-                            System.out.print("Nhập số lượng: ");
+                            System.out.print("Nhap so luong: ");
                             int quantity = InpuValidator.validateIntInput(scanner);
                             scanner.nextLine();
 
@@ -134,7 +134,7 @@ public class OrderUI extends ProductUI {
                             products.add(add_product);
                         }
                     }
-                    System.out.print("Có tiếp tục mua hàng không (y/n): ");
+                    System.out.print("Ban co tiep tuc mua hang khong (y/n): ");
                     String continueShopping = scanner.nextLine();
                     if (!continueShopping.equals("y")) {
                         break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
@@ -152,9 +152,9 @@ public class OrderUI extends ProductUI {
                         new VATCalculationStrategy(8));
 
                 manager.create(new_order);
-                System.out.println("Đã tạo đơn hàng thành công.");
+                System.out.println("Da tao don hang thanh cong.");
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 2) {
                 if (orders.isEmpty()) {
@@ -164,10 +164,10 @@ public class OrderUI extends ProductUI {
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 3) {
-                System.out.print("Nhập mã sản phẩm: ");
+                System.out.print("Nhap ma san pham: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
@@ -176,21 +176,21 @@ public class OrderUI extends ProductUI {
                 if (order_finded != null) {
                     OrderManager.exportProduct(order_finded);
                 } else {
-                    System.out.println("Không tìm thấy hoá đơn có mã " + id);
+                    System.out.println("Khong tim thay hoa don co ma " + id);
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 4) {
-                System.out.print("Nhập mã sản phẩm: ");
+                System.out.print("Nhap ma san pham: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
                 manager.delete(id);
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.print("Nhập mã sản phẩm cần chỉnh sửa: ");
+                System.out.print("Nhap ma san pham cần chỉnh sửa: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
@@ -198,9 +198,9 @@ public class OrderUI extends ProductUI {
 
                 if (order_finded != null) {
 
-                    System.out.print("Nhập tên khách hàng: ");
+                    System.out.print("Nhap ten khach hang: ");
                     String name_customer = scanner.nextLine();
-                    System.out.print("Nhập tên thu ngân: ");
+                    System.out.print("Nhap ten thu ngan: ");
                     String name_employee = scanner.nextLine();
 
                     PaymentStrategy payment_method = choosePaymentMethod(scanner);
@@ -213,7 +213,7 @@ public class OrderUI extends ProductUI {
 
                     for (int i = 0; i < order_finded.getProducts().size(); i++) {
 
-                        System.out.println("Sửa sản phẩm thứ " + (i + 1) + " trong đơn hàng");
+                        System.out.println("Sua san pham thu " + (i + 1) + " trong don hang");
 
                         Product new_product = updateProductDetails(scanner,
                                 order_finded.getProducts().get(i));
@@ -222,20 +222,20 @@ public class OrderUI extends ProductUI {
                     Order updated_order = new Order(updated_products, updated_date, customer_updated, employee_updated,
                             transaction_updated);
                     manager.update(id, updated_order);
-                    System.out.println("Cập nhật đơn hàng thành công!");
+                    System.out.println("Cap nhat don hang thanh cong!");
                 } else {
-                    System.out.println("Không tìm thấy mã đơn hàng cần sửa !");
+                    System.out.println("Khong tim thay ma don hang can sua !");
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 0) {
                 BaseOrderId.resetId();
                 OrderManager.saveFile();
                 break;
             } else {
-                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                 continue;
 
             }

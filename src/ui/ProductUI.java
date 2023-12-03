@@ -14,39 +14,39 @@ import validation.InpuValidator;
 public class ProductUI {
 
     public static Product chooseCategory(Scanner scanner) {
-        System.out.println("1. Đồ uống");
-        System.out.println("2. Thức ăn");
+        System.out.println("1. Do uong");
+        System.out.println("2. Thuc an");
 
-        System.out.print("Chọn Loại sản phẩm: ");
+        System.out.print("Chon loai san pham: ");
         int choice_product = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhân tên sản phẩm: ");
+        System.out.print("Nhap ten san pham: ");
         String name = scanner.nextLine();
 
-        System.out.print("Nhập giá: ");
+        System.out.print("Nhap gia: ");
         double price = InpuValidator.validateDoubleInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhập số lượng: ");
+        System.out.print("Nhap so luong: ");
         int quantity = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
+        System.out.print("Nhap han su dung (yyyy-mm-dd): ");
         LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
 
         switch (choice_product) {
             case 1:
-                System.out.print("đồ uống có cồn hay không: y/n ");
+                System.out.print("Do uong co con hay khong: y/n ");
                 String choice_type_drink = scanner.nextLine();
                 Boolean contains_alcohol = false;
                 if (choice_type_drink.equalsIgnoreCase("y")) {
                     contains_alcohol = true;
                 }
-                return new Drinks(name, price, quantity, expire, contains_alcohol, "Đồ uống");
+                return new Drinks(name, price, quantity, expire, contains_alcohol, "Do uong");
             case 2:
 
-                return new Food(name, price, quantity, expire, "Thức ăn");
+                return new Food(name, price, quantity, expire, "Thuc an");
 
         }
         return null;
@@ -54,11 +54,11 @@ public class ProductUI {
 
     public static Product updateProduct(Scanner scanner, Product product) {
 
-        System.out.print("Nhập giá: ");
+        System.out.print("Nhap gia: ");
         double price = InpuValidator.validateDoubleInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
+        System.out.print("Nhap han su dung san pham (yyyy-mm-dd): ");
         LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
 
         if (product != null && product != null) {
@@ -71,10 +71,10 @@ public class ProductUI {
                 Food food = (Food) product;
                 return new Food(food.getName(), price, 1, expire, food.getCategory());
             } else {
-                System.out.println("Loại sản phẩm không được hỗ trợ.");
+                System.out.println("Loai san pham khong duoc ho tro.");
             }
         } else {
-            System.out.println("Đơn hàng không hợp lệ hoặc không có sản phẩm.");
+            System.out.println("Don hang khong hop le, hoac khong co san pham.");
         }
 
         return null;
@@ -85,9 +85,9 @@ public class ProductUI {
 
         while (true) {
             Menu.menuProduct();
-            System.out.print("Nhập tuỳ chọn: ");
+            System.out.print("Nhap tuy chon: ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Vui lòng nhập số nguyên!");
+                System.out.println("Vui long nhap so nguyen!");
                 scanner.next();
             }
             int option = InpuValidator.validateIntInput(scanner);
@@ -97,9 +97,9 @@ public class ProductUI {
                 Product new_product = chooseCategory(scanner);
                 manager.create(new_product);
 
-                System.out.println("Tạo sản phẩm mới thành công.");
+                System.out.println("Tao san pham moi thanh cong.");
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 2) {
 
@@ -110,11 +110,11 @@ public class ProductUI {
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 3) {
 
-                System.out.print("Nhập mã sản phẩm: ");
+                System.out.print("Nhap ma san pham: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
@@ -122,23 +122,23 @@ public class ProductUI {
                 if (product_finded != null) {
                     ProductManager.exportProduct(product_finded);
                 } else {
-                    System.out.println("Không tìm sản phẩm có mã " + id);
+                    System.out.println("Khong tim thay san pham co ma " + id);
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 4) {
-                System.out.print("Nhập mã sản phẩm: ");
+                System.out.print("Nhap ma san pham: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
                 manager.delete(id);
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.print("Nhập mã sản phẩm cần update: ");
+                System.out.print("Nhap ma san pham cần update: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
@@ -150,14 +150,14 @@ public class ProductUI {
 
                     manager.update(id, update_product);
 
-                    System.out.print("Cập nhật sản phẩm thành công.");
+                    System.out.print("Cap nhat san pham thanh cong.");
 
                 } else {
-                    System.out.print("Không tìm thấy mã sản phẩm cần sửa!!!");
+                    System.out.print("Khogn tim thay san pham can sua!!!");
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 0) {
                 BaseEntity.resetId();
@@ -165,7 +165,7 @@ public class ProductUI {
                 ProductManager.saveFile();
                 break;
             } else {
-                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                 continue;
 
             }

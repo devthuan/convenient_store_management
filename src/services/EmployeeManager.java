@@ -19,12 +19,12 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
 
     public static void exportEmployee(Employee employee) {
         System.out.println("------------------------------------------------");
-        System.out.println("Mã nhân viên : " + employee.getId());
-        System.out.println("Họ và tên    : " + employee.getName());
-        System.out.println("Giới tính    : " + employee.getGender());
-        System.out.println("Tuổi         : " + employee.getAge());
-        System.out.println("Số điện thoại: " + employee.getPhone());
-        System.out.println("Luong" + employee.tinhLuong());
+        System.out.println("Ma nhan vien : " + employee.getId());
+        System.out.println("Ho va ten    : " + employee.getName());
+        System.out.println("Gioi tinh    : " + employee.getGender());
+        System.out.println("Tuoi         : " + employee.getAge());
+        System.out.println("So dien thoai: " + employee.getPhone());
+        System.out.println("Tien Luong" + employee.tinhLuong());
         System.out.println("------------------------------------------------");
     }
 
@@ -36,7 +36,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
             System.out.println(
                     "-------+---------------------+-------------+--------+------------------+--------------");
             System.out.println(
-                    "|  ID  |     Họ và tên       |  Giới tính  |  Tuổi  |  Số điện thoại   |  Tiền lương  ");
+                    "|  ID  |     Ho va ten       |  Gioi tinh  |  Tuoi  |  So dien thoai   |  Tien Luong  ");
             System.out.println(
                     "-------+---------------------+-------------+--------+------------------+-------------|");
 
@@ -56,7 +56,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
                     .println("--------------------------------------------------------------------------------------");
             System.out.println();
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
     }
 
@@ -117,9 +117,9 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
         Employee employeeToRemove = (Employee) read(id);
         if (employeeToRemove != null) {
             employees.remove(employeeToRemove);
-            System.out.println("Đã xóa nhân viên có mã " + id);
+            System.out.println("Da xoa nhan vien co ma " + id);
         } else {
-            System.out.println("Không tìm thấy nhân viên có mã " + id);
+            System.out.println("Khong tim thay nhan vien co ma " + id);
         }
     }
 

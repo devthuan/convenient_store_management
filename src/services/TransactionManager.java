@@ -37,24 +37,24 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
 
     public static void exportTransaction(Transaction transaction) {
         System.out.println("-------------------------");
-        System.out.println("Mã giao dịch            : " + transaction.getId());
-        System.out.println("Tên thu ngân            : " + transaction.getEmployee().getName());
-        System.out.println("Tên khách hàng          : " + transaction.getCustomer().getName());
-        System.out.println("Tổng số tiền            : " + transaction.getTotalAmount());
+        System.out.println("Ma giao dich            : " + transaction.getId());
+        System.out.println("Ten thu ngan            : " + transaction.getEmployee().getName());
+        System.out.println("Ten khach hang          : " + transaction.getCustomer().getName());
+        System.out.println("Tong so tien            : " + transaction.getTotalAmount());
         System.out.println(
-                "Ngày giao dịch          : " + InpuValidator.formatLocalDate(transaction.getTransactionDate()));
-        System.out.println("Phương thức thanh toán  : " + transaction.getPaymentMethod());
+                "Ngay giao dich          : " + InpuValidator.formatLocalDate(transaction.getTransactionDate()));
+        System.out.println("Phuong thuc thanh toan  : " + transaction.getPaymentMethod());
     }
 
     public static void exportAllTransaction(List<Transaction> transactions) {
         if (!transactions.isEmpty()) {
             System.out.println("===================================");
-            System.out.println("         LỊCH SỬ GIAO DỊCH         ");
+            System.out.println("         LICH SU GIAO DICH         ");
             System.out.println("===================================");
             System.out.println(
                     "-------+-------------------+-------------------+-----------------+-----------------+-----------------------------");
             System.out.println(
-                    "|  Id  |     Thu ngân      |     Khách hàng    |    Tổng tiền    | Ngày giao dịch  |   Phương thức thanh toán   |");
+                    "|  Id  |     Thu ngan      |     Khach hang    |    Tong tien    | Ngay giao dich  |   Phuong thuc thanh toan   |");
             System.out.println(
                     "-------+-------------------+-------------------+-----------------+-----------------+-----------------------------");
             for (Transaction transaction : transactions) {
@@ -74,7 +74,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
             System.out.println();
 
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
     }
 
@@ -118,11 +118,11 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getId() == id) {
                 transactions.remove(i);
-                System.out.println("Đã xóa giao dịch thành công!");
+                System.out.println("Da xoa giao dich thanh cong!");
                 return;
             }
         }
-        System.out.println("Không tìm thấy giao dịch có mã: " + id);
+        System.out.println("Khong tim thay giao dich co ma: " + id);
     }
 
     @Override

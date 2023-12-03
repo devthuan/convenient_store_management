@@ -23,12 +23,12 @@ public class ProductManager implements InterfaceCRUD<Product> {
     public static void exportAllProducts(List<Product> products) {
         if (products != null) {
             System.out.println("===================================");
-            System.out.println("         DANH SÁCH SẢN PHẨM        ");
+            System.out.println("         DANH SACH SAN PHAM        ");
             System.out.println("===================================");
             System.out.println(
                     "-------+---------------------+-------------+----------------------+----------------------+");
             System.out.println(
-                    "|  ID  |     Tên sản phẩm    |     Giá     |    Loại sản phẩm     |     Hạn sử dụng      |");
+                    "|  ID  |     Ten san pham    |     Gia     |    Loai san pham     |     Han su dung      |");
             System.out.println(
                     "-------+---------------------+-------------+----------------------+----------------------+");
 
@@ -37,7 +37,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
 
                 if (product instanceof Drinks) {
                     Drinks drinks = (Drinks) product;
-                    description = drinks.getContainsAlcohol() ? "có cồn" : "không có cồn";
+                    description = drinks.getContainsAlcohol() ? "co con" : "khong co con";
                 }
 
                 System.out.println(
@@ -54,7 +54,7 @@ public class ProductManager implements InterfaceCRUD<Product> {
                     "------------------------------------------------------------------------------------------");
             System.out.println();
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
     }
 
@@ -63,16 +63,16 @@ public class ProductManager implements InterfaceCRUD<Product> {
 
         if (product instanceof Drinks) {
             Drinks drinks = (Drinks) product;
-            description = drinks.getContainsAlcohol() ? "có cồn" : "không có cồn";
+            description = drinks.getContainsAlcohol() ? "co con" : "khong co con";
         }
         System.out.println("===================================");
-        System.out.println("Thông tin sản phẩm");
+        System.out.println("Thong tin san pham");
         System.out.println("===================================");
-        System.out.println("Mã sản phẩm    : " + product.getId());
-        System.out.println("Tên sản phẩm   : " + product.getName());
-        System.out.println("Giá            : " + formatPrice(product.getPrice())); // Sử dụng hàm formatPrice
-        System.out.println("Mô tả sản phẩm : " + product.getCategory() + " " + description);
-        System.out.println("Hạn sử dụng    : " + InpuValidator.formatLocalDate(product.getExpire()));
+        System.out.println("Ma san pham    : " + product.getId());
+        System.out.println("Ten san pham   : " + product.getName());
+        System.out.println("Gia            : " + formatPrice(product.getPrice())); // Sử dụng hàm formatPrice
+        System.out.println("Mo ta san pham : " + product.getCategory() + " " + description);
+        System.out.println("Han su dung    : " + InpuValidator.formatLocalDate(product.getExpire()));
         System.out.println("-----------------------------------");
     }
 
@@ -135,12 +135,12 @@ public class ProductManager implements InterfaceCRUD<Product> {
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getId() == id) {
                 products.remove(i);
-                System.out.println("Đã xóa sản phẩm thành công.");
+                System.out.println("Da xoa san pham thanh cong.");
                 return;
             }
         }
 
-        System.out.println("Không tìm thấy sản phẩm có mã " + id);
+        System.out.println("Khong tim thay san pham co ma " + id);
         return;
     }
 
