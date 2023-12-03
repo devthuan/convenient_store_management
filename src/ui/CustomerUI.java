@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Customer;
+import model.Employee;
 import services.CustomerManager;
 
 public class CustomerUI {
@@ -24,9 +25,9 @@ public class CustomerUI {
             System.out.print("Nhập tuỳ chọn: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-            String name;
             System.out.println("Nhập họ và tên: ");
             if (option == 1) {
+                String name;
                 while (true) {
                     name = scanner.nextLine();
                     if (name.matches(".*\\d+.*")) {
@@ -96,10 +97,45 @@ public class CustomerUI {
                 System.out.print("Ấn Enter để tiếp tục....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.println("Chức năng đang được phát triển !!!");
-
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("Nhập mã khách hàng cần cập nhật : ");
+                int id = scanner.nextInt();
                 scanner.nextLine();
+
+                Customer result_search = manager.search(id);
+
+                if (result_search != null) {
+                    System.out.print("Nhân tên nhân viên: ");
+                    String name;
+                    while (true) {
+                        name = scanner.nextLine();
+                        if (name.matches(".*\\d+.*")) {
+                            System.out.print("Vui lòng nhập lại: ");
+                        } else {
+                            break;
+                        }
+                    }
+
+                    System.out.println("Nhập địa chỉ: ");
+                    String address = scanner.nextLine();
+
+                    System.out.print("Nhập số điện thoại: ");
+                    String phone;
+                    while (true) {
+                        phone = scanner.nextLine();
+                        if (!checkPhone(phone)) {
+                            System.out.print("Số điện thoại không hợp lệ. Vui lòng chỉ sử dụng các chữ số : ");
+                        } else if (phone.length() != 10 && checkPhone(phone)) {
+                            System.out.print("Số điện thoại không hợp lệ. Vui lòng nhập chính xác 10 chữ số : ");
+                        } else {
+                            break;
+                        }
+                    }
+                    Customer updatedCustomer = new Customer(name, address, phone);
+                    manager.update(id, updatedCustomer);
+                    System.out.println("Cập nhật thông tin khách hàng thành công");
+                } else {
+                    System.out.println("Không tìm thấy khách hàng có mã: " + id);
+                }
             } else if (option == 0) {
                 BaseEntity.resetId();
                 CustomerManager.saveFile();

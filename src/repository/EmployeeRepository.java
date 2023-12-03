@@ -7,11 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.Employee;
 
 public class EmployeeRepository {
-
     public static List<Employee> readFileEmployee(String file_path) {
         List<Employee> EmployeeList = new ArrayList<>();
 
@@ -19,16 +17,19 @@ public class EmployeeRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 7) {
+                if (data.length == 6) {
                     int id = Integer.parseInt(data[0]);
                     String name = data[1];
                     String gender = data[2];
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
-                    String position = data[5];
-                    Employee employee = new Employee(id, name, gender, age, phone, position);
+                    double salary = Double.parseDouble(data[5]);
+                    Employee employee = new Employee(id, name, gender, age, phone, salary);
+                    employee.setsalary(salary);
                     EmployeeList.add(employee);
 
+                } else {
+                    System.err.println("Invalid data format: " + line);
                 }
             }
         } catch (IOException e) {
@@ -44,26 +45,25 @@ public class EmployeeRepository {
                     employee.getName() + "," +
                     employee.getGender() + "," +
                     employee.getAge() + "," +
-                    employee.getPhone() + "," +
-                    employee.getPosition());
+                    employee.getPhone());
             writer.newLine();
         } catch (Exception e) {
             e.printStackTrace();
-
         }
     }
 
     public static void writeEmployeesToFile(List<Employee> employees, String file_path) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path, true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file_path))) {
             for (Employee employee : employees) {
+                double salary = Employee.getLuong(employee.getId());
                 writer.write(employee.getId() + "," +
                         employee.getName() + "," +
                         employee.getGender() + "," +
                         employee.getAge() + "," +
                         employee.getPhone() + "," +
-                        employee.getPosition() + "," +
-                        employee.tinhLuong());
+                        salary);
                 writer.newLine();
+
             }
         } catch (Exception e) {
             e.printStackTrace();

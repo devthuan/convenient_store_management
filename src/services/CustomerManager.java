@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Customer;
+import model.Employee;
 import model.InterfaceCRUD;
 import repository.CustomerRepository;
 import ui.CustomerUI;
 
 public class CustomerManager implements InterfaceCRUD<Customer> {
     static List<Customer> customers = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/customer_data.txt";
+    static String file_path = "src/data/customer_data.txt";
 
     public static void startCustomerManager(Scanner scanner) {
         CustomerUI.handleCustomer(scanner, customers);
@@ -83,9 +84,20 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
     }
 
     @Override
-    public void update(int id, Customer entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public void update(int id, Customer updated_customer) {
+        Customer foundCustomer = null;
+        for (Customer customer : customers) {
+            if (customer.getId() == id) {
+                foundCustomer = customer;
+                break;
+            }
+        }
+        if (foundCustomer != null) {
+            foundCustomer.setName(updated_customer.getName());
+            foundCustomer.setAddress(updated_customer.getAddress());
+            foundCustomer.setPhone(updated_customer.getPhone());
+            System.out.println("Cập nhật thông tin nhân viên thành công");
+        }
     }
 
     @Override
