@@ -11,16 +11,61 @@ import ui.EmployeeUI;
 
 public class EmployeeManager implements InterfaceCRUD<Employee> {
     static List<Employee> employees = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/emplyee_data.txt";
+    static String file_path = "convenient_store_management/src/data/employee_data.txt";
 
     public static void startEmployeeManager(Scanner scanner) {
         EmployeeUI.handleEmployee(scanner, employees);
     }
 
+    public static void exportEmployee(Employee employee) {
+        System.out.println("------------------------------------------------");
+        System.out.println("Mã nhân viên : " + employee.getId());
+        System.out.println("Họ và tên    : " + employee.getName());
+        System.out.println("Giới tính    : " + employee.getGender());
+        System.out.println("Tuổi         : " + employee.getAge());
+        System.out.println("Số điện thoại: " + employee.getPhone());
+        System.out.println("Luong" + employee.tinhLuong());
+        System.out.println("------------------------------------------------");
+    }
+
+    public static void exportAllEmployee(List<Employee> employees) {
+        if (employees != null) {
+            System.out.println("===================================");
+            System.out.println("         DANH SÁCH NHÂN VIÊN       ");
+            System.out.println("===================================");
+            System.out.println(
+                    "-------+---------------------+-------------+--------+------------------+--------------");
+            System.out.println(
+                    "|  ID  |     Họ và tên       |  Giới tính  |  Tuổi  |  Số điện thoại   |  Tiền lương  ");
+            System.out.println(
+                    "-------+---------------------+-------------+--------+------------------+-------------|");
+
+            for (Employee employee : employees) {
+                double salary = Employee.getLuong(employee.getId());
+                System.out.println(
+                        String.format("| %4s | %19s | %11s | %6s | %16s | %10s  |",
+                                employee.getId(),
+                                employee.getName(),
+                                employee.getGender(),
+                                employee.getAge(),
+                                employee.getPhone(),
+                                salary));
+
+            }
+            System.out
+                    .println("--------------------------------------------------------------------------------------");
+            System.out.println();
+        } else {
+            System.out.println("Không có dữ liệu nào!");
+        }
+    }
+
     public static void saveFile() {
+        for (Employee employee : employees) {
+            Employee.setLuong(employee.getId(), employee.tinhLuong());
+        }
         EmployeeRepository.writeEmployeesToFile(employees, file_path);
         employees.clear();
-
     }
 
     public static void readFile() {
@@ -50,10 +95,21 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
     }
 
     @Override
-    public void update(int id, Employee entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public void update(int id, Employee updated_employee) {
+        Employee foundEmployee = null;
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                foundEmployee = employee;
+                break;
+            }
+        }
+        if (foundEmployee != null) {
+            foundEmployee.setName(updated_employee.getName());
+            foundEmployee.setAge(updated_employee.getAge());
+            foundEmployee.setGender(updated_employee.getGender());
+            foundEmployee.setPhone(updated_employee.getPhone());
 
+        }
     }
 
     @Override
