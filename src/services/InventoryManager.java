@@ -11,10 +11,11 @@ import model.Order;
 import model.Product;
 import repository.InventoryRespository;
 import ui.InventoryUI;
+import validation.InpuValidator;
 
 public class InventoryManager implements InterfaceCRUD<Inventory> {
     static List<Inventory> inventories = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/inventory_data.txt";
+    static String file_path = "src/data/inventory_data.txt";
 
     public static void startInventoryManager(Scanner scanner) {
         InventoryUI.handleInventory(scanner, inventories);
@@ -40,10 +41,10 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
                                 inventory.getProduct().getName(),
                                 inventory.getProduct().getPrice(),
                                 inventory.getProduct().getQuantity(),
-                                inventory.getProduct().getExpire(),
-                                inventory.getInputDate(),
-                                inventory.getLastUpdate()));
-
+                                InpuValidator.formatLocalDate(inventory.getProduct().getExpire()),
+                                InpuValidator.formatLocalDate(inventory.getInputDate()),
+                                inventory.getLastUpdate() == null ? inventory.getLastUpdate()
+                                        : InpuValidator.formatLocalDate(inventory.getLastUpdate())));
             }
             System.out.println(
                     "-----------------------------------------------------------------------------------------------------------");

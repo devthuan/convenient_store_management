@@ -10,7 +10,6 @@ import java.util.List;
 
 import model.Inventory;
 import model.Product;
-import model.Categories.Food;
 
 public class InventoryRespository extends ProductRespository {
 
@@ -25,11 +24,11 @@ public class InventoryRespository extends ProductRespository {
                 String name = data[1];
                 double price = Double.parseDouble(data[2]);
                 int quantity = Integer.parseInt(data[3]);
-                String expire = data[4];
+                LocalDate expire = LocalDate.parse(data[4]);
                 String category = data[5];
                 String description = data[6];
                 LocalDate input_date = LocalDate.parse(data[7]);
-                LocalDate updated_date = LocalDate.parse(data[8]);
+                LocalDate updated_date = data[8].equals("null") ? null : LocalDate.parse(data[8]);
 
                 Product product = initProduct(name, price, quantity, expire, category, description);
 

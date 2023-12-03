@@ -9,10 +9,11 @@ import model.Order;
 import model.Product;
 import repository.OrderRespository;
 import ui.OrderUI;
+import validation.InpuValidator;
 
 public class OrderManager implements InterfaceCRUD<Order> {
     static List<Order> orders = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/order_data.txt";
+    static String file_path = "src/data/order_data.txt";
 
     public static void startOrderManager(Scanner scanner) {
         OrderUI.handleOrder(scanner, orders);
@@ -26,7 +27,7 @@ public class OrderManager implements InterfaceCRUD<Order> {
             System.out.println("===================================");
             System.out.println();
             System.out.println("Mã đơn hàng        : " + order.getId());
-            System.out.println("Ngày tạo đơn       : " + order.getOrderDate());
+            System.out.println("Ngày tạo đơn       : " + InpuValidator.formatLocalDate(order.getOrderDate()));
             System.out.println("Tên Khách hàng     : " + order.getCustomer().getName());
             System.out.println("Danh sách sản phẩm");
             System.out.println("------------------+-------------+------------");
@@ -57,7 +58,7 @@ public class OrderManager implements InterfaceCRUD<Order> {
         System.out.println("===================================");
         System.out.println();
         System.out.println("Mã đơn hàng        : " + order.getId());
-        System.out.println("Ngày tạo đơn       : " + order.getOrderDate());
+        System.out.println("Ngày tạo đơn       : " + InpuValidator.formatLocalDate(order.getOrderDate()));
         System.out.println("Tên Khách hàng     : " + order.getCustomer().getName());
         System.out.println("Danh sách sản phẩm");
         System.out.println("------------------+-------------+------------");

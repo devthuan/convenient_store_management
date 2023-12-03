@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import ui.*;
+import validation.InpuValidator;
 import services.*;
 
 public class App {
@@ -13,7 +14,7 @@ public class App {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int main_choice = scanner.nextInt();
+            int main_choice = InpuValidator.validateIntInput(scanner);
             switch (main_choice) {
                 case 1:
                     ProductManager.readFile(); // load data từ file txt

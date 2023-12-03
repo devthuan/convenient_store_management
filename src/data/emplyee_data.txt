@@ -1,7 +1,6 @@
-2,thuan,Nam,20,1231231231,m�anager,160000.0
-1,thuan,Nam,20,1231231231,m�anager,0.0
 2,fkldf,Nam,245,1234533222,nfjs,660000.0
 1,thuan,Nam,20,1231231231,m�anager,0.0
 2,thuan,Nam,20,1231231231,m�anager,0.0
 3,fkldf,Nam,245,1234533222,nfjs,0.0
 4,fsnj,Nam,1,1,1,20000.0
+

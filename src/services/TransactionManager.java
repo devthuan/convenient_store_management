@@ -8,10 +8,11 @@ import model.InterfaceCRUD;
 import model.Transaction;
 import repository.TransactionReponsitory;
 import ui.TransactionUI;
+import validation.InpuValidator;
 
 public class TransactionManager implements InterfaceCRUD<Transaction> {
     static List<Transaction> transactions = new ArrayList<>();
-    static String file_path = "convenient_store_management/src/data/transaction_data.txt";
+    static String file_path = "src/data/transaction_data.txt";
 
     public static void startTransactionManager(Scanner scanner) {
         TransactionUI.handleTransaction(scanner, transactions);
@@ -40,7 +41,8 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
         System.out.println("Tên thu ngân            : " + transaction.getEmployee().getName());
         System.out.println("Tên khách hàng          : " + transaction.getCustomer().getName());
         System.out.println("Tổng số tiền            : " + transaction.getTotalAmount());
-        System.out.println("Ngày giao dịch          : " + transaction.getTransactionDate());
+        System.out.println(
+                "Ngày giao dịch          : " + InpuValidator.formatLocalDate(transaction.getTransactionDate()));
         System.out.println("Phương thức thanh toán  : " + transaction.getPaymentMethod());
     }
 
@@ -63,7 +65,7 @@ public class TransactionManager implements InterfaceCRUD<Transaction> {
                                 transaction.getEmployee().getName(),
                                 transaction.getCustomer().getName(),
                                 transaction.getTotalAmount(),
-                                transaction.getTransactionDate(),
+                                InpuValidator.formatLocalDate(transaction.getTransactionDate()),
                                 transaction.getPaymentMethod()));
             }
             System.out.println(

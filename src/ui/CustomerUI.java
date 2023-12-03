@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import model.BaseEntity;
 import model.Customer;
-import model.Employee;
 import services.CustomerManager;
 
 public class CustomerUI {

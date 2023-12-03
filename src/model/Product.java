@@ -1,12 +1,14 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Product extends BaseEntity {
     private String name;
     private double price;
     private String description;
     private int quantity;
     private String category;
-    private String expire;
+    private LocalDate expire;
 
     public Product() {
     }
@@ -24,7 +26,7 @@ public class Product extends BaseEntity {
         this.category = category;
     }
 
-    public Product(String name, double price, int quantity, String expire, String category) {
+    public Product(String name, double price, int quantity, LocalDate expire, String category) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -52,7 +54,7 @@ public class Product extends BaseEntity {
         this.quantity = quantity;
     }
 
-    public String getExpire() {
+    public LocalDate getExpire() {
         return expire;
     }
 
@@ -68,7 +70,7 @@ public class Product extends BaseEntity {
         this.description = description;
     }
 
-    public void setExpire(String expire) {
+    public void setExpire(LocalDate expire) {
         this.expire = expire;
     }
 

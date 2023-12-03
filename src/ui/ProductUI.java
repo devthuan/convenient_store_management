@@ -1,5 +1,6 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ import model.Product;
 import model.Categories.Drinks;
 import model.Categories.Food;
 import services.ProductManager;
+import validation.InpuValidator;
 
 public class ProductUI {
 
@@ -16,18 +18,22 @@ public class ProductUI {
         System.out.println("2. Thức ăn");
 
         System.out.print("Chọn Loại sản phẩm: ");
-        int choice_product = scanner.nextInt();
+        int choice_product = InpuValidator.validateIntInput(scanner);
         scanner.nextLine();
 
         System.out.print("Nhân tên sản phẩm: ");
         String name = scanner.nextLine();
 
         System.out.print("Nhập giá: ");
-        double price = scanner.nextInt();
+        double price = InpuValidator.validateDoubleInput(scanner);
         scanner.nextLine();
 
-        System.out.print("Nhập hạn sử dụng sản phẩm: ");
-        String expire = scanner.nextLine();
+        System.out.print("Nhập số lượng: ");
+        int quantity = InpuValidator.validateIntInput(scanner);
+        scanner.nextLine();
+
+        System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
+        LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
 
         switch (choice_product) {
             case 1:
@@ -37,10 +43,10 @@ public class ProductUI {
                 if (choice_type_drink.equalsIgnoreCase("y")) {
                     contains_alcohol = true;
                 }
-                return new Drinks(name, price, 1, expire, contains_alcohol, "Đồ uống");
+                return new Drinks(name, price, quantity, expire, contains_alcohol, "Đồ uống");
             case 2:
 
-                return new Food(name, price, 1, expire, "Thức ăn");
+                return new Food(name, price, quantity, expire, "Thức ăn");
 
         }
         return null;
@@ -49,11 +55,11 @@ public class ProductUI {
     public static Product updateProduct(Scanner scanner, Product product) {
 
         System.out.print("Nhập giá: ");
-        double price = scanner.nextInt();
+        double price = InpuValidator.validateDoubleInput(scanner);
         scanner.nextLine();
 
         System.out.print("Nhập hạn sử dụng sản phẩm (yyyy-mm-dd): ");
-        String expire = scanner.nextLine();
+        LocalDate expire = InpuValidator.validateLocalDateInput(scanner);
 
         if (product != null && product != null) {
 
@@ -84,7 +90,7 @@ public class ProductUI {
                 System.out.println("Vui lòng nhập số nguyên!");
                 scanner.next();
             }
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
             if (option == 1) {
 
