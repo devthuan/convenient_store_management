@@ -37,7 +37,7 @@ public class EmployeeUI {
                 System.out.print("Nhập lựa chọn của bạn: ");
                 while (!scanner.hasNextInt()) {
                     System.out.print("Vui lòng nhập số (1-NVBH hoặc 2-NVQL): ");
-                    scanner.next(); // Đọc và bỏ qua dữ liệu không phải số nguyên
+                    scanner.next();
                 }
                 int loaiNhanVien;
                 do {
