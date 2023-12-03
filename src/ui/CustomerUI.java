@@ -103,7 +103,7 @@ public class CustomerUI {
                 Customer result_search = manager.search(id);
 
                 if (result_search != null) {
-                    System.out.print("Nhap ten nhan vien: ");
+                    System.out.print("Nhap ten khach hang: ");
                     String name;
                     while (true) {
                         name = scanner.nextLine();

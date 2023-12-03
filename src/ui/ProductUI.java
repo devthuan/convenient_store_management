@@ -22,7 +22,7 @@ public class ProductUI {
         scanner.nextLine();
 
         System.out.print("Nhap ten san pham: ");
-        String name = scanner.nextLine();
+        String name = InpuValidator.validateStringInput(scanner);
 
         System.out.print("Nhap gia: ");
         double price = InpuValidator.validateDoubleInput(scanner);
@@ -38,7 +38,7 @@ public class ProductUI {
         switch (choice_product) {
             case 1:
                 System.out.print("Do uong co con hay khong: y/n ");
-                String choice_type_drink = scanner.nextLine();
+                String choice_type_drink = InpuValidator.validateStringInput(scanner);
                 Boolean contains_alcohol = false;
                 if (choice_type_drink.equalsIgnoreCase("y")) {
                     contains_alcohol = true;
@@ -115,7 +115,7 @@ public class ProductUI {
             } else if (option == 3) {
 
                 System.out.print("Nhap ma san pham: ");
-                int id = scanner.nextInt();
+                int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
                 Product product_finded = manager.search(id);
@@ -138,7 +138,7 @@ public class ProductUI {
                 System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.print("Nhap ma san pham cần update: ");
+                System.out.print("Nhap ma san pham can chinh sua: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
@@ -153,7 +153,7 @@ public class ProductUI {
                     System.out.print("Cap nhat san pham thanh cong.");
 
                 } else {
-                    System.out.print("Khogn tim thay san pham can sua!!!");
+                    System.out.print("Khong tim thay san pham can sua!!!");
 
                 }
 

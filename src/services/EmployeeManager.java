@@ -24,7 +24,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
         System.out.println("Gioi tinh    : " + employee.getGender());
         System.out.println("Tuoi         : " + employee.getAge());
         System.out.println("So dien thoai: " + employee.getPhone());
-        System.out.println("Tien Luong" + employee.tinhLuong());
+        System.out.println("Tien Luong   :" + employee.tinhLuong());
         System.out.println("------------------------------------------------");
     }
 

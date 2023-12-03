@@ -44,6 +44,14 @@ public class InpuValidator {
     }
 
     public static String validateStringInput(Scanner scanner) {
-        return scanner.nextLine().trim();
+        String input;
+        do {
+            input = scanner.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.print("Vui long nhap lai: ");
+            }
+        } while (input.isEmpty());
+        return input;
     }
+
 }

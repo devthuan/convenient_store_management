@@ -7,15 +7,34 @@ import java.util.Scanner;
 import model.BaseEntity;
 import model.Customer;
 import model.Employee;
-import model.Order;
 import model.Transaction;
 import model.Strategy.payment.PaymentStrategy;
-import repository.OrderRespository;
+import repository.EmployeeRepository;
+import services.EmployeeManager;
 import services.TransactionManager;
 import validation.InpuValidator;
 
 public class TransactionUI extends OrderUI {
-    public static String file_path = "convenient_store_management/src/data/order_data.txt";
+    static String file_path = "convenient_store_management/src/data/employee_data.txt";
+
+    public static Employee chooseEmployee(Scanner scanner) {
+        List<Employee> data_in_file = EmployeeRepository.readFileEmployee(file_path);
+        EmployeeManager.exportAllEmployee(data_in_file);
+
+        while (true) {
+            System.out.print("Nhap id nhan vien thu ngan: ");
+            int id_employee = InpuValidator.validateIntInput(scanner);
+            scanner.nextLine();
+
+            for (Employee employee : data_in_file) {
+                if (employee.getId() == id_employee) {
+                    return employee;
+                } else {
+                    System.out.println("Khong ton tai ma nhan vien");
+                }
+            }
+        }
+    }
 
     public static void handleTransaction(Scanner scanner, List<Transaction> transactions) {
         TransactionManager manager = new TransactionManager();
@@ -29,11 +48,10 @@ public class TransactionUI extends OrderUI {
 
             if (option == 1) {
 
-                System.out.print("Nhap ten thu ngan: ");
-                String name_employee = scanner.nextLine();
+                Employee employee = chooseEmployee(scanner);
 
                 System.out.print("Nhap ten khach hang: ");
-                String name_customer = scanner.nextLine();
+                String name_customer = InpuValidator.validateStringInput(scanner);
 
                 System.out.print("Nhap tong so tien: ");
                 double total_amount = InpuValidator.validateDoubleInput(scanner);
@@ -43,7 +61,6 @@ public class TransactionUI extends OrderUI {
 
                 PaymentStrategy payment_method = choosePaymentMethod(scanner);
 
-                Employee employee = new Employee(name_employee);
                 Customer customer = new Customer(name_customer);
 
                 Transaction new_transaction = new Transaction(total_amount, transaction_date, payment_method, customer,

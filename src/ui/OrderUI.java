@@ -55,7 +55,7 @@ public class OrderUI extends ProductUI {
 
     private static Product updateProductDetails(Scanner scanner, Product product) {
         System.out.print("Nhap ten san pham: ");
-        String name = scanner.nextLine();
+        String name = InpuValidator.validateStringInput(scanner);
 
         System.out.print("Nhap gia san pham: ");
         int price = InpuValidator.validateIntInput(scanner);
@@ -100,7 +100,7 @@ public class OrderUI extends ProductUI {
 
             if (option == 1) {
                 System.out.print("Nhap ten khach hang: ");
-                String name_customer = scanner.nextLine();
+                String name_customer = InpuValidator.validateStringInput(scanner);
                 Customer customer = new Customer(name_customer);
 
                 List<Product> products = new ArrayList<>();
@@ -135,7 +135,7 @@ public class OrderUI extends ProductUI {
                         }
                     }
                     System.out.print("Ban co tiep tuc mua hang khong (y/n): ");
-                    String continueShopping = scanner.nextLine();
+                    String continueShopping = InpuValidator.validateStringInput(scanner);
                     if (!continueShopping.equals("y")) {
                         break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
                     }
@@ -158,7 +158,7 @@ public class OrderUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 2) {
                 if (orders.isEmpty()) {
-                    System.out.println("Không có đơn hàng nào.");
+                    System.out.println("Khong co don hang nao.");
                 } else {
                     OrderManager.exportProducts(orders);
 
@@ -167,7 +167,7 @@ public class OrderUI extends ProductUI {
                 System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 3) {
-                System.out.print("Nhap ma san pham: ");
+                System.out.print("Nhap ma don  hang: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
@@ -182,7 +182,7 @@ public class OrderUI extends ProductUI {
                 System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 4) {
-                System.out.print("Nhap ma san pham: ");
+                System.out.print("Nhap ma don  hang: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
                 manager.delete(id);
@@ -190,7 +190,7 @@ public class OrderUI extends ProductUI {
                 System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.print("Nhap ma san pham cần chỉnh sửa: ");
+                System.out.print("Nhap ma don hang can chinh sua: ");
                 int id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
@@ -199,9 +199,9 @@ public class OrderUI extends ProductUI {
                 if (order_finded != null) {
 
                     System.out.print("Nhap ten khach hang: ");
-                    String name_customer = scanner.nextLine();
+                    String name_customer = InpuValidator.validateStringInput(scanner);
                     System.out.print("Nhap ten thu ngan: ");
-                    String name_employee = scanner.nextLine();
+                    String name_employee = InpuValidator.validateStringInput(scanner);
 
                     PaymentStrategy payment_method = choosePaymentMethod(scanner);
 
