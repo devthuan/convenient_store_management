@@ -46,26 +46,33 @@ public class OrderRespository extends ProductRespository {
 
                 List<Product> products = new ArrayList<>();
                 String[] infor_products = data[1].split(":");
-                for (String product : infor_products) {
-                    String[] info_product = product.split(",");
-                    String name = info_product[0];
-                    double price = Double.parseDouble(info_product[1]);
-                    int quantity = Integer.parseInt(info_product[2]);
-                    String expire = info_product[3];
-                    String category = info_product[4];
-                    String description = info_product[5];
+                if (infor_products != null && infor_products.length > 0) {
+                    for (String product : infor_products) {
+                        String[] info_product = product.split(",");
+                        String name = info_product[0];
+                        double price = Double.parseDouble(info_product[1]);
+                        int quantity = Integer.parseInt(info_product[2]);
+                        String expire = info_product[3];
+                        String category = info_product[4];
+                        String description = info_product[5];
 
-                    Product item_product = initProduct(name,
-                            price,
-                            quantity,
-                            LocalDate.parse(expire),
-                            category,
-                            description);
+                        Product item_product = initProduct(name,
+                                price,
+                                quantity,
+                                LocalDate.parse(expire),
+                                category,
+                                description);
 
-                    products.add(item_product);
+                        products.add(item_product);
+                    }
+                    orders.add(new Order(products, order_date, customer, employee, transaction,
+                            new VATCalculationStrategy(8)));
+                } else {
+                    orders.add(new Order(null, order_date, customer, employee, transaction,
+                            new VATCalculationStrategy(8)));
+
                 }
-                orders.add(new Order(products, order_date, customer, employee, transaction,
-                        new VATCalculationStrategy(8)));
+
             }
         } catch (Exception e) {
             e.printStackTrace();

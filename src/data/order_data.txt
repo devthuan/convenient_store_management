@@ -1,2 +1,3 @@
 1,2023-11-29,tran phuoc thuan,56250.0,Chuyen khoan momo,Hoang Thanh Duc|Number One,10000.0,5,2026-06-30,Do uong,false:
 2,2023-11-29,oshi,84375.0,Chuyen khoan momo,duc|com nam,15000.0,5,2026-06-30,Do uong,false:
+3,2023-12-04,ádfasdf,38.25,Chuyen khoan momo,Hoang Thanh Duc|Number One,1.0,34,2023-05-05,Do uong,false:

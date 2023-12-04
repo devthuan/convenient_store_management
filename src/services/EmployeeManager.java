@@ -34,25 +34,29 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
             System.out.println("         DANH SÁCH NHÂN VIÊN       ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+---------------------+-------------+--------+------------------+--------------");
+                    "-------+---------------------+-------------+--------+------------------+--------------+--------------");
             System.out.println(
-                    "|  ID  |     Ho va ten       |  Gioi tinh  |  Tuoi  |  So dien thoai   |  Tien Luong  ");
+                    "|  ID  |     Ho va ten       |  Gioi tinh  |  Tuoi  |  So dien thoai   |  Tien Luong  |   Chức vụ   |");
             System.out.println(
-                    "-------+---------------------+-------------+--------+------------------+-------------|");
+                    "-------+---------------------+-------------+--------+------------------+--------------+--------------");
 
             for (Employee employee : employees) {
+                String position = employee.tinhLuong() > 30000 ? "Quản lý" : "Bán hàng";
+                ;
                 System.out.println(
-                        String.format("| %4s | %19s | %11s | %6s | %16s | %10s  |",
+                        String.format("| %4s | %19s | %11s | %6s | %16s | %11s  | %10s  |",
                                 employee.getId(),
                                 employee.getName(),
                                 employee.getGender(),
                                 employee.getAge(),
                                 employee.getPhone(),
-                                employee.tinhLuong()));
+                                employee.tinhLuong(),
+                                position));
 
             }
             System.out
-                    .println("--------------------------------------------------------------------------------------");
+                    .println(
+                            "----------------------------------------------------------------------------------------------------");
             System.out.println();
         } else {
             System.out.println("Khong co du lieu nao!");

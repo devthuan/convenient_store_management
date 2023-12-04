@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import model.BaseEntity;
 import model.BaseOrderId;
 import model.Customer;
 import model.Employee;
@@ -103,7 +104,7 @@ public class OrderUI extends ProductUI {
                 System.out.print("Nhap ten khach hang: ");
                 String name_customer = InpuValidator.validateStringInput(scanner);
                 Customer customer = new Customer(name_customer);
-
+                Product.resetId();
                 List<Product> products = new ArrayList<>();
                 List<Product> products_in_file = ProductRespository.readFileProduct(file_path);
                 ProductManager.exportAllProducts(products_in_file);
@@ -133,13 +134,31 @@ public class OrderUI extends ProductUI {
                             }
 
                             products.add(add_product);
+                        } else {
+                            System.out.println("Khong ton tai ma san pham !");
+                            break;
                         }
                     }
                     System.out.print("Ban co tiep tuc mua hang khong (y/n): ");
+
+                    // while (true) {
+
+                    // String continueShopping = InpuValidator.validateStringInput(scanner);
+                    // if (continueShopping.equals("y") || continueShopping.equals("n")) {
+                    // if (!continueShopping.equals("y")) {
+                    // break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
+                    // }
+
+                    // } else {
+                    // System.out.println("Vui long chi nhap `y` hoac `n` !");
+                    // continue;
+                    // }
+                    // }
                     String continueShopping = InpuValidator.validateStringInput(scanner);
                     if (!continueShopping.equals("y")) {
                         break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
                     }
+
                 }
 
                 PaymentStrategy payment_method = choosePaymentMethod(scanner);
@@ -233,6 +252,7 @@ public class OrderUI extends ProductUI {
                 scanner.nextLine();
             } else if (option == 0) {
                 BaseOrderId.resetId();
+                Product.resetId();
                 OrderManager.saveFile();
                 break;
             } else {

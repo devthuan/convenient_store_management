@@ -2,7 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
-public class Product extends BaseEntity {
+public class Product {
+    private static int next_id = 1;
+    private int id;
     private String name;
     private double price;
     private String description;
@@ -20,13 +22,14 @@ public class Product extends BaseEntity {
     }
 
     public Product(int id, String name, double price, String category) {
-
+        this.id = next_id++;
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
     public Product(String name, double price, int quantity, LocalDate expire, String category) {
+        this.id = next_id++;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -48,6 +51,10 @@ public class Product extends BaseEntity {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setQuantity(int quantity) {
@@ -72,6 +79,14 @@ public class Product extends BaseEntity {
 
     public void setExpire(LocalDate expire) {
         this.expire = expire;
+    }
+
+    public static void resetId() {
+        next_id = 1;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Boolean getContainsAlcohol() {

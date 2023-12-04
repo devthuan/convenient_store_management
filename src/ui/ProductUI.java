@@ -160,7 +160,7 @@ public class ProductUI {
                 System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 0) {
-                BaseEntity.resetId();
+                Product.resetId();
 
                 ProductManager.saveFile();
                 break;
