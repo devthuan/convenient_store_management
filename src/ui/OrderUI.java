@@ -28,8 +28,8 @@ public class OrderUI extends ProductUI {
     static String file_path = "convenient_store_management/src/data/product_data.txt";
 
     public static PaymentStrategy choosePaymentMethod(Scanner scanner) {
-        System.out.println("1. The tinh dung");
-        System.out.println("2. Momo");
+        System.out.println("1. The tin dung");
+        System.out.println("2. Chuyen khoan Momo");
         System.out.println("3. Tien mat");
 
         System.out.print("Chon phuong thuc thanh toan: ");
@@ -55,12 +55,12 @@ public class OrderUI extends ProductUI {
     }
 
     private static Product updateProductDetails(Scanner scanner, Product product) {
-        System.out.print("Nhap ten san pham: ");
-        String name = InpuValidator.validateStringInput(scanner);
+        // System.out.print("Nhap ten san pham: ");
+        // String name = InpuValidator.validateStringInput(scanner);
 
-        System.out.print("Nhap gia san pham: ");
-        int price = InpuValidator.validateIntInput(scanner);
-        scanner.nextLine();
+        // System.out.print("Nhap gia san pham: ");
+        // int price = InpuValidator.validateIntInput(scanner);
+        // scanner.nextLine();
 
         System.out.print("Nhap so luong: ");
         int quantity = InpuValidator.validateIntInput(scanner);
@@ -72,11 +72,12 @@ public class OrderUI extends ProductUI {
 
             if (product instanceof Drinks) {
                 Drinks drink = (Drinks) product;
-                return new Drinks(name, price, quantity, drink.getExpire(), drink.getContainsAlcohol(),
+                return new Drinks(drink.getName(), drink.getPrice(), quantity, drink.getExpire(),
+                        drink.getContainsAlcohol(),
                         drink.getCategory());
             } else if (product instanceof Food) {
                 Food food = (Food) product;
-                return new Food(name, price, quantity, food.getExpire(), food.getCategory());
+                return new Food(food.getName(), food.getPrice(), quantity, food.getExpire(), food.getCategory());
             } else {
                 System.out.println("Loai san pham khong duoc ho tro.");
             }

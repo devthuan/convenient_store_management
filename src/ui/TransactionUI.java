@@ -41,7 +41,7 @@ public class TransactionUI extends OrderUI {
 
         while (true) {
             Menu.menuTransaction();
-
+            BaseEntity.resetId();
             System.out.print("Nhap tuy chon: ");
             int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();

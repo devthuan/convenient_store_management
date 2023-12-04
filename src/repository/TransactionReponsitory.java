@@ -11,6 +11,8 @@ import model.Employee;
 import model.NVBH;
 import model.Customer;
 import model.Transaction;
+import model.Strategy.payment.CardPayment;
+import model.Strategy.payment.CashPayment;
 import model.Strategy.payment.MomoPayment;
 import model.Strategy.payment.PaymentStrategy;
 
@@ -64,8 +66,19 @@ public class TransactionReponsitory {
                     Employee employee = new NVBH(data[2]);
                     double total_amount = Double.parseDouble(data[3]);
                     LocalDate transaction_date = LocalDate.parse(data[4]);
-                    // String payment_method = data[5];
-                    PaymentStrategy payment_method = new MomoPayment(); // thêm if else
+                    String payment_method_string = data[5];
+
+                    PaymentStrategy payment_method;
+
+                    if (payment_method_string.equals("Chuyen khoan momo")) {
+                        payment_method = new MomoPayment();
+                    } else if (payment_method_string.equals("The tin dung")) {
+                        payment_method = new CardPayment();
+
+                    } else {
+                        payment_method = new CashPayment();
+
+                    }
 
                     Transaction transaction = new Transaction(transaction_id, total_amount, transaction_date,
                             payment_method, customer,
