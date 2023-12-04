@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Product {
+public abstract class Product {
     private static int next_id = 1;
     private int id;
     private String name;
@@ -89,8 +89,6 @@ public class Product {
         this.id = id;
     }
 
-    public Boolean getContainsAlcohol() {
-        return null;
-    }
+    public abstract Boolean getContainsAlcohol();
 
 }

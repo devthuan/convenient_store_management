@@ -7,7 +7,7 @@ public class Menu {
         System.out.println("║       MEMU QUAN LY       ║");
         System.out.println("║══════════════════════════║");
         System.out.println("║ 1. Quan ly san pham      ║");
-        System.out.println("║ 2. Quan ly khanh hang    ║");
+        System.out.println("║ 2. Quan ly khach hang    ║");
         System.out.println("║ 3. Quan ly don hang      ║");
         System.out.println("║ 4. Quan ly nhan vien     ║");
         System.out.println("║ 5. Quan ly kho           ║");

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import model.BaseEntity;
 import model.BaseOrderId;
 import model.Customer;
 import model.Employee;
@@ -109,10 +108,14 @@ public class OrderUI extends ProductUI {
                 List<Product> products_in_file = ProductRespository.readFileProduct(file_path);
                 ProductManager.exportAllProducts(products_in_file);
 
-                while (true) {
+                boolean continueShopping = true;
+
+                while (continueShopping) {
                     System.out.print("Chon ma san pham: ");
                     int id_product = InpuValidator.validateIntInput(scanner);
                     scanner.nextLine();
+
+                    boolean productFound = false;
 
                     for (Product product : products_in_file) {
                         if (product.getId() == id_product) {
@@ -130,35 +133,25 @@ public class OrderUI extends ProductUI {
                                 Food food = (Food) product;
                                 add_product = new Food(food.getName(), food.getPrice(), quantity,
                                         food.getExpire(), food.getCategory());
-
                             }
 
                             products.add(add_product);
-                        } else {
-                            System.out.println("Khong ton tai ma san pham !");
-                            break;
+                            productFound = true;
+                            break; // Exit the loop since the product was found
                         }
                     }
-                    System.out.print("Ban co tiep tuc mua hang khong (y/n): ");
 
-                    // while (true) {
-
-                    // String continueShopping = InpuValidator.validateStringInput(scanner);
-                    // if (continueShopping.equals("y") || continueShopping.equals("n")) {
-                    // if (!continueShopping.equals("y")) {
-                    // break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
-                    // }
-
-                    // } else {
-                    // System.out.println("Vui long chi nhap `y` hoac `n` !");
-                    // continue;
-                    // }
-                    // }
-                    String continueShopping = InpuValidator.validateStringInput(scanner);
-                    if (!continueShopping.equals("y")) {
-                        break; // Kết thúc vòng lặp nếu người dùng không muốn tiếp tục mua hàng
+                    if (!productFound) {
+                        System.out.println("Khong ton tai ma san pham !");
+                        continue; // Skip to the next iteration if the product is not found
                     }
 
+                    System.out.print("Ban co tiep tuc mua hang khong (y/n): ");
+                    String continueShoppingInput = InpuValidator.validateStringInput(scanner);
+
+                    if (!continueShoppingInput.equals("y")) {
+                        continueShopping = false; // End the loop if the user does not want to continue shopping
+                    }
                 }
 
                 PaymentStrategy payment_method = choosePaymentMethod(scanner);

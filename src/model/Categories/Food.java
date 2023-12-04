@@ -12,4 +12,10 @@ public class Food extends Product {
 
     }
 
+    @Override
+    public Boolean getContainsAlcohol() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getContainsAlcohol'");
+    }
+
 }
