@@ -19,12 +19,13 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
 
     public static void exportEmployee(Employee employee) {
         System.out.println("------------------------------------------------");
-        System.out.println("Mã nhân viên : " + employee.getId());
-        System.out.println("Họ và tên    : " + employee.getName());
-        System.out.println("Giới tính    : " + employee.getGender());
-        System.out.println("Tuổi         : " + employee.getAge());
-        System.out.println("Số điện thoại: " + employee.getPhone());
-        System.out.println("Luong" + employee.tinhLuong());
+        System.out.println("Ma nhan vien : " + employee.getId());
+        System.out.println("Ho va ten    : " + employee.getName());
+        System.out.println("Gioi tinh    : " + employee.getGender());
+        System.out.println("Tuoi         : " + employee.getAge());
+        System.out.println("So dien thoai: " + employee.getPhone());
+        System.out.println("Chuc vu      : " + employee.getPosition());
+        System.out.println("Tien Luong   : " + employee.tinhLuong());
         System.out.println("------------------------------------------------");
     }
 
@@ -34,29 +35,31 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
             System.out.println("         DANH SÁCH NHÂN VIÊN       ");
             System.out.println("===================================");
             System.out.println(
-                    "-------+---------------------+-------------+--------+------------------+--------------");
+                    "-------+---------------------+-------------+--------+------------------+--------------+--------------");
             System.out.println(
-                    "|  ID  |     Họ và tên       |  Giới tính  |  Tuổi  |  Số điện thoại   |  Tiền lương  ");
+                    "|  ID  |     Ho va ten       |  Gioi tinh  |  Tuoi  |  So dien thoai   |     Chuc vu  |  Tien Luong |");
             System.out.println(
-                    "-------+---------------------+-------------+--------+------------------+-------------|");
+                    "-------+---------------------+-------------+--------+------------------+--------------|-------------");
 
             for (Employee employee : employees) {
                 double salary = Employee.getLuong(employee.getId());
                 System.out.println(
-                        String.format("| %4s | %19s | %11s | %6s | %16s | %10s  |",
+                        String.format("| %4s | %19s | %11s | %6s | %16s | %12s | %10s  |",
                                 employee.getId(),
                                 employee.getName(),
                                 employee.getGender(),
                                 employee.getAge(),
                                 employee.getPhone(),
+                                employee.getPosition(),
                                 salary));
 
             }
             System.out
-                    .println("--------------------------------------------------------------------------------------");
+                    .println(
+                            "--------------------------------------------------------------------------------------------");
             System.out.println();
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
     }
 
@@ -108,7 +111,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
             foundEmployee.setAge(updated_employee.getAge());
             foundEmployee.setGender(updated_employee.getGender());
             foundEmployee.setPhone(updated_employee.getPhone());
-
+            foundEmployee.setPosition(updated_employee.getPosition());
         }
     }
 
@@ -117,9 +120,9 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
         Employee employeeToRemove = (Employee) read(id);
         if (employeeToRemove != null) {
             employees.remove(employeeToRemove);
-            System.out.println("Đã xóa nhân viên có mã " + id);
+            System.out.println("Da xoa nhan vien co ma " + id);
         } else {
-            System.out.println("Không tìm thấy nhân viên có mã " + id);
+            System.out.println("Khong tim thay nhan vien co ma " + id);
         }
     }
 

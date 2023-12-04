@@ -11,6 +11,7 @@ public class Employee extends BaseEntity {
     private String gender;
     private int age;
     private String phone;
+    private String position;
     private double salary;
     private static final Map<Integer, Double> luongNhanVien = new HashMap<>();
 
@@ -22,18 +23,20 @@ public class Employee extends BaseEntity {
         this.name = name;
     }
 
-    public Employee(String name, String gender, int age, String phone) {
+    public Employee(String name, String gender, int age, String phone, String position) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.phone = phone;
+        this.position = position;
     }
 
-    public Employee(int id, String name, String gender, int age, String phone, double salary) {
+    public Employee(int id, String name, String gender, int age, String phone, String position, double salary) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.phone = phone;
+        this.position = position;
         this.salary = salary;
     }
 
@@ -72,6 +75,14 @@ public class Employee extends BaseEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public double getsalary() {

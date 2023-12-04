@@ -10,7 +10,7 @@ public class InpuValidator {
             if (scanner.hasNextInt()) {
                 return scanner.nextInt();
             } else {
-                System.out.println("Vui lòng nhập số nguyên!");
+                System.out.println("Vui long nhap so nguyen!");
                 scanner.next();
             }
         }
@@ -21,7 +21,7 @@ public class InpuValidator {
             if (scanner.hasNextDouble()) {
                 return scanner.nextDouble();
             } else {
-                System.out.println("Vui lòng nhập số thập phân hoặc số nguyên!");
+                System.out.println("Vui long nhap so nguyen hoac so thap phan!");
                 scanner.next();
             }
         }
@@ -34,7 +34,7 @@ public class InpuValidator {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 return LocalDate.parse(dateInput, formatter);
             } catch (Exception e) {
-                System.out.println("Ngày không hợp lệ. Vui lòng nhập lại!");
+                System.out.println("Ngay khong hop le. Vui long nhap lai!");
             }
         }
     }

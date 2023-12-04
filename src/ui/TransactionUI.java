@@ -23,19 +23,19 @@ public class TransactionUI extends OrderUI {
         while (true) {
             Menu.menuTransaction();
 
-            System.out.print("Nhập tuỳ chọn: ");
+            System.out.print("Nhap tuy chon: ");
             int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
 
             if (option == 1) {
 
-                System.out.print("Nhập tên thu ngân: ");
+                System.out.print("Nhap ten thu ngan: ");
                 String name_employee = scanner.nextLine();
 
-                System.out.print("Nhập tên khách hàng: ");
+                System.out.print("Nhap ten khach hang: ");
                 String name_customer = scanner.nextLine();
 
-                System.out.print("Nhập tổng số tiền: ");
+                System.out.print("Nhap tong so tien: ");
                 double total_amount = InpuValidator.validateDoubleInput(scanner);
                 scanner.nextLine();
 
@@ -50,24 +50,24 @@ public class TransactionUI extends OrderUI {
                         employee);
                 manager.create(new_transaction);
 
-                System.out.println("Đã tạo giao dịch thành công!");
+                System.out.println("Da tao giao dich thanh cong!");
 
-                System.out.print("Ấn Enter để tiếp tục!");
+                System.out.print("An Enter de tiep tuc...!");
                 scanner.nextLine();
 
             } else if (option == 2) {
 
                 if (transactions.isEmpty()) {
-                    System.out.println("Không có giao dịch nào!");
+                    System.out.println("Khong co giao dich nao!");
                 } else {
                     TransactionManager.exportAllTransaction(transactions);
                 }
-                System.out.print("Ấn Enter để tiếp tục!");
+                System.out.print("An Enter de tiep tuc...!");
                 scanner.nextLine();
 
             } else if (option == 3) {
 
-                System.out.print("Nhập mã giao dịch: ");
+                System.out.print("Nhap ma giao dich: ");
                 int transaction_id = InpuValidator.validateIntInput(scanner);
                 scanner.nextLine();
 
@@ -77,10 +77,10 @@ public class TransactionUI extends OrderUI {
                     TransactionManager.exportTransaction(result_search);
 
                 } else {
-                    System.out.print("Không tìm thấy giao dịch có mã " + transaction_id);
+                    System.out.print("Khong tim thay giao dich co ma " + transaction_id);
                 }
 
-                System.out.print("Ấn Enter để tiếp tục!");
+                System.out.print("An Enter de tiep tuc...!");
                 scanner.nextLine();
             } else if (option == 0) {
                 BaseEntity.resetId();
@@ -88,7 +88,7 @@ public class TransactionUI extends OrderUI {
                 // continue;
                 break;
             } else {
-                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại!");
+                System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                 continue;
 
             }

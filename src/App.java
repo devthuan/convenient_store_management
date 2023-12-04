@@ -9,9 +9,9 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             Menu.menuMain();
-            System.out.println("Nhập tuỳ chọn: ");
+            System.out.println("Nhap tuy chon: ");
             while (!scanner.hasNextInt()) {
-                System.out.println("Vui lòng nhập số nguyên!");
+                System.out.println("Vui long nhap so nguyen!");
                 scanner.next();
             }
             int main_choice = InpuValidator.validateIntInput(scanner);
@@ -49,7 +49,7 @@ public class App {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                     break;
 
             }

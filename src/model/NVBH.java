@@ -6,8 +6,8 @@ public class NVBH extends Employee {
 
     }
 
-    public NVBH(String name, String gender, int age, String phone) {
-        super(name, gender, age, phone);
+    public NVBH(String name, String gender, int age, String phone, String position) {
+        super(name, gender, age, phone, position);
     }
 
     @Override

@@ -21,32 +21,32 @@ public class CustomerUI {
         CustomerManager manager = new CustomerManager();
         while (true) {
             Menu.menuCustomer();
-            System.out.print("Nhập tuỳ chọn: ");
+            System.out.print("Nhap tuy chon: ");
             int option = scanner.nextInt();
             scanner.nextLine();
-            System.out.println("Nhập họ và tên: ");
+            System.out.println("Nhap ho vao ten: ");
             if (option == 1) {
                 String name;
                 while (true) {
                     name = scanner.nextLine();
                     if (name.matches(".*\\d+.*")) {
-                        System.out.println("Vui lòng nhập lại");
+                        System.out.println("Vui long nhap lai");
                     } else {
                         break;
                     }
                 }
 
-                System.out.print("Nhập địa chi: ");
+                System.out.print("Nhap dia chi: ");
                 String address = scanner.nextLine();
 
                 String phone;
-                System.out.println("Nhập số điện thoại : ");
+                System.out.println("Nhap so dien thoai : ");
                 while (true) {
                     phone = scanner.nextLine();
                     if (!checkPhone(phone)) {
-                        System.out.println("Số điện thoại không hợp lệ. Vui lòng chỉ sử dụng các chữ số");
+                        System.out.println("So dien thoai khong hop le. Vui long chi su dung so");
                     } else if (phone.length() != 10 && checkPhone(phone)) {
-                        System.out.println("Số điện thoại không hợp lệ. Vui lòng nhập chính xác 10 chữ số");
+                        System.out.println("So dien thoai khong hop le. Vui long nhap chinh xac 10 so");
                     } else {
                         break;
                     }
@@ -55,24 +55,24 @@ public class CustomerUI {
                 Customer new_customer = new Customer(name, address, phone);
                 manager.create(new_customer);
 
-                System.out.println("Đã tạo khách hàng thành công.");
+                System.out.println("Da tao khach hang thanh cong.");
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 2) {
 
                 if (customers.isEmpty()) {
-                    System.out.println("Không có khách hàng nào.");
+                    System.out.println("Khong co khach hang nao.");
                 } else {
                     CustomerManager.exportAllEmployee(customers);
 
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 3) {
 
-                System.out.print("Nhập mã khách hàng: ");
+                System.out.print("Nhap ma khach hang: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
@@ -85,55 +85,55 @@ public class CustomerUI {
                     System.out.print("Không tìm thấy khách hàng.");
                 }
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 4) {
-                System.out.print("Nhập mã khách hàng: ");
+                System.out.print("Nhap ma khach hang: ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
                 manager.delete(id);
 
-                System.out.print("Ấn Enter để tiếp tục....");
+                System.out.print("An Enter de tiep tuc....");
                 scanner.nextLine();
             } else if (option == 5) {
-                System.out.print("Nhập mã khách hàng cần cập nhật : ");
+                System.out.print("Nhap ma khach hang can cap nhat : ");
                 int id = scanner.nextInt();
                 scanner.nextLine();
 
                 Customer result_search = manager.search(id);
 
                 if (result_search != null) {
-                    System.out.print("Nhân tên nhân viên: ");
+                    System.out.print("Nhap ten nhan vien: ");
                     String name;
                     while (true) {
                         name = scanner.nextLine();
                         if (name.matches(".*\\d+.*")) {
-                            System.out.print("Vui lòng nhập lại: ");
+                            System.out.print("Vui long nhap lai: ");
                         } else {
                             break;
                         }
                     }
 
-                    System.out.println("Nhập địa chỉ: ");
+                    System.out.println("Nhap dia chi: ");
                     String address = scanner.nextLine();
 
-                    System.out.print("Nhập số điện thoại: ");
+                    System.out.print("Nhap so dien thoai: ");
                     String phone;
                     while (true) {
                         phone = scanner.nextLine();
                         if (!checkPhone(phone)) {
-                            System.out.print("Số điện thoại không hợp lệ. Vui lòng chỉ sử dụng các chữ số : ");
+                            System.out.println("So dien thoai khong hop le. Vui long chi su dung so");
                         } else if (phone.length() != 10 && checkPhone(phone)) {
-                            System.out.print("Số điện thoại không hợp lệ. Vui lòng nhập chính xác 10 chữ số : ");
+                            System.out.println("So dien thoai khong hop le. Vui long nhap chinh xac 10 so");
                         } else {
                             break;
                         }
                     }
                     Customer updatedCustomer = new Customer(name, address, phone);
                     manager.update(id, updatedCustomer);
-                    System.out.println("Cập nhật thông tin khách hàng thành công");
+                    System.out.println("Cap nhat thong tin khach hang thanh cong");
                 } else {
-                    System.out.println("Không tìm thấy khách hàng có mã: " + id);
+                    System.out.println("Khong tim thay khach hang co ma: " + id);
                 }
             } else if (option == 0) {
                 BaseEntity.resetId();
@@ -141,7 +141,7 @@ public class CustomerUI {
 
                 break;
             } else {
-                System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                 continue;
 
             }

@@ -20,10 +20,10 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
 
     public static void exportCustomer(Customer customer) {
         System.out.println("------------------------------------------------");
-        System.out.println("Mã khách hàng            : " + customer.getId());
-        System.out.println("Họ và tên khách hàng     : " + customer.getName());
-        System.out.println("Địa chỉ khách hàng       : " + customer.getAddress());
-        System.out.println("Số điện thoại khách hàng :" + customer.getPhone());
+        System.out.println("Ma khach hang            : " + customer.getId());
+        System.out.println("Ho va ten khach hang     : " + customer.getName());
+        System.out.println("Dia chi khach hang       : " + customer.getAddress());
+        System.out.println("So dien thoai khach hang :" + customer.getPhone());
         System.out.println("------------------------------------------------");
     }
 
@@ -33,7 +33,7 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
             System.out.println("         DANH SÁCH KHÁCH HÀNG       ");
             System.out.println("===================================");
             System.out.println("-------+--------------------- +----------------------------+-------------------");
-            System.out.println("|  ID  |       Họ và tên      |           Địa chỉ          |   Số điện thoại  |");
+            System.out.println("|  ID  |       Ho va ten      |           Dia chi          |   So dien thoai  |");
             System.out.println("-------+----------------------+----------------------------+-------------------");
             for (Customer customerInformation : customers) {
                 System.out.println(
@@ -46,7 +46,7 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
             System.out.println("-------------------------------------------------------------------------------");
             System.out.println();
         } else {
-            System.out.println("Không có thông tin nào về khách hàng");
+            System.out.println("Khong co thong tin nao ve khach hang");
         }
     }
 
@@ -96,7 +96,7 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
             foundCustomer.setName(updated_customer.getName());
             foundCustomer.setAddress(updated_customer.getAddress());
             foundCustomer.setPhone(updated_customer.getPhone());
-            System.out.println("Cập nhật thông tin nhân viên thành công");
+            System.out.println("Cap nhat thong tin khach hang thanh cong");
         }
     }
 
@@ -105,9 +105,9 @@ public class CustomerManager implements InterfaceCRUD<Customer> {
         Customer customerToRemove = (Customer) read(id);
         if (customerToRemove != null) {
             customers.remove(customerToRemove);
-            System.out.println("Đã xóa khách hàng có mã " + id);
+            System.out.println("Da xoa khach hang co ma " + id);
         } else {
-            System.out.println("Không tìm thấy khách hàng có mã " + id);
+            System.out.println("Khong tim thay khach hang co ma " + id);
         }
     }
 

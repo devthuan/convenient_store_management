@@ -25,12 +25,12 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
         if (inventories != null) {
 
             System.out.println("===================================");
-            System.out.println("    DANH SÁCH SẢN PHẨM TRONG KHO   ");
+            System.out.println("    DANH SACH SAN PHAM TRONG KHO   ");
             System.out.println("===================================");
             System.out.println(
                     "-------+---------------+--------------+------------+------------------+-----------------+-----------------+");
             System.out.println(
-                    "|  ID  |     Tên       |     Giá      |  Số lượng  |   hạn sản phẩm   |  Ngày nhập kho  |  Ngày cập nhật  |");
+                    "|  ID  |     Ten       |     Gia      |  So luong  |   han san pham   |  Ngay nhap kho  |  Ngay cap nhat  |");
             System.out.println(
                     "-------+---------------+--------------+------------+------------------+-----------------+-----------------+");
             for (Inventory inventory : inventories) {
@@ -52,7 +52,7 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
             System.out.println();
 
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
 
     }
@@ -61,12 +61,12 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
         if (inventories != null) {
 
             System.out.println("===================================");
-            System.out.println("    DANH SÁCH SẢN PHẨM TRONG KHO   ");
+            System.out.println("    DANH SACH SAN PHAM TRONG KHO   ");
             System.out.println("===================================");
             System.out.println(
                     "-------+---------------+--------------+------------+------------------+-----------------+-----------------+");
             System.out.println(
-                    "|  ID  |     Tên       |     Giá      |  Số lượng  |   hạn sản phẩm   |  Ngày nhập kho  |  Ngày cập nhật  |");
+                    "|  ID  |     Ten       |     Gia      |  So luong  |   han san pham   |  Ngay nhap kho  |  Ngay cap nhat  |");
             System.out.println(
                     "-------+---------------+--------------+------------+------------------+-----------------+-----------------+");
 
@@ -86,7 +86,7 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
             System.out.println();
 
         } else {
-            System.out.println("Không có dữ liệu nào!");
+            System.out.println("Khong co du lieu nao!");
         }
 
     }
@@ -141,11 +141,11 @@ public class InventoryManager implements InterfaceCRUD<Inventory> {
         for (Inventory inventory : inventories) {
             if (inventory.getId() == id) {
                 inventories.remove(inventory);
-                System.out.println("Đã xoá vật phẩm " + id + " thành công.");
+                System.out.println("Da xoa san pham " + id + " thanh cong.");
                 return;
             }
         }
-        System.out.println("Không tìm thấy vật phẩm trong kho !");
+        System.out.println("Khong tim thay vat pham trong kho !");
         return;
     }
 

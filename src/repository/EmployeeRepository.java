@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Employee;
+import services.EmployeeManager;
 
 public class EmployeeRepository {
     public static List<Employee> readFileEmployee(String file_path) {
@@ -17,14 +18,15 @@ public class EmployeeRepository {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length == 6) {
+                if (data.length == 7) {
                     int id = Integer.parseInt(data[0]);
                     String name = data[1];
                     String gender = data[2];
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
-                    double salary = Double.parseDouble(data[5]);
-                    Employee employee = new Employee(id, name, gender, age, phone, salary);
+                    String position = data[5];
+                    double salary = Double.parseDouble(data[6]);
+                    Employee employee = new Employee(id, name, gender, age, phone, position, salary);
                     employee.setsalary(salary);
                     EmployeeList.add(employee);
 
@@ -45,7 +47,8 @@ public class EmployeeRepository {
                     employee.getName() + "," +
                     employee.getGender() + "," +
                     employee.getAge() + "," +
-                    employee.getPhone());
+                    employee.getPhone() + "," +
+                    employee.getPosition());
             writer.newLine();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,6 +64,7 @@ public class EmployeeRepository {
                         employee.getGender() + "," +
                         employee.getAge() + "," +
                         employee.getPhone() + "," +
+                        employee.getPosition() + "," +
                         salary);
                 writer.newLine();
 
