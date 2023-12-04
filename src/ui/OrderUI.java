@@ -212,6 +212,17 @@ public class OrderUI extends ProductUI {
 
                 if (order_finded != null) {
 
+                    List<Product> updated_products = new ArrayList<>();
+
+                    for (int i = 0; i < order_finded.getProducts().size(); i++) {
+
+                        System.out.println("Sua san pham thu " + (i + 1) + " trong don hang");
+
+                        Product new_product = updateProductDetails(scanner,
+                                order_finded.getProducts().get(i));
+                        updated_products.add(new_product);
+                    }
+
                     System.out.print("Nhap ten khach hang: ");
                     String name_customer = InpuValidator.validateStringInput(scanner);
                     System.out.print("Nhap ten thu ngan: ");
@@ -223,16 +234,7 @@ public class OrderUI extends ProductUI {
                     Customer customer_updated = new Customer(name_customer);
                     Employee employee_updated = new NVBH(name_employee);
                     Transaction transaction_updated = new Transaction(payment_method);
-                    List<Product> updated_products = new ArrayList<>();
 
-                    for (int i = 0; i < order_finded.getProducts().size(); i++) {
-
-                        System.out.println("Sua san pham thu " + (i + 1) + " trong don hang");
-
-                        Product new_product = updateProductDetails(scanner,
-                                order_finded.getProducts().get(i));
-                        updated_products.add(new_product);
-                    }
                     Order updated_order = new Order(updated_products, updated_date, customer_updated, employee_updated,
                             transaction_updated);
                     manager.update(id, updated_order);
