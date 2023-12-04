@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import model.Employee;
+import model.NVBH;
 import model.Customer;
 import model.Transaction;
 import model.Strategy.payment.MomoPayment;
@@ -60,7 +61,7 @@ public class TransactionReponsitory {
                 if (data.length == 6) {
                     int transaction_id = Integer.parseInt(data[0]);
                     Customer customer = new Customer(data[1]);
-                    Employee employee = new Employee(data[2]);
+                    Employee employee = new NVBH(data[2]);
                     double total_amount = Double.parseDouble(data[3]);
                     LocalDate transaction_date = LocalDate.parse(data[4]);
                     // String payment_method = data[5];

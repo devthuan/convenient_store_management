@@ -41,7 +41,6 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
                     "-------+---------------------+-------------+--------+------------------+-------------|");
 
             for (Employee employee : employees) {
-                double salary = Employee.getLuong(employee.getId());
                 System.out.println(
                         String.format("| %4s | %19s | %11s | %6s | %16s | %10s  |",
                                 employee.getId(),
@@ -49,7 +48,7 @@ public class EmployeeManager implements InterfaceCRUD<Employee> {
                                 employee.getGender(),
                                 employee.getAge(),
                                 employee.getPhone(),
-                                salary));
+                                employee.tinhLuong()));
 
             }
             System.out

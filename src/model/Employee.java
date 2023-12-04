@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Employee extends BaseEntity {
+public abstract  class Employee extends BaseEntity {
 
-    private String name;
+    protected String name;
     private String gender;
     private int age;
     private String phone;
@@ -29,7 +29,7 @@ public class Employee extends BaseEntity {
         this.phone = phone;
     }
 
-    public Employee(int id, String name, String gender, int age, String phone, double salary) {
+    public Employee( String name, String gender, int age, String phone, double salary) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -83,9 +83,7 @@ public class Employee extends BaseEntity {
         setLuong(getId(), salary);
     }
 
-    public double tinhLuong() {
-        return luongNhanVien.getOrDefault(getId(), 1.0);
-    }
+    public abstract double tinhLuong();
 
     public static void setLuong(int id, double luong) {
         luongNhanVien.put(id, luong);

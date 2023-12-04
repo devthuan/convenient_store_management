@@ -21,6 +21,43 @@ public class EmployeeUI {
         }
     }
 
+    private static int promptForEmployeeType(Scanner scanner) {
+        int employeeType;
+        do {
+            System.out.println("Chon loai nhan vien (1 - NVBH, 2 - NVQL):");
+            System.out.println("+-------------------------+");
+            System.out.println("|         1. NVBH         |");
+            System.out.println("|         2. NVQL         |");
+            System.out.println("+-------------------------+");
+            System.out.print("Nhap lua chon cua ban: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.print("Vui long nhap so (1-NVBH hoac 2-NVQL): ");
+                scanner.next(); // Discard non-integer input
+            }
+
+            employeeType = scanner.nextInt();
+            if (employeeType != 1 && employeeType != 2) {
+                System.out.print("Vui long nhan lai (1-NVBH hoac 2-NVQL): ");
+            }
+        } while (employeeType != 1 && employeeType != 2);
+
+        scanner.nextLine(); // Consume the newline character
+        return employeeType;
+    }
+
+    private static String promptForValidName(Scanner scanner) {
+        String name;
+        do {
+            System.out.print("Nhan ten nhan vien: ");
+            name = scanner.nextLine();
+            if (name.matches(".*\\d+.*")) {
+                System.out.print("Vui long nhap lai : ");
+            }
+        } while (name.matches(".*\\d+.*"));
+        return name;
+    }
+
     public static void handleEmployee(Scanner scanner, List<Employee> employees) {
         EmployeeManager manager = new EmployeeManager();
         while (true) {
@@ -29,35 +66,9 @@ public class EmployeeUI {
             int option = scanner.nextInt();
             scanner.nextLine();
             if (option == 1) {
-                System.out.println("Chon loai nhan vien (1 - NVBH, 2 - NVQL) :");
-                System.out.println("+-------------------------+");
-                System.out.println("|         1. NVBH         |");
-                System.out.println("|         2. NVQL         |");
-                System.out.println("+-------------------------+");
-                System.out.print("Nhap lua chon cua ban: ");
-                while (!scanner.hasNextInt()) {
-                    System.out.print("Vui long nhap so (1-NVBH hoac 2-NVQL): ");
-                    scanner.next(); // Đọc và bỏ qua dữ liệu không phải số nguyên
-                }
-                int loaiNhanVien;
-                do {
-                    loaiNhanVien = scanner.nextInt();
-                    if (loaiNhanVien != 1 && loaiNhanVien != 2) {
-                        System.out.print("Vui long nhan lai (1-NVBH hoac 2-NVQL):");
-                    }
-                } while (loaiNhanVien != 1 && loaiNhanVien != 2);
-                scanner.nextLine();
 
-                System.out.print("Nhan ten nhan vien: ");
-                String name;
-                while (true) {
-                    name = scanner.nextLine();
-                    if (name.matches(".*\\d+.*")) {
-                        System.out.print("Vui long nhap lai : ");
-                    } else {
-                        break;
-                    }
-                }
+                int loaiNhanVien = promptForEmployeeType(scanner);
+                String name = promptForValidName(scanner);
 
                 System.out.print("Nhap gioi tinh: ");
                 String gender;
@@ -82,6 +93,7 @@ public class EmployeeUI {
                         }
                     }
                 }
+
                 System.out.print("Nhap so dien thoai: ");
                 String phone;
                 while (true) {
@@ -96,14 +108,11 @@ public class EmployeeUI {
                 }
 
                 Employee new_employee;
+
                 if (loaiNhanVien == 1) {
-                    new_employee = new NVBH(name, gender, age, phone);
-                    Employee.setLuong(new_employee.getId(), new_employee.tinhLuong());
-                } else if (loaiNhanVien == 2) {
-                    new_employee = new NVQL(name, gender, age, phone);
-                    Employee.setLuong(new_employee.getId(), new_employee.tinhLuong());
+                    new_employee = new NVBH(name, gender, age, phone, 20000);
                 } else {
-                    continue;
+                    new_employee = new NVQL(name, gender, age, phone, 30000);
                 }
 
                 employees.add(new_employee);
@@ -200,7 +209,15 @@ public class EmployeeUI {
                             break;
                         }
                     }
-                    Employee updatedEmployee = new Employee(name, gender, age, phone);
+                    Employee updatedEmployee;
+                    if(result_search instanceof NVQL){
+                         updatedEmployee = new NVQL(name, gender, age, phone, 20000);
+                         
+                        }else {
+                            
+                            updatedEmployee = new NVBH(name, gender, age, phone, 30000);
+                    }
+                    
                     manager.update(id, updatedEmployee);
                     System.out.println("Cap nhat thong tin thanh cong");
                 } else {

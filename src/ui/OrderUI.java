@@ -8,6 +8,7 @@ import java.util.Scanner;
 import model.BaseOrderId;
 import model.Customer;
 import model.Employee;
+import model.NVBH;
 import model.Order;
 import model.Product;
 import model.Transaction;
@@ -143,7 +144,7 @@ public class OrderUI extends ProductUI {
 
                 PaymentStrategy payment_method = choosePaymentMethod(scanner);
 
-                Employee employee = new Employee("Hoang Thanh Duc");
+                Employee employee = new NVBH("Hoang Thanh Duc");
                 LocalDate order_date = LocalDate.now();
 
                 Transaction transaction = new Transaction(payment_method);
@@ -207,7 +208,7 @@ public class OrderUI extends ProductUI {
 
                     LocalDate updated_date = LocalDate.now();
                     Customer customer_updated = new Customer(name_customer);
-                    Employee employee_updated = new Employee(name_employee);
+                    Employee employee_updated = new NVBH(name_employee);
                     Transaction transaction_updated = new Transaction(payment_method);
                     List<Product> updated_products = new ArrayList<>();
 

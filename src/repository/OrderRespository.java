@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.Customer;
 import model.Employee;
+import model.NVBH;
 import model.Order;
 import model.Product;
 import model.Transaction;
@@ -39,7 +40,7 @@ public class OrderRespository extends ProductRespository {
 
                 String name_employee = infor_orders[5];
 
-                Employee employee = new Employee(name_employee);
+                Employee employee = new NVBH(name_employee);
                 Customer customer = new Customer(name_customer);
                 Transaction transaction = new Transaction(total_payment, payment_method);
 

@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Employee;
+import model.NVBH;
+import model.NVQL;
 
 public class EmployeeRepository {
     public static List<Employee> readFileEmployee(String file_path) {
@@ -24,8 +26,15 @@ public class EmployeeRepository {
                     int age = Integer.parseInt(data[3]);
                     String phone = data[4];
                     double salary = Double.parseDouble(data[5]);
-                    Employee employee = new Employee(id, name, gender, age, phone, salary);
-                    employee.setsalary(salary);
+                    Employee employee;
+                    if (salary >= 30000) {
+
+                        employee = new NVQL(name, gender, age, phone, salary);
+                    } else {
+                        employee = new NVBH(name, gender, age, phone, salary);
+
+                    }
+
                     EmployeeList.add(employee);
 
                 } else {
