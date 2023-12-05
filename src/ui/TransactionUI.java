@@ -19,22 +19,21 @@ public class TransactionUI extends OrderUI {
     static String file_path = "convenient_store_management/src/data/employee_data.txt";
 
     public static Employee chooseEmployee(Scanner scanner) {
-        List<Employee> data_in_file = EmployeeRepository.readFileEmployee(file_path);
-        EmployeeManager.exportAllEmployee(data_in_file);
+        List<Employee> employeeDataFromFile = EmployeeRepository.readFileEmployee(file_path);
+        EmployeeManager.exportAllEmployee(employeeDataFromFile);
 
-        while (true) {
-            System.out.print("Nhap id nhan vien thu ngan: ");
-            int id_employee = InpuValidator.validateIntInput(scanner);
-            scanner.nextLine();
+        System.out.print("Nhap id nhan vien thu ngan: ");
+        int idEmployee = InpuValidator.validateIntInput(scanner);
+        scanner.nextLine();
 
-            for (Employee employee : data_in_file) {
-                if (employee.getId() == id_employee) {
-                    return employee;
-                } else {
-                    System.out.println("Khong ton tai ma nhan vien");
-                }
+        for (Employee employee : employeeDataFromFile) {
+            if (employee.getId() == idEmployee) {
+                return employee;
             }
         }
+
+        System.out.println("Khong ton tai ma nhan vien");
+        return null;
     }
 
     public static void handleTransaction(Scanner scanner, List<Transaction> transactions) {
@@ -102,6 +101,7 @@ public class TransactionUI extends OrderUI {
                 scanner.nextLine();
             } else if (option == 0) {
                 TransactionID.resetId();
+                BaseEntity.resetId();
                 TransactionManager.saveFile();
                 // continue;
                 break;
