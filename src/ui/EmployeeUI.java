@@ -10,6 +10,7 @@ import model.NVBH;
 import model.NVQL;
 import repository.EmployeeRepository;
 import services.EmployeeManager;
+import validation.InpuValidator;
 
 public class EmployeeUI {
     public static boolean checkPhone(String str) {
@@ -63,7 +64,7 @@ public class EmployeeUI {
         while (true) {
             Menu.menuEmployee();
             System.out.print("Nhap tuy chon: ");
-            int option = scanner.nextInt();
+            int option = InpuValidator.validateIntInput(scanner);
             scanner.nextLine();
             if (option == 1) {
 
@@ -210,14 +211,14 @@ public class EmployeeUI {
                         }
                     }
                     Employee updatedEmployee;
-                    if(result_search instanceof NVQL){
-                         updatedEmployee = new NVQL(name, gender, age, phone, 20000);
-                         
-                        }else {
-                            
-                            updatedEmployee = new NVBH(name, gender, age, phone, 30000);
+                    if (result_search instanceof NVQL) {
+                        updatedEmployee = new NVQL(name, gender, age, phone, 20000);
+
+                    } else {
+
+                        updatedEmployee = new NVBH(name, gender, age, phone, 30000);
                     }
-                    
+
                     manager.update(id, updatedEmployee);
                     System.out.println("Cap nhat thong tin thanh cong");
                 } else {
