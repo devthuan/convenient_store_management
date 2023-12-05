@@ -1,45 +1,55 @@
-
 import java.util.Scanner;
-import functional.InvoiceManagement;
-import object.Invoice;
-
 import ui.*;
+import validation.InpuValidator;
 import services.*;
 
 public class App {
 
-    // hàm xử lý logic cho quản lý hoá đơn
-
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        InvoiceManagement managerEmployee = new InvoiceManagement();
-        Invoice invoice = new Invoice();
-
         while (true) {
             Menu.menuMain();
-            System.out.println("Nhập tuỳ chọn: ");
-            int main_choice = scanner.nextInt();
-
+            System.out.println("Nhap tuy chon: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Vui long nhap so nguyen!");
+                scanner.next();
+            }
+            int main_choice = InpuValidator.validateIntInput(scanner);
             switch (main_choice) {
                 case 1:
+                    ProductManager.readFile(); // load data từ file txt
+                    ProductManager.startProductManager(scanner);
                     break;
                 case 2:
+                    CustomerManager.readFile();
+                    CustomerManager.startCustomerManager(scanner);
                     break;
                 case 3:
-                    // xử lý logic cho quản lý hoá đơn
-                    // manager.handleVoices(invoice, scanner);
+
+                    ProductManager.readFile();
+                    OrderManager.readFile();
+                    OrderManager.startOrderManager(scanner);
                     break;
                 case 4:
+
+                    EmployeeManager.readFile();
+                    EmployeeManager.startEmployeeManager(scanner);
+
                     break;
                 case 5:
-                    // xử lý logic cho quản lý nhân viên
-                    EmployeeManager.startEmployeeManager(scanner);
+                    InventoryManager.readFile();
+                    InventoryManager.startInventoryManager(scanner);
+                    break;
+                case 6:
+                    TransactionManager.readFile();
+                    TransactionManager.startTransactionManager(scanner);
                     break;
                 case 0:
                     System.out.println("Bye.");
                     System.exit(0);
+                    break;
                 default:
-                    System.out.println("Tùy chọn không hợp lệ. Vui lòng chọn lại.");
+                    System.out.println("Tuy chon khong hop le. Vui long nhap lai");
                     break;
 
             }
